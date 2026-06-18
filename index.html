@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SprinkFlow — Fire sprinkler submittals in minutes</title>
+  <meta name="description" content="SprinkFlow builds formatted fire-sprinkler material submittals in minutes. AI-assisted cut-sheet and hydraulic-calc import, a built-in datasheet catalog, and design tools made for sprinkler designers." />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <meta property="og:title" content="SprinkFlow — Fire sprinkler submittals in minutes" />
+  <meta property="og:description" content="AI-assisted material submittals and design tools built for fire sprinkler designers." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- ambient background -->
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-fire"></span>
+    <span class="orb orb-water"></span>
+    <span class="orb orb-amber"></span>
+  </div>
+
+  <!-- nav -->
+  <header class="nav" id="nav">
+    <a class="brand" href="#top">
+      <img src="./assets/logo.png" alt="" class="brand-mark" />
+      <span class="brand-name">SprinkFlow</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#download">Download</a>
+    </nav>
+    <a href="#signup" class="btn btn-primary btn-sm">Get the beta</a>
+  </header>
+
+  <!-- hero -->
+  <section class="hero" id="top">
+    <div class="hero-inner reveal">
+      <div class="eyebrow"><span class="dot"></span> Private beta — free for fire sprinkler designers</div>
+      <h1 class="hero-title">Fire sprinkler submittals,<br /><span class="grad">done in minutes.</span></h1>
+      <p class="hero-sub">SprinkFlow turns a pile of cut sheets and calcs into a clean, bookmarked submittal package — with AI that reads the documents for you. Built by a sprinkler designer, for sprinkler designers.</p>
+      <div class="hero-cta">
+        <a href="#signup" class="btn btn-primary">Get the beta — free</a>
+        <a href="#features" class="btn btn-ghost">See what it does</a>
+      </div>
+      <div class="hero-meta">No credit card · Windows desktop app · One-click updates</div>
+    </div>
+    <div class="hero-shot reveal">
+      <div class="frame">
+        <div class="frame-bar"><span></span><span></span><span></span></div>
+        <img data-shot="hero" src="./assets/screenshots/app-overview.png" alt="SprinkFlow app overview" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- trust strip -->
+  <section class="strip reveal">
+    <div class="strip-item"><strong>Minutes, not hours</strong><span>From cut sheets to a finished submittal</span></div>
+    <div class="strip-item"><strong>AI-assisted</strong><span>Reads cut sheets &amp; hydraulic calcs</span></div>
+    <div class="strip-item"><strong>NFPA-aware</strong><span>Storage hazard &amp; reference tools</span></div>
+    <div class="strip-item"><strong>Always current</strong><span>Updates itself in one click</span></div>
+  </section>
+
+  <!-- features -->
+  <div id="features"></div>
+
+  <section class="feature">
+    <div class="feature-text reveal">
+      <div class="kicker">Material submittals</div>
+      <h2>Drop in cut sheets. Get a submittal package.</h2>
+      <p>Pick your products or drop in PDFs and SprinkFlow assembles a formatted, bookmarked submittal — cover sheet, table of contents, and every datasheet in order. What used to be an afternoon of copy-paste is a couple of minutes.</p>
+      <ul class="ticks">
+        <li>Auto cover sheet, index, and bookmarks</li>
+        <li>Built-in manufacturer datasheet catalog</li>
+        <li>Save contractors and projects for reuse</li>
+      </ul>
+    </div>
+    <div class="feature-shot reveal">
+      <div class="frame"><div class="frame-bar"><span></span><span></span><span></span></div>
+        <img data-shot="submittal" src="./assets/screenshots/submittal-builder.png" alt="Building a submittal package in SprinkFlow" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <section class="feature reverse">
+    <div class="feature-text reveal">
+      <div class="kicker kicker-fire">AI-assisted import</div>
+      <h2>The computer reads the cut sheet so you don't have to.</h2>
+      <p>SprinkFlow uses Claude to read your manufacturer cut sheets and hydraulic calc packages — pulling model, K-factor, response type, temperature ratings, listings, and design criteria automatically, then filling the submittal for you. If anything's ever unavailable, it quietly falls back to the built-in parser.</p>
+      <ul class="ticks">
+        <li>Model, K-factor, listings &amp; SIN map from cut sheets</li>
+        <li>Hazard, density, demand &amp; supply from calcs</li>
+        <li>You review and tweak — it does the typing</li>
+      </ul>
+    </div>
+    <div class="feature-shot reveal">
+      <div class="frame"><div class="frame-bar"><span></span><span></span><span></span></div>
+        <img data-shot="ai" src="./assets/screenshots/ai-import.png" alt="AI-assisted cut sheet import" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <section class="feature">
+    <div class="feature-text reveal">
+      <div class="kicker kicker-water">Design tools</div>
+      <h2>The reference tools you keep a tab open for — built in.</h2>
+      <p>Storage commodity and hazard lookups, NFPA reference roadmaps, hydraulic remote-area organization, and more — all in the same place you build your submittals, so you're not bouncing between apps and PDFs.</p>
+      <ul class="ticks">
+        <li>Storage hazard &amp; commodity classification</li>
+        <li>NFPA 13 reference roadmap</li>
+        <li>Hydraulic calc organization</li>
+      </ul>
+    </div>
+    <div class="feature-shot reveal">
+      <div class="frame"><div class="frame-bar"><span></span><span></span><span></span></div>
+        <img data-shot="tools" src="./assets/screenshots/design-tools.png" alt="SprinkFlow design tools" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <!-- how it works -->
+  <section class="how" id="how">
+    <h2 class="section-title reveal">From zero to submittal in three steps</h2>
+    <div class="steps">
+      <div class="step reveal"><div class="step-num">1</div><h3>Create your free account</h3><p>Sign up, confirm your email, and download the app for Windows.</p></div>
+      <div class="step reveal"><div class="step-num">2</div><h3>Add your products &amp; cut sheets</h3><p>Pick from the catalog or drop in PDFs — AI fills in the details.</p></div>
+      <div class="step reveal"><div class="step-num">3</div><h3>Generate &amp; send</h3><p>Out comes a clean, bookmarked submittal package, ready to go.</p></div>
+    </div>
+  </section>
+
+  <!-- signup -->
+  <section class="signup" id="signup">
+    <div class="signup-card reveal">
+      <div class="signup-copy">
+        <div class="kicker">Join the private beta</div>
+        <h2>Get SprinkFlow free, today.</h2>
+        <p>The beta is free for fire sprinkler designers. Create an account, confirm your email, and you'll get the download right away.</p>
+        <ul class="ticks">
+          <li>Free during the beta</li>
+          <li>Windows desktop app</li>
+          <li>Your feedback shapes what gets built</li>
+        </ul>
+      </div>
+      <form class="signup-form" id="signupForm" autocomplete="on" novalidate>
+        <label>Name<input type="text" id="suName" autocomplete="name" placeholder="Your name" /></label>
+        <label>Company<input type="text" id="suCompany" autocomplete="organization" placeholder="Company (optional)" /></label>
+        <label>Work email<input type="email" id="suEmail" autocomplete="email" required placeholder="you@company.com" /></label>
+        <label>Password
+          <span class="pw-wrap">
+            <input type="password" id="suPassword" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters" />
+            <button type="button" class="pw-toggle" id="suPwToggle" aria-label="Show password" title="Show password">👁</button>
+          </span>
+        </label>
+        <button type="submit" class="btn btn-primary btn-block" id="suSubmit">Create my free account</button>
+        <p class="form-note" id="suNote" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- download -->
+  <section class="download" id="download">
+    <div class="download-inner reveal">
+      <h2>Already have an account?</h2>
+      <p>Grab the latest Windows build. Windows may show a SmartScreen notice because the installer isn't code-signed yet — choose <strong>More info → Run anyway</strong>.</p>
+      <a class="btn btn-primary btn-lg" id="downloadBtn" href="https://github.com/jamesallenquinn/sprinkflow-releases/releases/latest/download/SprinkFlow-Setup.exe">Download SprinkFlow for Windows</a>
+      <div class="download-meta">Latest beta · ~38&nbsp;MB · Windows 10/11</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="./assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-by">A Calculated Fire Suppression product · © <span id="year"></span></div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
