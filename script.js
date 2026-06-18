@@ -2,7 +2,7 @@
 const SUPABASE_URL = "https://aebghirpjiwiergkafej.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFlYmdoaXJwaml3aWVyZ2thZmVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMjA0NTQsImV4cCI6MjA5NTg5NjQ1NH0.ogDc26YGo3AEAZZcPII_p3htPml4pjQa4vOyYAU1sSg";
 const CLOUD_API = "https://sprinkflow-cloud-api.onrender.com";
-const SITE_URL = "https://get.calculatedfiresuppression.com";
+const SITE_URL = "https://sprinkflow.studio";
 
 const supa = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
