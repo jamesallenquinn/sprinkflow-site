@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free Fire Sprinkler Design Tools &amp; Calculators | SprinkFlow</title>
+  <meta name="description" content="Free online fire sprinkler calculators for designers: storage hazard analysis, sprinkler spacing &amp; coverage, water supply curves, NFPA 13 references, and NFPA 1142. Built by a fire sprinkler designer." />
+  <link rel="canonical" href="https://sprinkflow.studio/tools/" />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .tools-wrap { max-width: 1000px; margin: 0 auto; padding: 40px 22px 80px; }
+    .tools-wrap h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); margin: 0 0 12px; }
+    .tools-lead { color: var(--muted); font-size: 1.1rem; max-width: 60ch; }
+    .tcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 34px 0 40px; }
+    .tcard { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: block; }
+    .tcard:hover { border-color: var(--line-strong); }
+    .tcard h2 { font-size: 1.15rem; margin: 0 0 6px; }
+    .tcard p { color: var(--muted); font-size: 0.92rem; margin: 0; }
+    .tcard .ic { font-size: 1.6rem; }
+    .tools-cta { background: linear-gradient(135deg, rgba(255,90,47,0.08), transparent 60%, rgba(55,183,228,0.08)), var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 30px; text-align: center; }
+    .tools-cta h2 { margin: 0 0 8px; }
+    .tools-cta p { color: var(--muted); margin: 0 0 18px; }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a class="brand" href="/"><img src="../assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">Features</a><a href="/tools/">Free tools</a><a href="/#download">Download</a></nav>
+    <a href="/#signup" class="btn btn-primary btn-sm">Get the beta</a>
+  </header>
+
+  <main class="tools-wrap">
+    <h1>Free fire sprinkler design tools</h1>
+    <p class="tools-lead">A growing set of free calculators and code references for fire sprinkler designers — no login required to use them. Built by a designer, part of <a href="/">SprinkFlow</a>.</p>
+
+    <div class="tcards">
+      <a class="tcard" href="/tools/storage-hazard-calculator.html">
+        <div class="ic">📦</div><h2>Storage Hazard Analyzer</h2>
+        <p>Get the applicable NFPA storage protection criteria (CMDA, CMSA, ESFR, in-rack) from your commodity and storage height.</p>
+      </a>
+      <a class="tcard" href="/tools/sprinkler-spacing-calculator.html">
+        <div class="ic">⬚</div><h2>Sprinkler Spacing Calculator</h2>
+        <p>Coverage area per sprinkler and required flow by hazard density from your spacing dimensions.</p>
+      </a>
+      <a class="tcard" href="/tools/water-supply-calculator.html">
+        <div class="ic">💧</div><h2>Water Supply Curve Calculator</h2>
+        <p>Plot a flow-test curve and read available flow at any pressure from static, residual, and test flow.</p>
+      </a>
+    </div>
+
+    <div class="tools-cta">
+      <h2>The full toolkit is free during beta</h2>
+      <p>Material submittal generator, AI cut-sheet reading, the datasheet catalog, and the mobile app — free through the end of the month.</p>
+      <a class="btn btn-primary btn-lg" href="/#signup">Get SprinkFlow free</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="../assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-by">A Calculated Fire Suppression product · © <span id="year"></span></div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

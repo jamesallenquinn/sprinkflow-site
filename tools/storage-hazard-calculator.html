@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Storage Hazard Calculator (NFPA 13 Protection Criteria) | SprinkFlow</title>
+  <meta name="description" content="Free storage hazard analyzer for fire sprinkler design. Enter commodity, storage arrangement, and ceiling height to get the applicable NFPA 13 protection options — CMDA, CMSA, ESFR, and in-rack — with density, demand, and code references." />
+  <link rel="canonical" href="https://sprinkflow.studio/tools/storage-hazard-calculator.html" />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .art { max-width: 760px; margin: 0 auto; padding: 36px 22px 80px; }
+    .art h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 0 0 14px; }
+    .art h2 { font-size: 1.3rem; margin: 32px 0 10px; }
+    .art p, .art li { color: var(--muted); font-size: 1.05rem; line-height: 1.6; }
+    .art .lead { color: var(--ink); font-size: 1.15rem; }
+    .open-cta { display: block; text-align: center; margin: 26px 0; }
+    .crumbs { font-size: 0.85rem; color: var(--line-strong); margin-bottom: 14px; }
+    .crumbs a { color: var(--muted); }
+    .faq dt { font-weight: 700; color: var(--ink); margin-top: 16px; }
+    .signup-strip { margin-top: 40px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; text-align: center; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="../assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/tools/">Free tools</a><a href="/#download">Download</a></nav>
+    <a href="/#signup" class="btn btn-primary btn-sm">Get the beta</a>
+  </header>
+
+  <main class="art">
+    <div class="crumbs"><a href="/tools/">Free tools</a> / Storage Hazard Calculator</div>
+    <h1>Storage Hazard Calculator</h1>
+    <p class="lead">Figure out the applicable NFPA 13 storage protection in seconds. Enter your commodity class, storage arrangement, and ceiling height, and get the design options side by side — with density, demand, and the exact code references.</p>
+
+    <div class="open-cta"><a class="btn btn-primary btn-lg" href="https://app.sprinkflow.studio/storage-hazard.html">Open the free Storage Hazard tool →</a></div>
+
+    <h2>What it does</h2>
+    <p>Storage sprinkler protection is one of the trickiest calls in fire sprinkler design — the right scheme depends on commodity classification, storage method, storage and ceiling height, and aisle width, and the figures live across many NFPA 13 sections. This tool walks the criteria for you and lays out every applicable option:</p>
+    <ul>
+      <li><strong>CMDA</strong> (control mode density/area) ceiling-only and with in-rack sprinklers</li>
+      <li><strong>CMSA</strong> (control mode specific application)</li>
+      <li><strong>ESFR</strong> (early suppression fast response)</li>
+      <li><strong>In-rack</strong> sprinkler arrangements</li>
+    </ul>
+    <p>For each option you get the ceiling density and design area, in-rack demand, hose allowance, total water demand, and the figure/section it came from — so you can compare schemes and justify the one you pick.</p>
+
+    <h2>How to use it</h2>
+    <ol>
+      <li>Choose your NFPA 13 edition and commodity (e.g., cartoned unexpanded Group A plastic).</li>
+      <li>Set the storage arrangement, storage height, ceiling height, and aisle width.</li>
+      <li>Review the recommended criteria and filter by protection type.</li>
+      <li>Copy the design text straight into your calc package or narrative.</li>
+    </ol>
+
+    <h2>FAQ</h2>
+    <dl class="faq">
+      <dt>Is it really free?</dt>
+      <dd>Yes — this calculator is free to use with no login. It's part of SprinkFlow, which is free for the full toolkit during the beta.</dd>
+      <dt>Which NFPA 13 editions are supported?</dt>
+      <dd>Recent editions, with the criteria mapped to the corresponding figures and sections.</dd>
+      <dt>Can I use it on my phone?</dt>
+      <dd>Yes. It's also part of the free SprinkFlow mobile app — add it to your home screen and it works in the field, even offline.</dd>
+    </dl>
+
+    <div class="signup-strip">
+      <h2 style="margin-top:0;color:var(--ink)">Want the full toolkit?</h2>
+      <p>SprinkFlow also generates material submittals from your plans and reads cut sheets with AI. Free through the end of the month.</p>
+      <a class="btn btn-primary btn-lg" href="/#signup">Get SprinkFlow free</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="../assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+</body>
+</html>
