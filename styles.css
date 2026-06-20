@@ -176,3 +176,20 @@ section { position: relative; z-index: 1; }
   .nav-links { display: none; }
   .signup-card { padding: 30px; }
 }
+
+/* free app banner */
+.appcta { max-width: var(--max); margin: 64px auto 0; padding: 0 20px; }
+.appcta-card { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 38px 34px; box-shadow: var(--shadow); }
+.appcta-card::before { content: ""; position: absolute; inset: 0; background: var(--grad-fw); opacity: .12; pointer-events: none; }
+.appcta-copy { position: relative; max-width: 760px; }
+.appcta-card .kicker { color: var(--accent); }
+.appcta-card h2 { font: 700 1.9rem/1.1 "Space Grotesk", sans-serif; margin: 10px 0 12px; }
+.appcta-card p { color: var(--muted); margin: 0 0 20px; max-width: 70ch; }
+.appcta-btns { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.appcta-meta { color: var(--muted); font-size: .86rem; }
+@media (max-width: 560px) { .appcta-card { padding: 28px 22px; } .appcta-card h2 { font-size: 1.55rem; } }
+
+/* footer links */
+.footer-links { margin: 6px 0; font-size: .9rem; }
+.footer-links a { color: var(--accent); text-decoration: none; }
+.footer-links a:hover { text-decoration: underline; }
