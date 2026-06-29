@@ -193,3 +193,23 @@ section { position: relative; z-index: 1; }
 .footer-links { margin: 6px 0; font-size: .9rem; }
 .footer-links a { color: var(--accent); text-decoration: none; }
 .footer-links a:hover { text-decoration: underline; }
+
+/* ---- Feature showcase (auto-advancing walkthrough) ---- */
+.showcase-feature { max-width: var(--max); margin: 0 auto; padding: 84px 24px; }
+.showcase-head { max-width: 680px; margin: 0 auto 34px; text-align: center; }
+.showcase-head h2 { font-size: clamp(1.7rem, 3.2vw, 2.5rem); margin: 10px 0 14px; }
+.showcase-head p { color: var(--muted); font-size: 1.05rem; line-height: 1.6; margin: 0; }
+.frame.showcase { max-width: 1040px; margin: 0 auto; }
+.showcase-stage { position: relative; aspect-ratio: 1440 / 900; overflow: hidden; background: var(--surface-soft); }
+.showcase-stage .slide { position: absolute; inset: 0; margin: 0; opacity: 0; transform: scale(1.014); transition: opacity .55s ease, transform .55s ease; pointer-events: none; }
+.showcase-stage .slide.is-active { opacity: 1; transform: none; }
+.showcase-stage .slide img { width: 100%; height: 100%; min-height: 0; object-fit: cover; object-position: top left; display: block; background: none; }
+.showcase-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 13px 16px; background: var(--surface-soft); border-top: 1px solid var(--line); }
+.showcase-caption { display: flex; align-items: center; gap: 11px; min-width: 0; }
+.showcase-step { flex: 0 0 auto; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 7px; font-size: .82rem; font-weight: 700; color: #1a0d06; background: var(--grad-fire); font-family: "Space Grotesk", sans-serif; }
+.showcase-label { font-weight: 600; font-size: .96rem; color: var(--ink); }
+.showcase-dots { display: flex; gap: 8px; flex: 0 0 auto; }
+.showcase-dots .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: var(--line-strong); cursor: pointer; transition: width .3s ease, background .3s ease, border-radius .3s ease; }
+.showcase-dots .dot.is-active { width: 26px; border-radius: 5px; background: var(--accent); }
+.showcase-dots .dot:hover { background: var(--muted); }
+@media (max-width: 720px) { .showcase-foot { flex-direction: column; align-items: flex-start; gap: 12px; } }

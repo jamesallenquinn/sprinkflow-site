@@ -112,3 +112,39 @@ if (new URLSearchParams(location.search).get("confirmed") === "1") {
   setNote("Email confirmed — you're in! Download SprinkFlow below.", "ok");
   document.getElementById("download")?.scrollIntoView({ behavior: "smooth" });
 }
+
+// --- feature showcase: auto-advancing walkthrough slides ---
+document.querySelectorAll("[data-showcase]").forEach((box) => {
+  const slides = [...box.querySelectorAll(".slide")];
+  const dots = [...box.querySelectorAll(".dot")];
+  const stepEl = box.querySelector(".showcase-step");
+  const labelEl = box.querySelector(".showcase-label");
+  if (slides.length < 2) return;
+  const interval = Number(box.dataset.interval) || 3000;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let i = 0, timer = null, visible = true, hovered = false;
+
+  const show = (n) => {
+    i = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle("is-active", k === i));
+    dots.forEach((d, k) => d.classList.toggle("is-active", k === i));
+    if (stepEl) stepEl.textContent = String(i + 1);
+    if (labelEl && dots[i]) labelEl.innerHTML = dots[i].dataset.label || "";
+  };
+  const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+  const start = () => {
+    stop();
+    if (reduce || !visible || hovered) return;
+    timer = setInterval(() => show(i + 1), interval);
+  };
+
+  dots.forEach((d, k) => d.addEventListener("click", () => { show(k); start(); }));
+  box.addEventListener("mouseenter", () => { hovered = true; stop(); });
+  box.addEventListener("mouseleave", () => { hovered = false; start(); });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; start(); }, { threshold: 0.35 })
+      .observe(box);
+  }
+  show(0);
+  start();
+});
