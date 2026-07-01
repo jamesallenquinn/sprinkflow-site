@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fire Sprinkler Demand Calculator (Density/Area Preliminary) | SprinkFlow</title>
+  <meta name="description" content="Free preliminary fire sprinkler demand calculator. Enter a building&#39;s size, hazard, and pipe and it estimates the flow (GPM) and pressure (PSI) your system will need using density/area, Hazen-Williams, elevation, and backflow losses." />
+  <link rel="canonical" href="https://sprinkflow.studio/tools/fire-sprinkler-demand-calculator.html" />
+  <meta name="theme-color" content="#0d1116" />
+  <meta property="og:title" content="Fire Sprinkler Demand Calculator | SprinkFlow" />
+  <meta property="og:description" content="Free preliminary fire sprinkler demand calculator. Enter a building&#39;s size, hazard, and pipe and it estimates the flow (GPM) and pressure (PSI) your system will need using density/area, Hazen-Williams, elevation, and backflow losses." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How accurate is a preliminary demand calc?", "acceptedAnswer": {"@type": "Answer", "text": "It is an early estimate for feasibility and bidding, not a stamped hydraulic calculation. It runs a real hydraulic pass on a representative layout so it is far closer than a rule of thumb, but your final design governs."}}, {"@type": "Question", "name": "What is the density/area method?", "acceptedAnswer": {"@type": "Answer", "text": "NFPA 13 defines a design density in gpm per square foot applied over a design area for each hazard classification. The demand is the flow and pressure needed to deliver that density over the most remote area, plus hose streams."}}, {"@type": "Question", "name": "Does it include hose stream allowance?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The estimate adds the hose stream allowance for the selected hazard so the demand reflects the total at the source."}}]}</script>
+  <style>
+    .art { max-width: 760px; margin: 0 auto; padding: 36px 22px 80px; }
+    .art h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 0 0 14px; }
+    .art h2 { font-size: 1.3rem; margin: 32px 0 10px; }
+    .art p, .art li { color: var(--muted); font-size: 1.05rem; line-height: 1.6; }
+    .art .lead { color: var(--ink); font-size: 1.15rem; }
+    .open-cta { display: block; text-align: center; margin: 26px 0; }
+    .crumbs { font-size: 0.85rem; color: var(--line-strong); margin-bottom: 14px; }
+    .crumbs a { color: var(--muted); }
+    .faq dt { font-weight: 700; color: var(--ink); margin-top: 16px; }
+    .signup-strip { margin-top: 40px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; text-align: center; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="../assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/tools/">Free tools</a><a href="/#download">Download</a></nav>
+    <a href="/#signup" class="btn btn-primary btn-sm">Get the beta</a>
+  </header>
+
+  <main class="art">
+    <div class="crumbs"><a href="/tools/">Free tools</a> / Preliminary Demand</div>
+    <h1>Fire Sprinkler Demand Calculator</h1>
+    <p class="lead">Size up your demand before you draw a thing. Enter the basics and it lays out a representative system and runs a real hydraulic pass to estimate the GPM and PSI you&#39;ll need at the source.</p>
+
+    <div class="open-cta"><a class="btn btn-primary btn-lg" href="https://app.sprinkflow.studio/tools/prelim-calc.html">Open the free Preliminary Calc &rarr;</a></div>
+
+    <h2>What it does</h2>
+    <p>This is a feasibility check grounded in actual hydraulics, not a rule of thumb. Behind the scenes it builds a representative tree system and solves it:</p>
+    <ul>
+      <li>Density/area demand per NFPA 13</li>
+      <li>Hazen-Williams pipe friction loss</li>
+      <li>Elevation and backflow-preventer losses</li>
+      <li>K-factor start pressure and hose stream allowance</li>
+      <li>A flag on whether your water supply looks adequate</li>
+    </ul>
+
+    <h2>How to use it</h2>
+    <ol>
+      <li>Enter the building dimensions and hazard classification.</li>
+      <li>Pick your main, branch, and underground pipe.</li>
+      <li>Read the estimated GPM and PSI demand, and the supply-adequacy flag.</li>
+    </ol>
+
+    <h2>FAQ</h2>
+    <dl class="faq">
+      <dt>How accurate is a preliminary demand calc?</dt>
+      <dd>It is an early estimate for feasibility and bidding, not a stamped hydraulic calculation. It runs a real hydraulic pass on a representative layout so it is far closer than a rule of thumb, but your final design governs.</dd>
+      <dt>What is the density/area method?</dt>
+      <dd>NFPA 13 defines a design density in gpm per square foot applied over a design area for each hazard classification. The demand is the flow and pressure needed to deliver that density over the most remote area, plus hose streams.</dd>
+      <dt>Does it include hose stream allowance?</dt>
+      <dd>Yes. The estimate adds the hose stream allowance for the selected hazard so the demand reflects the total at the source.</dd>
+    </dl>
+
+    <div class="signup-strip">
+      <h2 style="margin-top:0;color:var(--ink)">Build submittals too</h2>
+      <p>SprinkFlow turns your fire sprinkler plans into a finished, bookmarked material submittal package. Free while it's in beta.</p>
+      <a class="btn btn-primary btn-lg" href="/#signup">Get SprinkFlow free</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="../assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+</body>
+</html>

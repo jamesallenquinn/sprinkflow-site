@@ -5,5 +5,10 @@
   <url><loc>https://sprinkflow.studio/tools/storage-hazard-calculator.html</loc><priority>0.8</priority></url>
   <url><loc>https://sprinkflow.studio/tools/sprinkler-spacing-calculator.html</loc><priority>0.8</priority></url>
   <url><loc>https://sprinkflow.studio/tools/water-supply-calculator.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sprinkflow.studio/tools/nfpa-1142-water-supply-calculator.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sprinkflow.studio/tools/fire-sprinkler-demand-calculator.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sprinkflow.studio/tools/feet-inch-calculator.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sprinkflow.studio/tools/nfpa-13-reference.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sprinkflow.studio/tools/fire-sprinkler-bid-estimator.html</loc><priority>0.8</priority></url>
   <url><loc>https://sprinkflow.studio/share.html</loc><priority>0.5</priority></url>
 </urlset>
