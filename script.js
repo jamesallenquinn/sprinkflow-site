@@ -68,16 +68,8 @@ form?.addEventListener("submit", async (event) => {
     });
     if (error) throw error;
 
-    // Best-effort: queue a beta license so it auto-applies on first app sign-in.
-    // Never blocks signup if the cloud API is cold/unavailable.
-    try {
-      await fetch(CLOUD_API + "/beta/request-access", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name, company }),
-      });
-    } catch (_) { /* non-fatal */ }
-
+    // The account starts on the free tier; a paid license is granted by the
+    // Stripe subscription (via the billing webhook), not at signup.
     const identities = data?.user?.identities;
     if (Array.isArray(identities) && identities.length === 0) {
       setNote("You already have an account with this email. Check your inbox to confirm, or just download below.", "ok");
