@@ -221,3 +221,5 @@ section { position: relative; z-index: 1; }
 .feature.compact { padding-top: 52px; padding-bottom: 52px; }
 .feature.compact h2 { font-size: clamp(1.5rem, 2.7vw, 2.05rem); }
 @media (max-width: 860px) { .feature.compact { padding-top: 38px; padding-bottom: 38px; } }
+
+.ea-chip { border: 1px solid var(--accent); border-radius: 5px; color: var(--accent); display: inline-block; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.06em; margin-left: 6px; padding: 1px 7px; text-transform: uppercase; vertical-align: 2px; }
