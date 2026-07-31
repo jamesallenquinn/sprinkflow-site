@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="SprinkFlow icon">
+  <defs>
+    <radialGradient id="tileGlow" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#102748"/>
+      <stop offset="58%" stop-color="#071427"/>
+      <stop offset="100%" stop-color="#020713"/>
+    </radialGradient>
+    <linearGradient id="water" x1="280" y1="150" x2="700" y2="660" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6df8f4"/>
+      <stop offset="38%" stop-color="#13bdf6"/>
+      <stop offset="100%" stop-color="#0076dc"/>
+    </linearGradient>
+    <linearGradient id="waterShade" x1="430" y1="270" x2="735" y2="590" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#169fec" stop-opacity=".38"/>
+      <stop offset="100%" stop-color="#004b9e" stop-opacity=".62"/>
+    </linearGradient>
+    <linearGradient id="fire" x1="360" y1="770" x2="735" y2="470" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff6b00"/>
+      <stop offset="48%" stop-color="#ff9d12"/>
+      <stop offset="100%" stop-color="#ffc128"/>
+    </linearGradient>
+    <linearGradient id="fireShade" x1="485" y1="875" x2="690" y2="550" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff4f00" stop-opacity=".34"/>
+      <stop offset="100%" stop-color="#8b4a20" stop-opacity=".48"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000814" flood-opacity=".45"/>
+    </filter>
+  </defs>
+  <rect x="18" y="18" width="988" height="988" rx="210" fill="url(#tileGlow)"/>
+  <path fill="url(#water)" filter="url(#softShadow)" d="M303 568c-45-86 1-206 86-292 78-78 179-116 271-121 36-2 61-31 111-11 35 14 53 49 32 68-14 13-45 10-68 4-44-12-78 2-103 38-24 35-16 78 23 100 52 29 92 52 113 97 33 72 9 147-57 190-55 36-127 41-200 25-57-13-118-27-149-1-19 16-16 44 11 72 46 48 99 82 100 146-69-17-131-54-184-111-58-64-71-137-39-198-48 5-93-3-147-6z"/>
+  <path fill="url(#waterShade)" opacity=".72" d="M462 279c94-48 208-47 299-14-42-55-105-82-190-77-83 5-158 36-217 94-82 80-111 189-65 273 48 6 92 11 139 7-30-96 1-219 34-283z"/>
+  <path fill="#73fff7" opacity=".72" d="M314 508c-21-38-4-93 32-120 17-12 34 0 27 21-10 31-13 69 16 104-29 4-54 2-75-5z"/>
+  <path fill="url(#water)" d="M687 206c41-27 85-19 113 16 26 33 20 59-14 57-26-1-51-25-99-73z"/>
+  <path fill="url(#water)" d="M274 441c21-40 47-53 65-40 20 15 1 56-39 78-14-11-22-24-26-38z"/>
+  <path fill="url(#fire)" filter="url(#softShadow)" d="M281 690c17 72 83 128 175 146 80 16 153-2 204-47 43-39 71-99 57-154 48 44 62 103 31 176 39-12 66-42 83-91 30 99-11 183-96 227-107 56-249 35-345-32-87-61-125-149-109-225z"/>
+  <path fill="url(#fireShade)" opacity=".75" d="M520 835c75-10 132-46 170-100 25-35 38-71 38-100 39 45 44 98 20 154-27 65-85 107-161 121-98 18-201-10-277-69 59 16 127 21 210-6z"/>
+  <path fill="#ff9b14" d="M628 446c96 37 126 132 90 221-28-61-73-101-137-127 28-19 44-50 47-94z"/>
+  <path fill="#ff7b05" d="M715 766c42-11 68-44 82-91 20 71-1 133-63 181 1-33-6-61-19-90z"/>
+</svg>
