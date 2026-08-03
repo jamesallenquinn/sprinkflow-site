@@ -176,8 +176,19 @@ section { position: relative; z-index: 1; }
   .hero-shot, .feature .feature-shot { order: 2; }
   .strip { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
+  /* The nav collapses on phones, which used to hide the only route to
+     purchase (Account). Keep Pricing + Account reachable, and let the buy
+     button shrink rather than disappear. */
+  .nav-links { display: flex; gap: 14px; margin-left: auto; font-size: 0.85rem; }
+  .nav-links a:not([href="#pricing"]):not([href="/account.html"]) { display: none; }
+  .nav-buy { padding: 8px 12px; font-size: 0.82rem; white-space: nowrap; }
+  /* the wordmark and the nav links collide once the buy button is in the bar */
+  .brand-name { display: none; }
   .signup-card { padding: 30px; }
+}
+
+@media (max-width: 380px) {
+  .nav-links { display: none; }   /* very small screens: the buy button wins */
 }
 
 /* free app banner */

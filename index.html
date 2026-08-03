@@ -30,11 +30,12 @@
     </a>
     <nav class="nav-links">
       <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
       <a href="https://app.sprinkflow.studio">Free app &amp; games</a>
       <a href="#download">Download</a>
       <a href="/account.html">Account</a>
     </nav>
-    <a href="#signup" class="btn btn-primary btn-sm">Get SprinkFlow</a>
+    <a href="/account.html?checkout=1" class="btn btn-primary btn-sm nav-buy">Subscribe &mdash; $39/mo</a>
   </header>
 
   <!-- hero -->
@@ -45,7 +46,7 @@
       <p class="hero-sub">SprinkFlow turns a pile of cut sheets and calcs into a clean, bookmarked submittal package — plus a full kit of calc and design tools for the trade. Built by a sprinkler designer, for sprinkler designers.</p>
       <div class="hero-cta">
         <a href="#download" class="btn btn-primary">Download free</a>
-        <a href="#features" class="btn btn-ghost">See what it does</a>
+        <a href="/account.html?checkout=1" class="btn btn-ghost">Subscribe &mdash; $39/mo</a>
       </div>
       <div class="hero-meta">Free to download &amp; explore · $39/month to export · One-click updates</div>
     </div>
@@ -285,8 +286,9 @@
     </div>
   </section>
 
-  <!-- signup -->
+  <!-- signup / pricing -->
   <section class="signup" id="signup">
+    <span id="pricing" style="position:absolute;margin-top:-90px"></span>
     <div class="signup-card reveal">
       <div class="signup-copy">
         <div class="kicker">Membership · $39/month</div>
@@ -297,6 +299,10 @@
           <li>$39/month to export &mdash; cancel anytime</li>
           <li>Windows desktop app · one-click updates</li>
         </ul>
+        <p style="margin-top:18px">
+          <a href="/account.html?checkout=1" class="btn btn-primary">Subscribe now &mdash; $39/mo</a>
+        </p>
+        <p class="form-note" style="margin-top:10px">Ready to buy? Go straight to checkout — we'll set up your account on the way.</p>
       </div>
       <form class="signup-form" id="signupForm" autocomplete="on" novalidate>
         <label>Name<input type="text" id="suName" autocomplete="name" placeholder="Your name" /></label>

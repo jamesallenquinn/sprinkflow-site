@@ -36,6 +36,16 @@
     .hidden { display: none !important; }
     .signout { margin-top: 16px; text-align: center; }
     .signout button { background: none; border: 0; color: var(--muted); font: 600 0.85rem Inter; cursor: pointer; text-decoration: underline; }
+    /* price banner + mode tabs for the buy flow */
+    .price-banner { text-align: center; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; margin-bottom: 16px; }
+    .price-amount { font: 700 2.4rem 'Space Grotesk'; color: var(--ink); line-height: 1; }
+    .price-amount span { font-size: 1rem; color: var(--muted); font-weight: 600; }
+    .price-note { color: var(--muted); font: 500 0.9rem/1.5 Inter; margin-top: 8px; }
+    .acct-tabs { display: flex; gap: 6px; background: var(--surface-soft); border: 1px solid var(--line); border-radius: 12px; padding: 4px; margin-bottom: 4px; }
+    .acct-tabs button { flex: 1; background: none; border: 0; border-radius: 9px; padding: 10px; cursor: pointer; color: var(--muted); font: 600 0.92rem Inter; }
+    .acct-tabs button.active { background: var(--surface); color: var(--ink); box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+    .acct-alt { text-align: center; margin-top: 12px; font: 500 0.88rem Inter; color: var(--muted); }
+    .acct-alt button { background: none; border: 0; color: var(--accent); font: 600 0.88rem Inter; cursor: pointer; text-decoration: underline; padding: 0; }
   </style>
 </head>
 <body>
@@ -45,16 +55,33 @@
   </header>
 
   <main class="acct-wrap">
-    <h1>Your Account</h1>
-    <p class="acct-sub">Manage your SprinkFlow subscription.</p>
+    <h1 id="acctTitle">Your Account</h1>
+    <p class="acct-sub" id="acctSub">Manage your SprinkFlow subscription.</p>
+
+    <!-- shown when the visitor arrived intending to buy (?checkout=1) -->
+    <div class="price-banner hidden" id="priceBanner">
+      <div class="price-amount">$39<span> /month</span></div>
+      <div class="price-note">Unlimited submittals, calc packages and exports.<br />Cancel anytime.</div>
+    </div>
 
     <!-- signed OUT -->
     <div class="acct-card" id="loginCard">
+      <div class="acct-tabs" id="acctTabs">
+        <button type="button" id="tabSignIn" class="active">Sign in</button>
+        <button type="button" id="tabCreate">Create account</button>
+      </div>
+      <div id="createOnlyFields" class="hidden">
+        <label for="acName">Name</label>
+        <input id="acName" type="text" autocomplete="name" placeholder="Your name" />
+        <label for="acCompany">Company <span style="text-transform:none;font-weight:500">(optional)</span></label>
+        <input id="acCompany" type="text" autocomplete="organization" placeholder="Your company" />
+      </div>
       <label for="acEmail">Email</label>
       <input id="acEmail" type="email" autocomplete="email" placeholder="you@company.com" />
       <label for="acPassword">Password</label>
       <input id="acPassword" type="password" autocomplete="current-password" placeholder="Your SprinkFlow password" />
       <button class="acct-btn" id="acSignIn" type="button">Sign in</button>
+      <button class="acct-btn hidden" id="acCreate" type="button">Create account &amp; subscribe</button>
       <p class="acct-note" id="loginNote">Use the same login as the SprinkFlow app.</p>
     </div>
 
@@ -110,9 +137,47 @@
       return data;
     }
 
+    // ?checkout=1 means "this person came here to buy" - show the price, default
+    // to Create account, and send them straight to Stripe once they're signed in.
+    var wantsCheckout = /[?&]checkout=1/.test(location.search);
+
+    function applyBuyIntent() {
+      if (!wantsCheckout) return;
+      $("priceBanner").classList.remove("hidden");
+      $("acctTitle").textContent = "Start your membership";
+      $("acctSub").textContent = "Create an account (or sign in) and we'll take you straight to checkout.";
+      setMode("create");
+    }
+
+    function setMode(mode) {
+      var create = mode === "create";
+      $("tabCreate").classList.toggle("active", create);
+      $("tabSignIn").classList.toggle("active", !create);
+      $("createOnlyFields").classList.toggle("hidden", !create);
+      $("acCreate").classList.toggle("hidden", !create);
+      $("acSignIn").classList.toggle("hidden", create);
+      $("acPassword").setAttribute("autocomplete", create ? "new-password" : "current-password");
+      $("acPassword").placeholder = create ? "At least 8 characters" : "Your SprinkFlow password";
+      note("loginNote", create
+        ? "Already have an account? Choose Sign in above."
+        : "Use the same login as the SprinkFlow app.");
+    }
+
+    $("tabCreate").onclick = function () { setMode("create"); };
+    $("tabSignIn").onclick = function () { setMode("signin"); };
+
+    // Send an authenticated user to Stripe. Used by the button AND by the
+    // auto-checkout path after sign-in / email confirmation.
+    async function startCheckout(session, noteId) {
+      var d = await api("/billing/create-checkout-session", { method: "POST", body: "{}" }, session.access_token);
+      if (!d.url) throw new Error("No checkout URL returned.");
+      window.location.href = d.url;
+    }
+
     async function renderAccount(session) {
       $("loginCard").classList.add("hidden");
       $("acctCard").classList.remove("hidden");
+      $("priceBanner").classList.add("hidden");
       $("acWho").textContent = session.user && session.user.email || "—";
       note("acctNote", "Loading your subscription…");
       try {
@@ -126,6 +191,15 @@
         $("acPortal").classList.toggle("hidden", !subscribed);
         $("acSubscribe").classList.toggle("hidden", subscribed);
         note("acctNote", "");
+        // came here to buy and isn't subscribed yet -> go straight to Stripe
+        if (wantsCheckout && !subscribed) {
+          wantsCheckout = false;   // one shot, so a back-button return doesn't loop
+          note("acctNote", "Opening secure checkout…");
+          try { await startCheckout(session); } catch (e) { note("acctNote", e.message, true); }
+        } else if (subscribed) {
+          $("acctTitle").textContent = "Your Account";
+          $("acctSub").textContent = "Manage your SprinkFlow subscription.";
+        }
       } catch (e) {
         note("acctNote", e.message || "Could not load subscription.", true);
       }
@@ -152,7 +226,50 @@
       btn.disabled = false;
     };
 
-    $("acPassword").addEventListener("keydown", function (e) { if (e.key === "Enter") $("acSignIn").click(); });
+    $("acCreate").onclick = async function () {
+      var btn = this;
+      var email = $("acEmail").value.trim();
+      var password = $("acPassword").value;
+      if (!email || email.indexOf("@") < 0) { note("loginNote", "Please enter a valid email.", true); return; }
+      if (password.length < 8) { note("loginNote", "Password needs to be at least 8 characters.", true); return; }
+      btn.disabled = true;
+      note("loginNote", "Creating your account…");
+      try {
+        var res = await supa.auth.signUp({
+          email: email,
+          password: password,
+          options: {
+            // land them back here already intending to buy, so confirming the
+            // email drops them straight into checkout
+            emailRedirectTo: location.origin + "/account.html?checkout=1",
+            data: { full_name: $("acName").value.trim(), company: $("acCompany").value.trim() },
+          },
+        });
+        if (res.error) throw res.error;
+        var identities = res.data && res.data.user && res.data.user.identities;
+        if (Array.isArray(identities) && identities.length === 0) {
+          note("loginNote", "You already have an account with this email — choose Sign in above.", true);
+          btn.disabled = false;
+          return;
+        }
+        // Email confirmation OFF -> we already have a session, go straight to Stripe.
+        // Confirmation ON -> no session yet; the confirm link returns them here.
+        if (res.data && res.data.session) {
+          note("loginNote", "Account created — opening secure checkout…");
+          await startCheckout(res.data.session);
+          return;
+        }
+        note("loginNote", "Almost there — check your email and click the confirmation link. It brings you right back here to finish checkout.");
+      } catch (e) {
+        note("loginNote", (e && e.message) || "Could not create the account.", true);
+      }
+      btn.disabled = false;
+    };
+
+    $("acPassword").addEventListener("keydown", function (e) {
+      if (e.key !== "Enter") return;
+      ($("acCreate").classList.contains("hidden") ? $("acSignIn") : $("acCreate")).click();
+    });
 
     $("acPortal").onclick = function () {
       var btn = this;
@@ -172,11 +289,8 @@
       btn.disabled = true;
       note("acctNote", "Opening secure checkout…");
       withSession(async function (session) {
-        try {
-          var d = await api("/billing/create-checkout-session", { method: "POST", body: "{}" }, session.access_token);
-          if (d.url) { window.location.href = d.url; return; }
-          throw new Error("No checkout URL returned.");
-        } catch (e) { note("acctNote", e.message, true); btn.disabled = false; }
+        try { await startCheckout(session); }
+        catch (e) { note("acctNote", e.message, true); btn.disabled = false; }
       });
     };
 
@@ -187,7 +301,8 @@
       note("loginNote", "Signed out.");
     };
 
-    // auto-restore session on load
+    // auto-restore session on load; buy-intent styling applies when signed out
+    applyBuyIntent();
     withSession(renderAccount);
   })();
   </script>

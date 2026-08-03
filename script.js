@@ -43,6 +43,19 @@ function setNote(msg, kind) {
   note.className = "form-note" + (kind ? " " + kind : "");
 }
 
+// After a successful signup, surface BOTH next steps instead of silently
+// scrolling to the installer — subscribing was previously never offered.
+function showPostSignupActions() {
+  if (document.getElementById("suNext")) return;
+  const box = document.createElement("div");
+  box.id = "suNext";
+  box.style.cssText = "display:flex;gap:10px;flex-wrap:wrap;margin-top:12px";
+  box.innerHTML =
+    '<a class="btn btn-primary" href="/account.html?checkout=1">Subscribe &mdash; $39/mo</a>' +
+    '<a class="btn btn-ghost" href="#download">Download the app</a>';
+  note.insertAdjacentElement("afterend", box);
+}
+
 form?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const name = document.getElementById("suName").value.trim();
@@ -72,12 +85,14 @@ form?.addEventListener("submit", async (event) => {
     // Stripe subscription (via the billing webhook), not at signup.
     const identities = data?.user?.identities;
     if (Array.isArray(identities) && identities.length === 0) {
-      setNote("You already have an account with this email. Check your inbox to confirm, or just download below.", "ok");
+      setNote("You already have an account with this email. Sign in on your account page to subscribe, or just download below.", "ok");
     } else {
-      setNote("Almost there — check your email and click the confirmation link, then download below.", "ok");
+      setNote("Almost there — check your email and click the confirmation link. Then subscribe to unlock exports, or download below.", "ok");
     }
+    // Signup used to scroll straight to the download button, which left the
+    // purchase step invisible. Offer both, with subscribing first.
+    showPostSignupActions();
     form.reset();
-    document.getElementById("downloadBtn")?.scrollIntoView({ behavior: "smooth", block: "center" });
   } catch (err) {
     const msg = (err && err.message) || "Something went wrong. Please try again.";
     setNote(msg, "err");
@@ -101,8 +116,9 @@ document.querySelectorAll("img[data-shot]").forEach((img) => {
 
 // --- post-confirmation greeting ---
 if (new URLSearchParams(location.search).get("confirmed") === "1") {
-  setNote("Email confirmed — you're in! Download SprinkFlow below.", "ok");
-  document.getElementById("download")?.scrollIntoView({ behavior: "smooth" });
+  setNote("Email confirmed — you're in! Subscribe to unlock exports, or download the app below.", "ok");
+  showPostSignupActions();
+  document.getElementById("signup")?.scrollIntoView({ behavior: "smooth" });
 }
 
 // --- feature showcase: auto-advancing walkthrough slides ---
