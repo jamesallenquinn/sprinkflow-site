@@ -1,3 +1,10 @@
+// Password-recovery links from Supabase land on the site root with the tokens
+// in the URL hash - bounce them to the account page (which has the set-new-
+// password form) BEFORE the Supabase client below consumes the hash.
+if (/type=recovery|error_code=/.test(location.hash)) {
+  location.replace("/account.html" + location.hash);
+}
+
 // --- config (public values; the anon key is designed to be exposed client-side) ---
 const SUPABASE_URL = "https://aebghirpjiwiergkafej.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFlYmdoaXJwaml3aWVyZ2thZmVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMjA0NTQsImV4cCI6MjA5NTg5NjQ1NH0.ogDc26YGo3AEAZZcPII_p3htPml4pjQa4vOyYAU1sSg";

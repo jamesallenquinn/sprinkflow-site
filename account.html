@@ -83,6 +83,17 @@
       <button class="acct-btn" id="acSignIn" type="button">Sign in</button>
       <button class="acct-btn hidden" id="acCreate" type="button">Create account &amp; subscribe</button>
       <p class="acct-note" id="loginNote">Use the same login as the SprinkFlow app.</p>
+      <div class="acct-alt" id="forgotRow">Forgot your password? <button type="button" id="acForgot">Email me a reset link</button></div>
+    </div>
+
+    <!-- arrived via a password-reset email -->
+    <div class="acct-card hidden" id="resetCard">
+      <label for="acNewPassword">New password</label>
+      <input id="acNewPassword" type="password" autocomplete="new-password" placeholder="At least 8 characters" />
+      <label for="acNewPassword2">Confirm new password</label>
+      <input id="acNewPassword2" type="password" autocomplete="new-password" placeholder="Type it again" />
+      <button class="acct-btn" id="acSetPassword" type="button">Set new password</button>
+      <p class="acct-note" id="resetNote"></p>
     </div>
 
     <!-- signed IN -->
@@ -114,6 +125,36 @@
     var $ = function (id) { return document.getElementById(id); };
 
     function note(id, text, err) { var el = $(id); el.textContent = text || ""; el.classList.toggle("err", !!err); }
+
+    // --- password recovery ---------------------------------------------------
+    // A reset email drops the user here with tokens in the URL hash; supabase-js
+    // consumes them and fires PASSWORD_RECOVERY. Register the listener BEFORE
+    // anything else so the event can't be missed.
+    var inRecovery = false;
+    function showResetCard() {
+      inRecovery = true;
+      $("loginCard").classList.add("hidden");
+      $("acctCard").classList.add("hidden");
+      $("priceBanner").classList.add("hidden");
+      $("resetCard").classList.remove("hidden");
+      $("acctTitle").textContent = "Choose a new password";
+      $("acctSub").textContent = "You're signed in - set a new password for your account.";
+    }
+    if (supa) supa.auth.onAuthStateChange(function (event) {
+      if (event === "PASSWORD_RECOVERY") showResetCard();
+    });
+    // expired/used reset links come back with an error in the hash instead
+    if (/error_code=/.test(location.hash)) {
+      var hashErr = new URLSearchParams(location.hash.slice(1));
+      history.replaceState(null, "", location.pathname + location.search);
+      setTimeout(function () {
+        note("loginNote",
+          hashErr.get("error_code") === "otp_expired"
+            ? "That reset link has expired - use “Email me a reset link” below to get a fresh one."
+            : (hashErr.get("error_description") || "That link didn't work - request a fresh reset email below."),
+          true);
+      }, 0);
+    }
 
     function pillFor(status) {
       var map = {
@@ -175,6 +216,7 @@
     }
 
     async function renderAccount(session) {
+      if (inRecovery) return;   // reset card owns the page until the new password is saved
       $("loginCard").classList.add("hidden");
       $("acctCard").classList.remove("hidden");
       $("priceBanner").classList.add("hidden");
@@ -269,6 +311,54 @@
     $("acPassword").addEventListener("keydown", function (e) {
       if (e.key !== "Enter") return;
       ($("acCreate").classList.contains("hidden") ? $("acSignIn") : $("acCreate")).click();
+    });
+
+    $("acForgot").onclick = async function () {
+      var email = $("acEmail").value.trim();
+      if (!email || email.indexOf("@") < 0) {
+        note("loginNote", "Type your email in the Email box above, then click the reset link again.", true);
+        $("acEmail").focus();
+        return;
+      }
+      var btn = this;
+      btn.disabled = true;
+      note("loginNote", "Sending your reset link…");
+      try {
+        var res = await supa.auth.resetPasswordForEmail(email, {
+          redirectTo: location.origin + "/account.html",
+        });
+        if (res.error) throw res.error;
+        note("loginNote", "Reset link sent to " + email + " - check your inbox (and spam folder). The link brings you back here to choose a new password.");
+      } catch (e) {
+        note("loginNote", (e && e.message) || "Could not send the reset email.", true);
+      }
+      btn.disabled = false;
+    };
+
+    $("acSetPassword").onclick = async function () {
+      var pw = $("acNewPassword").value;
+      if (pw.length < 8) { note("resetNote", "Password needs to be at least 8 characters.", true); return; }
+      if (pw !== $("acNewPassword2").value) { note("resetNote", "Those passwords don't match.", true); return; }
+      var btn = this;
+      btn.disabled = true;
+      note("resetNote", "Saving your new password…");
+      try {
+        var res = await supa.auth.updateUser({ password: pw });
+        if (res.error) throw res.error;
+        inRecovery = false;
+        $("resetCard").classList.add("hidden");
+        $("acctTitle").textContent = "Your Account";
+        $("acctSub").textContent = "Manage your SprinkFlow subscription.";
+        note("loginNote", "");
+        await withSession(renderAccount);
+        note("acctNote", "Password updated - you can use it in the SprinkFlow app now.");
+      } catch (e) {
+        note("resetNote", (e && e.message) || "Could not update the password.", true);
+        btn.disabled = false;
+      }
+    };
+    $("acNewPassword2").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") $("acSetPassword").click();
     });
 
     $("acPortal").onclick = function () {
