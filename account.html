@@ -86,8 +86,12 @@
       <div class="acct-alt" id="forgotRow">Forgot your password? <button type="button" id="acForgot">Email me a reset link</button></div>
     </div>
 
-    <!-- arrived via a password-reset email -->
+    <!-- arrived via a password-reset email, or changing while signed in -->
     <div class="acct-card hidden" id="resetCard">
+      <div id="currentPwRow" class="hidden">
+        <label for="acCurrentPassword">Current password</label>
+        <input id="acCurrentPassword" type="password" autocomplete="current-password" placeholder="The password you signed in with" />
+      </div>
       <label for="acNewPassword">New password</label>
       <input id="acNewPassword" type="password" autocomplete="new-password" placeholder="At least 8 characters" />
       <label for="acNewPassword2">Confirm new password</label>
@@ -135,8 +139,13 @@
     // consumes them and fires PASSWORD_RECOVERY. Register the listener BEFORE
     // anything else so the event can't be missed.
     var inRecovery = false;
-    function showResetCard() {
+    var changeMode = false;   // signed-in change (needs the current password) vs email recovery
+    function showResetCard(isChange) {
       inRecovery = true;
+      changeMode = !!isChange;
+      // "secure password change" is ON in Supabase: a signed-in password update
+      // must include the current password (recovery-link sessions are exempt)
+      $("currentPwRow").classList.toggle("hidden", !changeMode);
       $("loginCard").classList.add("hidden");
       $("acctCard").classList.add("hidden");
       $("priceBanner").classList.add("hidden");
@@ -145,7 +154,7 @@
       $("acctSub").textContent = "You're signed in - set a new password for your account.";
     }
     if (supa) supa.auth.onAuthStateChange(function (event) {
-      if (event === "PASSWORD_RECOVERY") showResetCard();
+      if (event === "PASSWORD_RECOVERY") showResetCard(false);
     });
     // expired/used reset links come back with an error in the hash instead
     if (/error_code=/.test(location.hash)) {
@@ -343,12 +352,38 @@
       var pw = $("acNewPassword").value;
       if (pw.length < 8) { note("resetNote", "Password needs to be at least 8 characters.", true); return; }
       if (pw !== $("acNewPassword2").value) { note("resetNote", "Those passwords don't match.", true); return; }
+      if (changeMode && !$("acCurrentPassword").value) {
+        note("resetNote", "Enter your current password too - Supabase requires it to change your password while signed in.", true);
+        return;
+      }
       var btn = this;
       btn.disabled = true;
       note("resetNote", "Saving your new password…");
       try {
-        var res = await supa.auth.updateUser({ password: pw });
+        var res;
+        if (changeMode) {
+          // supabase-js updateUser() can't send current_password, so call the
+          // auth endpoint directly (secure-password-change is ON for this project)
+          var sess = (await supa.auth.getSession()).data.session;
+          if (!sess) throw new Error("Your session expired - sign in again first.");
+          var resp = await fetch(SUPABASE_URL + "/auth/v1/user", {
+            method: "PUT",
+            headers: {
+              "apikey": SUPABASE_ANON_KEY,
+              "Authorization": "Bearer " + sess.access_token,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ password: pw, current_password: $("acCurrentPassword").value }),
+          });
+          var body = await resp.json().catch(function () { return {}; });
+          res = { error: resp.ok ? null : new Error(body.msg || body.message || body.error_description || "Could not update the password.") };
+        } else {
+          res = await supa.auth.updateUser({ password: pw });
+        }
         if (res.error) throw res.error;
+        $("acCurrentPassword").value = "";
+        $("acNewPassword").value = "";
+        $("acNewPassword2").value = "";
         inRecovery = false;
         $("resetCard").classList.add("hidden");
         $("acctTitle").textContent = "Your Account";
@@ -356,6 +391,7 @@
         note("loginNote", "");
         await withSession(renderAccount);
         note("acctNote", "Password updated - you can use it in the SprinkFlow app now.");
+        btn.disabled = false;
       } catch (e) {
         note("resetNote", (e && e.message) || "Could not update the password.", true);
         btn.disabled = false;
@@ -366,7 +402,7 @@
     });
 
     // signed-in users can change their password with the same card
-    $("acChangePassword").onclick = function () { showResetCard(); };
+    $("acChangePassword").onclick = function () { showResetCard(true); };
 
     $("acPortal").onclick = function () {
       var btn = this;
