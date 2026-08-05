@@ -45,6 +45,31 @@ img { max-width: 100%; display: block; }
 section { position: relative; z-index: 1; }
 
 /* nav */
+/* announcement bar (Spotter) */
+.announce {
+  position: relative; z-index: 51;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 9px 20px;
+  background: linear-gradient(120deg, rgba(18, 93, 120, 0.55), rgba(55, 183, 228, 0.22));
+  border-bottom: 1px solid var(--line);
+  color: var(--ink); text-decoration: none;
+  font-size: .92rem; text-align: center; flex-wrap: wrap;
+}
+.announce:hover .announce-cta { text-decoration: underline; }
+.announce-tag {
+  flex: 0 0 auto; display: inline-grid; place-items: center;
+  padding: 1px 8px; border-radius: 6px;
+  background: var(--water); color: #06222e;
+  font: 800 .68rem/1.6 "Space Grotesk", sans-serif; letter-spacing: .06em; text-transform: uppercase;
+}
+.announce-text strong { font-weight: 700; }
+.announce-cta { flex: 0 0 auto; color: var(--water); font-weight: 700; white-space: nowrap; }
+@media (max-width: 720px) {
+  .announce { font-size: .85rem; gap: 8px; }
+  /* keep the bar one line tall on phones: name + Download only */
+  .announce-more { display: none; }
+}
+
 .nav {
   position: sticky; top: 0; z-index: 50;
   display: flex; align-items: center; gap: 24px;
@@ -197,6 +222,10 @@ section { position: relative; z-index: 1; }
 .appcta-card::before { content: ""; position: absolute; inset: 0; background: var(--grad-fw); opacity: .12; pointer-events: none; }
 .appcta-copy { position: relative; max-width: 760px; }
 .appcta-card .kicker { color: var(--accent); }
+/* Spotter variant: water-blue wash + kicker so the subscriber perk reads apart from the free-app card */
+.appcta-card.spotter::before { background: linear-gradient(120deg, var(--water) 0%, #7cd7f2 55%, var(--accent) 100%); opacity: .10; }
+.appcta-card.spotter .kicker { color: var(--water); }
+.appcta-card.spotter .appcta-meta a { color: var(--water); }
 .appcta-card h2 { font: 700 1.9rem/1.1 "Space Grotesk", sans-serif; margin: 10px 0 12px; }
 .appcta-card p { color: var(--muted); margin: 0 0 20px; max-width: 70ch; }
 .appcta-btns { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
