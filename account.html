@@ -105,7 +105,11 @@
       <button class="acct-btn hidden" id="acSubscribe" type="button">Subscribe</button>
       <button class="acct-btn ghost hidden" id="acPortal" type="button">Manage billing (payment method, invoices, cancel)</button>
       <p class="acct-note" id="acctNote"></p>
-      <div class="signout"><button id="acSignOut" type="button">Sign out</button></div>
+      <div class="signout">
+        <button id="acChangePassword" type="button">Change password</button>
+        &nbsp;&middot;&nbsp;
+        <button id="acSignOut" type="button">Sign out</button>
+      </div>
     </div>
   </main>
 
@@ -360,6 +364,9 @@
     $("acNewPassword2").addEventListener("keydown", function (e) {
       if (e.key === "Enter") $("acSetPassword").click();
     });
+
+    // signed-in users can change their password with the same card
+    $("acChangePassword").onclick = function () { showResetCard(); };
 
     $("acPortal").onclick = function () {
       var btn = this;
