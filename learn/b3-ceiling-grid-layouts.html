@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ceiling grid layouts — SprinkFlow School</title>
+  <meta name="description" content="What you'll learn: centering heads in ceiling tiles across whole rooms with the Place Heads in Ceiling Grid workflow." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/learn/b3-ceiling-grid-layouts.html" />
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .les-wrap { max-width: 760px; margin: 0 auto; padding: 40px 22px 90px; }
+    .les-crumb { font-size: .82rem; margin-bottom: 14px; }
+    .les-crumb a { color: var(--muted); text-decoration: none; }
+    .les-crumb a:hover { color: var(--brand); }
+    .les-num { color: var(--brand); font: 700 .8rem 'Space Grotesk'; letter-spacing: .12em; }
+    .les-wrap h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 4px 0 8px; }
+    .les-meta { color: var(--muted); font-size: .88rem; margin: 0 0 22px; }
+    .les-video { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: .95rem; margin-bottom: 30px; }
+    .les-video iframe { width: 100%; height: 100%; border: 0; border-radius: 14px; }
+    .les-body { font-size: .98rem; line-height: 1.65; }
+    .les-body h2 { font-size: 1.2rem; margin: 30px 0 8px; }
+    .les-body p { margin: 10px 0; }
+    .les-body ol { margin: 8px 0; padding-left: 24px; }
+    .les-body ol > li { margin: 12px 0; }
+    .les-body li::marker { color: var(--brand); font-weight: 700; }
+    .les-body ul { margin: 6px 0; padding-left: 22px; }
+    .les-body code { background: rgba(255,255,255,0.07); border-radius: 5px; font-size: .86em; padding: 1px 5px; }
+    .les-tip { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--brand);
+      border-radius: 10px; padding: 12px 16px; margin: 16px 0; font-size: .92rem; color: var(--muted); }
+    .les-tip strong { color: var(--ink); }
+    .les-next { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px;
+      margin-top: 40px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .les-next p { margin: 0; color: var(--muted); flex: 1; min-width: 220px; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="../assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <a href="/#download" class="btn btn-primary btn-sm">Get SprinkFlow</a>
+  </header>
+
+  <main class="les-wrap">
+    <nav class="les-crumb"><a href="/learn/">SprinkFlow School</a> / Track B — Design Studio &amp; Spotter</nav>
+    <span class="les-num">LESSON B3</span>
+    <h1>Ceiling grid layouts</h1>
+    <p class="les-meta">What you'll learn: centering heads in ceiling tiles across whole rooms with the Place Heads in Ceiling Grid workflow.</p>
+
+    <div class="les-video">Video coming soon — the written steps below cover everything.</div>
+
+    <div class="les-body">
+
+      <h2>Why grids are their own problem</h2>
+      <p>In a lay-in ceiling, heads don't just need compliant spacing — they need to land in the tile pattern the architect drew, centered where the RCP shows them. Doing both by hand is the tedium.</p>
+
+      <h2>Place heads in the grid</h2>
+      <ol>
+        <li>Run <strong>Place Heads in Ceiling Grid</strong> over a room with a visible grid.</li>
+        <li>SprinkFlow reads the room boundary and the tile pattern, and lays a per-room array — heads centered in tiles, spacing rules respected, including the minimum-separation rule between heads.</li>
+        <li>Review the result room by room; the coverage audit flags anything the array couldn't satisfy so you can resolve it deliberately.</li>
+      </ol>
+      <div class="les-tip"><strong>Tile snaps everywhere:</strong> even placing single heads, the smart snaps grab tile centers and grid lines — so a manual fix stays on-pattern.</div>
+    </div>
+
+    <div class="les-next">
+      <p><strong>Next lesson:</strong> <a href="/learn/b4-unit-templates.html">B4 — Unit templates</a></p>
+      <a href="/learn/" class="btn btn-primary btn-sm">All lessons</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="../assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="https://app.sprinkflow.studio">Free app &amp; games</a> · <a href="/tools/">Tool guides</a> · <a href="/learn/">Learn</a> · <a href="/release-notes.html">Release notes</a> · <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+</body>
+</html>

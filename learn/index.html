@@ -31,6 +31,7 @@
       text-transform: uppercase; padding: 3px 10px; margin-top: 4px; }
     .lrn-chip.live { background: rgba(61, 220, 151, 0.14); color: var(--ok, #3ddc97); border: 1px solid rgba(61, 220, 151, 0.4); }
     .lrn-chip.soon { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); }
+    .lrn-chip.preview { background: rgba(255, 176, 58, 0.12); color: var(--accent); border: 1px solid rgba(255, 176, 58, 0.35); }
     .lrn-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 24px; margin-top: 46px;
       display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
     .lrn-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 240px; }
@@ -45,7 +46,7 @@
   <main class="lrn-wrap">
     <h1>SprinkFlow School</h1>
     <p class="lrn-lead">Short videos and written step-by-step guides for everything in SprinkFlow — from your first submittal to full head layouts. Each lesson is a few minutes, and the written version covers the same steps if you'd rather read.</p>
-    <p class="lrn-note">New lessons are added regularly. Lessons marked <em>coming soon</em> are on the recording schedule.</p>
+    <p class="lrn-note">Every lesson has full written instructions today; videos are being recorded and added. Lessons marked <em>full studio</em> cover the complete Design Suite as it rolls out beyond Spotter.</p>
 
     <div class="lrn-track">Track A — The Submittal App</div>
     <p class="lrn-track-sub">The Windows desktop app: submittals, calc packages, and the PDF &amp; CAD toolbox.</p>
@@ -56,30 +57,124 @@
         <p>New project, drop in your plans, and generate a clean bookmarked material data submittal.</p>
         <span class="lrn-chip live">Available</span>
       </a>
-      <div class="lrn-card"><span class="num">A2</span><h3>The datasheet catalog</h3><p>Search the built-in catalog, add your own cut sheets, and manage everything in the Material Catalog tab.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">A3</span><h3>Covers, TOC and bookmarks</h3><p>Pick from 13 cover templates, star favorites, and see how the hyperlinked TOC is built.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">A4</span><h3>AI cut-sheet reading</h3><p>What the cut-sheet reader fills in for you, and how to fix the occasional miss.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">A5</span><h3>Hydraulic calc packages</h3><p>Turn calc PDFs into a covered, indexed, bookmarked package.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">A6</span><h3>PDF workspace: merge, compress, slip sheets</h3><p>Combine sets, shrink file sizes, and slip revised sheets into a base set visually.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">A7</span><h3>Vicinity maps</h3><p>Address search, and the click-to-pin map when the address is too new for the map data.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">A8</span><h3>PDF to CAD conversion</h3><p>Convert plotted PDFs to DXF/DWG with real layers, weights, and colors tuned for AutoSPRINK.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">A9</span><h3>DWG to PDF printing</h3><p>Print layout sheets straight from DWG — sheet picker, xref checkboxes, model-space fallback.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">A10</span><h3>Storage Hazard Analyzer</h3><p>Commodity, arrangement, height in — every applicable NFPA 13 protection option out.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">A11</span><h3>Hanger details &amp; seismic bracing</h3><p>Generate hanger details and run the seismic brace calculator with export-ready output.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">A12</span><h3>Bid estimator &amp; proposals</h3><p>Labor and material pricing, markup, and a proposal PDF on your letterhead.</p><span class="lrn-chip soon">Coming soon</span></div>
+      <a class="lrn-card" href="/learn/a2-the-datasheet-catalog.html">
+        <span class="num">A2</span>
+        <h3>The datasheet catalog</h3>
+        <p>Search the built-in catalog, add your own cut sheets, and manage everything in the Material Catalog tab.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/a3-covers-toc-and-bookmarks.html">
+        <span class="num">A3</span>
+        <h3>Covers, TOC and bookmarks</h3>
+        <p>Pick from 13 cover templates, star favorites, and see how the hyperlinked TOC is built.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/a4-ai-cut-sheet-reading.html">
+        <span class="num">A4</span>
+        <h3>AI cut-sheet reading</h3>
+        <p>What the cut-sheet reader fills in for you, and how to fix the occasional miss.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/a5-hydraulic-calc-packages.html">
+        <span class="num">A5</span>
+        <h3>Hydraulic calc packages</h3>
+        <p>Turn calc PDFs into a covered, indexed, bookmarked package.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/a6-pdf-workspace.html">
+        <span class="num">A6</span>
+        <h3>PDF workspace: merge, compress, slip sheets</h3>
+        <p>Combine sets, shrink file sizes, and slip revised sheets into a base set visually.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/a7-vicinity-maps.html">
+        <span class="num">A7</span>
+        <h3>Vicinity maps</h3>
+        <p>Address search, and the click-to-pin map when the address is too new for the map data.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/a8-pdf-to-cad.html">
+        <span class="num">A8</span>
+        <h3>PDF to CAD conversion</h3>
+        <p>Convert plotted PDFs to DXF/DWG with real layers, weights, and colors tuned for AutoSPRINK.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/a9-dwg-to-pdf.html">
+        <span class="num">A9</span>
+        <h3>DWG to PDF printing</h3>
+        <p>Print layout sheets straight from DWG — sheet picker, xref checkboxes, model-space fallback.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/a10-storage-hazard-analyzer.html">
+        <span class="num">A10</span>
+        <h3>Storage Hazard Analyzer</h3>
+        <p>Commodity, arrangement, height in — every applicable NFPA 13 protection option out.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/a11-hangers-and-seismic.html">
+        <span class="num">A11</span>
+        <h3>Hanger details &amp; seismic bracing</h3>
+        <p>Generate hanger details and run the seismic brace calculator with export-ready output.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/a12-bid-estimator.html">
+        <span class="num">A12</span>
+        <h3>Bid estimator &amp; proposals</h3>
+        <p>Labor and material pricing, markup, and a proposal PDF on your letterhead.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
     </div>
-
     <div class="lrn-track">Track B — Design Studio &amp; Spotter</div>
-    <p class="lrn-track-sub">The CAD design suite. Spotter (head placement) is rolling out to members first; the full studio follows.</p>
+    <p class="lrn-track-sub">The CAD design suite. Spotter (head placement) is in subscriber beta; lessons marked <em>full studio</em> cover what's coming next.</p>
     <div class="lrn-grid">
-      <div class="lrn-card"><span class="num">B1</span><h3>Meet Spotter: heads on a plan in 10 minutes</h3><p>Import a background, scale it, and place coverage-checked heads.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">B2</span><h3>Coverage cells &amp; head arrays</h3><p>Layout rectangles that fill themselves with correctly spaced heads.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">B3</span><h3>Ceiling grid layouts</h3><p>Per-room arrays placed in the ceiling grid with spacing rules respected.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">B4</span><h3>Unit templates</h3><p>Stamp repeating apartment units instead of laying out every one.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">B5</span><h3>Backgrounds done right</h3><p>PDF-as-CAD import with layer and color pickers, plus DWG references.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">B6</span><h3>From heads to pipe</h3><p>The guided auto-route workflow: mains, branch lines, and edits.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">B7</span><h3>Hydraulic calcs in the studio</h3><p>Demand, supply, and the calculation report — including residential design bases.</p><span class="lrn-chip soon">Coming soon</span></div>
-      <div class="lrn-card"><span class="num">B8</span><h3>Elevation profiles &amp; structure</h3><p>Columns, beams and roof — then elevate the system to match.</p><span class="lrn-chip soon">Coming soon</span></div>
+      <a class="lrn-card" href="/learn/b1-meet-spotter.html">
+        <span class="num">B1</span>
+        <h3>Meet Spotter: heads on a plan in 10 minutes</h3>
+        <p>Import a background, scale it, and place coverage-checked heads.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/b2-coverage-cells.html">
+        <span class="num">B2</span>
+        <h3>Coverage cells &amp; head arrays</h3>
+        <p>Layout rectangles that fill themselves with correctly spaced heads.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/b3-ceiling-grid-layouts.html">
+        <span class="num">B3</span>
+        <h3>Ceiling grid layouts</h3>
+        <p>Per-room arrays placed in the ceiling grid with spacing rules respected.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/b4-unit-templates.html">
+        <span class="num">B4</span>
+        <h3>Unit templates</h3>
+        <p>Stamp repeating apartment units instead of laying out every one.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/b5-backgrounds-done-right.html">
+        <span class="num">B5</span>
+        <h3>Backgrounds done right</h3>
+        <p>PDF-as-CAD import with layer and color pickers, plus DWG references.</p>
+        <span class="lrn-chip live">Available</span>
+      </a>
+      <a class="lrn-card" href="/learn/b6-from-heads-to-pipe.html">
+        <span class="num">B6</span>
+        <h3>From heads to pipe</h3>
+        <p>The guided auto-route workflow: mains, branch lines, and edits.</p>
+        <span class="lrn-chip preview">Full studio</span>
+      </a>
+      <a class="lrn-card" href="/learn/b7-hydraulics-in-the-studio.html">
+        <span class="num">B7</span>
+        <h3>Hydraulic calcs in the studio</h3>
+        <p>Demand, supply, and the calculation report — including residential design bases.</p>
+        <span class="lrn-chip preview">Full studio</span>
+      </a>
+      <a class="lrn-card" href="/learn/b8-elevation-and-structure.html">
+        <span class="num">B8</span>
+        <h3>Elevation profiles &amp; structure</h3>
+        <p>Columns, beams and roof — then elevate the system to match.</p>
+        <span class="lrn-chip preview">Full studio</span>
+      </a>
     </div>
 
     <div class="lrn-cta">
