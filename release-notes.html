@@ -52,13 +52,22 @@
 
   <main class="rn-wrap">
     <h1>Release Notes</h1>
-    <p class="rn-lead">Everything that's shipped, version by version — 33 releases since June 11, 2026. Latest: <strong>1.1.8</strong> (August 9, 2026).</p>
+    <p class="rn-lead">Everything that's shipped, version by version — 34 releases since June 11, 2026. Latest: <strong>1.1.9</strong> (August 9, 2026).</p>
     <nav class="rn-nav">
-      <div class="rn-grp">Stable</div><div class="rn-chips"><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
+      <div class="rn-grp">Stable</div><div class="rn-chips"><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
       <div class="rn-grp">Spotter Edition</div><div class="rn-chips"><a href="#spotter-v1.0.5">Spotter 1.0.5</a><a href="#spotter-v1.0.4">Spotter 1.0.4</a><a href="#spotter-v1.0.3">Spotter 1.0.3</a><a href="#spotter-v1.0.2">Spotter 1.0.2</a><a href="#spotter-v1.0.1">Spotter 1.0.1</a><a href="#spotter-v1.0.0">Spotter 1.0.0</a></div>
       <div class="rn-grp">Private Beta</div><div class="rn-chips"><a href="#v0.2.1-beta.21">0.2.1-beta.21</a><a href="#v0.2.1-beta.20">0.2.1-beta.20</a><a href="#v0.2.1-beta.19">0.2.1-beta.19</a><a href="#v0.2.1-beta.18">0.2.1-beta.18</a><a href="#v0.2.1-beta.17">0.2.1-beta.17</a><a href="#v0.2.1-beta.16">0.2.1-beta.16</a><a href="#v0.2.1-beta.15">0.2.1-beta.15</a><a href="#v0.2.1-beta.14">0.2.1-beta.14</a><a href="#v0.2.1-beta.13">0.2.1-beta.13</a><a href="#v0.2.1-beta.12">0.2.1-beta.12</a><a href="#v0.2.1-beta.11">0.2.1-beta.11</a><a href="#v0.2.1-beta.10">0.2.1-beta.10</a><a href="#v0.2.1-beta.9">0.2.1-beta.9</a><a href="#v0.2.1-beta.8">0.2.1-beta.8</a><a href="#v0.2.1-beta.7">0.2.1-beta.7</a><a href="#v0.2.1-beta.6">0.2.1-beta.6</a><a href="#v0.2.1-beta.5">0.2.1-beta.5</a></div>
     </nav>
     <div class="rn-era">Stable releases</div>
+<article class="rn-rel" id="v1.1.9">
+  <header><h2>1.1.9</h2><span class="rn-chip stable">Stable</span><time>August 9, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.9 — a small correctness fix on top of 1.1.8.</p>
+<p><strong>Fixed: Convert PDF to CAD showed the wrong output format</strong></p>
+<p>The Convert button read "Convert &amp; Save DXF..." until a PDF had been imported, even with the free ODA File Converter installed and DWG output available. You only found out the tool could produce DWG after committing to an import.</p>
+<p>The button now reports the real output format as soon as the tool opens, and the format is decided in one place so the button, the converter prompt and the conversion itself always agree. With the converter installed it reads "Convert &amp; Save DWG..."; without it, "Convert &amp; Save DXF..." alongside the install prompt.</p>
+<p>Conversion output itself was always correct — this only affected the label.</p>
+<p>Everything from v1.1.8 is included: the Plan Symbol Library (Experimental), the Blueprint / Vellum / Graphite themes, the seismic governing element with safety margin %, and the ODA detection, scan-window and Check Valve fixes.</p></div>
+</article>
 <article class="rn-rel" id="v1.1.8">
   <header><h2>1.1.8</h2><span class="rn-chip stable">Stable</span><time>August 9, 2026</time></header>
   <div class="rn-body"><p>SprinkFlow v1.1.8 — the Plan Symbol Library, three new themes, and a much clearer seismic result.</p>
