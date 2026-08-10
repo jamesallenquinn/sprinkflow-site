@@ -52,13 +52,25 @@
 
   <main class="rn-wrap">
     <h1>Release Notes</h1>
-    <p class="rn-lead">Everything that's shipped, version by version — 34 releases since June 11, 2026. Latest: <strong>1.1.9</strong> (August 9, 2026).</p>
+    <p class="rn-lead">Everything that's shipped, version by version — 35 releases since June 11, 2026. Latest: <strong>1.1.10</strong> (August 10, 2026).</p>
     <nav class="rn-nav">
-      <div class="rn-grp">Stable</div><div class="rn-chips"><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
+      <div class="rn-grp">Stable</div><div class="rn-chips"><a href="#v1.1.10">1.1.10</a><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
       <div class="rn-grp">Spotter Edition</div><div class="rn-chips"><a href="#spotter-v1.0.5">Spotter 1.0.5</a><a href="#spotter-v1.0.4">Spotter 1.0.4</a><a href="#spotter-v1.0.3">Spotter 1.0.3</a><a href="#spotter-v1.0.2">Spotter 1.0.2</a><a href="#spotter-v1.0.1">Spotter 1.0.1</a><a href="#spotter-v1.0.0">Spotter 1.0.0</a></div>
       <div class="rn-grp">Private Beta</div><div class="rn-chips"><a href="#v0.2.1-beta.21">0.2.1-beta.21</a><a href="#v0.2.1-beta.20">0.2.1-beta.20</a><a href="#v0.2.1-beta.19">0.2.1-beta.19</a><a href="#v0.2.1-beta.18">0.2.1-beta.18</a><a href="#v0.2.1-beta.17">0.2.1-beta.17</a><a href="#v0.2.1-beta.16">0.2.1-beta.16</a><a href="#v0.2.1-beta.15">0.2.1-beta.15</a><a href="#v0.2.1-beta.14">0.2.1-beta.14</a><a href="#v0.2.1-beta.13">0.2.1-beta.13</a><a href="#v0.2.1-beta.12">0.2.1-beta.12</a><a href="#v0.2.1-beta.11">0.2.1-beta.11</a><a href="#v0.2.1-beta.10">0.2.1-beta.10</a><a href="#v0.2.1-beta.9">0.2.1-beta.9</a><a href="#v0.2.1-beta.8">0.2.1-beta.8</a><a href="#v0.2.1-beta.7">0.2.1-beta.7</a><a href="#v0.2.1-beta.6">0.2.1-beta.6</a><a href="#v0.2.1-beta.5">0.2.1-beta.5</a></div>
     </nav>
     <div class="rn-era">Stable releases</div>
+<article class="rn-rel" id="v1.1.10">
+  <header><h2>1.1.10</h2><span class="rn-chip stable">Stable</span><time>August 10, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.10 — the spacing optimizer now tells you what its answer is based on.</p>
+<p><strong>Fixed: max spacing was calculated from hardware you hadn't chosen yet</strong></p>
+<p>The Step 3 spacing optimizer answers "the largest brace spacing that passes every check" — but it ran the hardware checks against whatever happened to be left in the form, which could be a concrete anchor when your brace is landing on wood. On one real stretch that was the difference between 40 ft and 9 ft. Not a rounding error, a different design.</p>
+<p><strong>Now the answer always states its basis, and updates live</strong></p>
+<ul><li><strong>Pipe only</strong> — the code spacing limit plus the braced-pipe zone-of-influence table (18.5.5.2) for the main you picked in Step 3. Independent of hardware, so it's a true ceiling.</li><li><strong>Provisional</strong> — some load-path checks are in play; it names which are still unpicked.</li><li><strong>Final</strong> — brace member, assembly and fastener all selected.</li></ul>
+<p>The readout moved out of the collapsed Step 3 panel and into the context bar, so it stays visible while you pick hardware. It shows the governing element and its allowable load next to the spacing — swap a 3/8" anchor for a 3/4" and watch the max jump from 25 ft to 40 ft, with the weakest link named either way.</p>
+<p>Turn it on with the <strong>Auto-optimize</strong> checkbox in the Spacing Optimizer panel.</p>
+<p><strong>Also</strong></p>
+<ul><li>At Review, if the spacing you applied exceeds what your final hardware allows, the result says so with the component responsible.</li><li>A longitudinal brace reports "no pipe-based limit — pick hardware" rather than the meaningless 80 ft code ceiling, since Table 18.5.5.2 is a lateral table.</li></ul></div>
+</article>
 <article class="rn-rel" id="v1.1.9">
   <header><h2>1.1.9</h2><span class="rn-chip stable">Stable</span><time>August 9, 2026</time></header>
   <div class="rn-body"><p>SprinkFlow v1.1.9 — a small correctness fix on top of 1.1.8.</p>
