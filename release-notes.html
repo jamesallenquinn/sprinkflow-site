@@ -52,13 +52,27 @@
 
   <main class="rn-wrap">
     <h1>Release Notes</h1>
-    <p class="rn-lead">Everything that's shipped, version by version — 35 releases since June 11, 2026. Latest: <strong>1.1.10</strong> (August 10, 2026).</p>
+    <p class="rn-lead">Everything that's shipped, version by version — 36 releases since June 11, 2026. Latest: <strong>1.1.11</strong> (August 12, 2026).</p>
     <nav class="rn-nav">
-      <div class="rn-grp">Stable</div><div class="rn-chips"><a href="#v1.1.10">1.1.10</a><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
+      <div class="rn-grp">Stable</div><div class="rn-chips"><a href="#v1.1.11">1.1.11</a><a href="#v1.1.10">1.1.10</a><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
       <div class="rn-grp">Spotter Edition</div><div class="rn-chips"><a href="#spotter-v1.0.5">Spotter 1.0.5</a><a href="#spotter-v1.0.4">Spotter 1.0.4</a><a href="#spotter-v1.0.3">Spotter 1.0.3</a><a href="#spotter-v1.0.2">Spotter 1.0.2</a><a href="#spotter-v1.0.1">Spotter 1.0.1</a><a href="#spotter-v1.0.0">Spotter 1.0.0</a></div>
       <div class="rn-grp">Private Beta</div><div class="rn-chips"><a href="#v0.2.1-beta.21">0.2.1-beta.21</a><a href="#v0.2.1-beta.20">0.2.1-beta.20</a><a href="#v0.2.1-beta.19">0.2.1-beta.19</a><a href="#v0.2.1-beta.18">0.2.1-beta.18</a><a href="#v0.2.1-beta.17">0.2.1-beta.17</a><a href="#v0.2.1-beta.16">0.2.1-beta.16</a><a href="#v0.2.1-beta.15">0.2.1-beta.15</a><a href="#v0.2.1-beta.14">0.2.1-beta.14</a><a href="#v0.2.1-beta.13">0.2.1-beta.13</a><a href="#v0.2.1-beta.12">0.2.1-beta.12</a><a href="#v0.2.1-beta.11">0.2.1-beta.11</a><a href="#v0.2.1-beta.10">0.2.1-beta.10</a><a href="#v0.2.1-beta.9">0.2.1-beta.9</a><a href="#v0.2.1-beta.8">0.2.1-beta.8</a><a href="#v0.2.1-beta.7">0.2.1-beta.7</a><a href="#v0.2.1-beta.6">0.2.1-beta.6</a><a href="#v0.2.1-beta.5">0.2.1-beta.5</a></div>
     </nav>
     <div class="rn-era">Stable releases</div>
+<article class="rn-rel" id="v1.1.11">
+  <header><h2>1.1.11</h2><span class="rn-chip stable">Stable</span><time>August 12, 2026</time></header>
+  <div class="rn-body"><p>Hazen-Williams calculator, and PDF-to-CAD sheet thumbnails that stay readable on big plan sets.</p>
+<p>NEW - Hazen-Williams Calculator (Design Tools)</p>
+<p>Pick a pipe, type a flow, read the friction loss in psi/ft as you type. An optional length adds the total. Schedule 40, Schedule 10, CPVC SDR 13.5 and cement-lined ductile iron are built in with their actual internal diameters, or enter your own ID. C factors default per NFPA 13 Table 23.4.4.7.1 and stay editable for aged or specialty pipe, with the common values listed on screen.</p>
+<p>The shown-work block spells the formula out with your numbers substituted, including the intermediate powers, so a plan reviewer can check it by hand - and it copies to the clipboard in one click. Velocity comes along for free.</p>
+<p>Also on the phone: app.sprinkflow.studio has the same calculator under Field Tools.</p>
+<p>FIXED - PDF to CAD: sheet cards collapsed on large plan sets</p>
+<p>On a 220-sheet set every thumbnail crushed down to a 2-pixel sliver, so the Sheets panel was a stack of blank bars. The grid was splitting the panel's height equally across every row instead of sizing rows to their content, which also meant a large import fired 178 thumbnail renders at once. Cards now hold their proper size at any sheet count and the panel scrolls; a big set queues about ten previews and loads more as you scroll.</p>
+<p>FIXED - Feet / Inch on the phone showed a stray field</p>
+<p>The web tools had a CSS rule that outranked the browser's own hide behaviour, so the "Multiply by" box stayed on screen in add and subtract mode. Fixed for every tool at once.</p>
+<p>NEW - No Contractor option on Material Data Submittals</p>
+<p>The Saved Contractor dropdown now has "No Contractor (leave blank)" for jobs where the contractor block should stay empty on the cover, matching the hydraulic tool's existing toggle.</p></div>
+</article>
 <article class="rn-rel" id="v1.1.10">
   <header><h2>1.1.10</h2><span class="rn-chip stable">Stable</span><time>August 10, 2026</time></header>
   <div class="rn-body"><p>SprinkFlow v1.1.10 — the spacing optimizer now tells you what its answer is based on.</p>
