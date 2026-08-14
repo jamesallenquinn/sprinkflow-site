@@ -81,7 +81,7 @@
       <label for="acPassword">Password</label>
       <input id="acPassword" type="password" autocomplete="current-password" placeholder="Your SprinkFlow password" />
       <button class="acct-btn" id="acSignIn" type="button">Sign in</button>
-      <button class="acct-btn hidden" id="acCreate" type="button">Create account &amp; subscribe</button>
+      <button class="acct-btn hidden" id="acCreate" type="button">Create free account</button>
       <p class="acct-note" id="loginNote">Use the same login as the SprinkFlow app.</p>
       <div class="acct-alt" id="forgotRow">Forgot your password? <button type="button" id="acForgot">Email me a reset link</button></div>
     </div>
@@ -196,7 +196,13 @@
     var wantsCheckout = /[?&]checkout=1/.test(location.search);
 
     function applyBuyIntent() {
-      if (!wantsCheckout) return;
+      if (!wantsCheckout) {
+        // Plain visit (often a phone): creating an account is free - say so,
+        // and never push checkout on this path.
+        $("acctSub").textContent = "Create a free account - no card needed. Subscribe whenever you're ready.";
+        return;
+      }
+      $("acCreate").textContent = "Create account & subscribe";
       $("priceBanner").classList.remove("hidden");
       $("acctTitle").textContent = "Start your membership";
       $("acctSub").textContent = "Create an account (or sign in) and we'll take you straight to checkout.";
@@ -294,9 +300,10 @@
           email: email,
           password: password,
           options: {
-            // land them back here already intending to buy, so confirming the
-            // email drops them straight into checkout
-            emailRedirectTo: location.origin + "/account.html?checkout=1",
+            // Buy intent: the confirm link drops them straight into checkout.
+            // Free signup (phones especially): land back on the plain account
+            // page - never force a card into the flow.
+            emailRedirectTo: location.origin + (wantsCheckout ? "/account.html?checkout=1" : "/account.html"),
             data: { full_name: $("acName").value.trim(), company: $("acCompany").value.trim() },
           },
         });
@@ -307,14 +314,21 @@
           btn.disabled = false;
           return;
         }
-        // Email confirmation OFF -> we already have a session, go straight to Stripe.
-        // Confirmation ON -> no session yet; the confirm link returns them here.
+        // Email confirmation OFF -> we already have a session. Buy intent goes
+        // straight to Stripe; a free signup goes to their account page.
         if (res.data && res.data.session) {
-          note("loginNote", "Account created — opening secure checkout…");
-          await startCheckout(res.data.session);
+          if (wantsCheckout) {
+            note("loginNote", "Account created — opening secure checkout…");
+            await startCheckout(res.data.session);
+          } else {
+            note("loginNote", "Account created — welcome to SprinkFlow!");
+            renderAccount(res.data.session);
+          }
           return;
         }
-        note("loginNote", "Almost there — check your email and click the confirmation link. It brings you right back here to finish checkout.");
+        note("loginNote", wantsCheckout
+          ? "Almost there — check your email and click the confirmation link. It brings you right back here to finish checkout."
+          : "Almost there — check your email and click the confirmation link, then sign in here. Your account works in the mobile tools at app.sprinkflow.studio, the web edition, and the Windows app.");
       } catch (e) {
         note("loginNote", (e && e.message) || "Could not create the account.", true);
       }
