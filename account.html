@@ -194,6 +194,9 @@
     // ?checkout=1 means "this person came here to buy" - show the price, default
     // to Create account, and send them straight to Stripe once they're signed in.
     var wantsCheckout = /[?&]checkout=1/.test(location.search);
+    // ?trial=1 (the /start.html funnel) only changes COPY - checkout is identical;
+    // the free-trial period itself is attached server-side by the cloud API.
+    var wantsTrial = /[?&]trial=1/.test(location.search);
 
     function applyBuyIntent() {
       if (!wantsCheckout) {
@@ -202,10 +205,14 @@
         $("acctSub").textContent = "Create a free account - no card needed. Subscribe whenever you're ready.";
         return;
       }
-      $("acCreate").textContent = "Create account & subscribe";
+      $("acCreate").textContent = wantsTrial ? "Start my free trial" : "Create account & subscribe";
       $("priceBanner").classList.remove("hidden");
-      $("acctTitle").textContent = "Start your membership";
+      $("acctTitle").textContent = wantsTrial ? "Start your free trial" : "Start your membership";
       $("acctSub").textContent = "Create an account (or sign in) and we'll take you straight to checkout.";
+      if (wantsTrial) {
+        $("priceBanner").querySelector(".price-note").innerHTML =
+          "<strong>7 days free, then $39/mo — cancel anytime.</strong><br />Unlimited submittals, calc packages and exports.";
+      }
       setMode("create");
     }
 
@@ -303,7 +310,9 @@
             // Buy intent: the confirm link drops them straight into checkout.
             // Free signup (phones especially): land back on the plain account
             // page - never force a card into the flow.
-            emailRedirectTo: location.origin + (wantsCheckout ? "/account.html?checkout=1" : "/account.html"),
+            emailRedirectTo: location.origin + (wantsCheckout
+              ? ("/account.html?checkout=1" + (wantsTrial ? "&trial=1" : ""))
+              : "/account.html"),
             data: { full_name: $("acName").value.trim(), company: $("acCompany").value.trim() },
           },
         });

@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Start your free trial — SprinkFlow</title>
+  <meta name="description" content="See what SprinkFlow does in four screens, then start a 7-day free trial. $39/month after, cancel anytime." />
+  <link rel="canonical" href="https://sprinkflow.studio/start.html" />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <meta property="og:title" content="Start your SprinkFlow free trial" />
+  <meta property="og:description" content="Submittals in minutes, plan scan, hydraulic calcs, and desktop head placement. 7 days free, then $39/month." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    /* ---- guided start flow -------------------------------------------------
+       One idea per screen. Every screen fits the viewport with the CTA parked in
+       thumb reach, so nothing here may scroll the page - the deck is a fixed
+       shell and any overlong copy scrolls INSIDE its own screen body. */
+    html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+
+    .start-shell {
+      position: relative; z-index: 1;
+      height: 100dvh; min-height: 100dvh;
+      display: flex; flex-direction: column;
+      max-width: 520px; margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .start-top {
+      flex: 0 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: max(14px, env(safe-area-inset-top)) 0 10px;
+    }
+    .start-top .brand-mark { width: 26px; height: 26px; }
+    .start-brand { display: flex; align-items: center; gap: 9px; }
+    .start-brand span { font: 700 1.02rem "Space Grotesk", sans-serif; letter-spacing: -0.02em; }
+    .start-skip {
+      background: none; border: 0; padding: 6px 2px; cursor: pointer;
+      color: var(--muted); font: 600 0.86rem Inter, sans-serif; text-decoration: underline;
+    }
+    .start-skip:hover, .start-skip:focus-visible { color: var(--ink); }
+
+    /* horizontal deck - clipped so a swipe can never scroll the page sideways */
+    .deck { flex: 1 1 auto; overflow: hidden; position: relative; }
+    .track {
+      display: flex; height: 100%; width: 500%;
+      transition: transform 0.32s cubic-bezier(0.22, 0.8, 0.3, 1);
+      will-change: transform;
+    }
+    @media (prefers-reduced-motion: reduce) { .track { transition: none; } }
+
+    .screen {
+      width: 20%; height: 100%; flex: 0 0 20%;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 14px; padding: 4px 2px; overflow-y: auto; overscroll-behavior: contain;
+    }
+    .screen[aria-hidden="true"] { visibility: hidden; }
+
+    .screen .kicker { margin: 0; }
+    .screen h1, .screen h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 7.4vw, 2.15rem);
+      line-height: 1.1;
+    }
+    .screen p.lede { margin: 0; color: var(--muted); font-size: 1.02rem; line-height: 1.55; }
+    .screen .ticks { margin: 2px 0 0; }
+
+    .shot {
+      border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+      background: var(--surface); box-shadow: var(--shadow);
+      max-height: 34vh;
+    }
+    .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    /* short phones (and landscape): drop the picture, keep the words + button */
+    @media (max-height: 700px) { .shot { display: none; } .screen { gap: 12px; } }
+
+    /* plan card */
+    .plan {
+      background: var(--surface); border: 1px solid var(--line-strong); border-radius: 18px;
+      padding: 20px; text-align: center; box-shadow: var(--shadow);
+    }
+    .plan-badge {
+      display: inline-block; padding: 5px 13px; border-radius: 999px;
+      background: rgba(255, 176, 58, 0.15); border: 1px solid rgba(255, 176, 58, 0.45);
+      color: var(--accent); font: 700 0.78rem "Space Grotesk", sans-serif;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .plan-price { margin: 12px 0 2px; font: 700 3rem/1 "Space Grotesk", sans-serif; }
+    .plan-price span { font-size: 1rem; color: var(--muted); font-weight: 600; }
+    .plan-after { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .plan-list { list-style: none; margin: 16px 0 0; padding: 0; text-align: left; }
+    .plan-list li {
+      position: relative; padding: 7px 0 7px 26px;
+      color: var(--ink); font-size: 0.96rem; border-top: 1px solid var(--line);
+    }
+    .plan-list li:first-child { border-top: 0; }
+    .plan-list li::before {
+      content: "✓"; position: absolute; left: 2px; top: 7px;
+      color: var(--ok); font-weight: 700;
+    }
+
+    /* bottom rail: dots + one CTA, always in thumb reach */
+    .start-foot {
+      flex: 0 0 auto;
+      padding: 12px 0 max(16px, env(safe-area-inset-bottom));
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .progress { display: flex; justify-content: center; gap: 9px; }
+    .progress button {
+      width: 9px; height: 9px; padding: 0; border-radius: 999px; cursor: pointer;
+      background: var(--line-strong); border: 0;
+      transition: background 0.2s ease, width 0.2s ease;
+    }
+    .progress button.is-active { width: 26px; background: var(--grad-fire); }
+    .progress button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .start-cta {
+      display: block; width: 100%; border: 0; border-radius: 14px; cursor: pointer;
+      padding: 16px 18px; text-align: center;
+      background: var(--grad-fire); color: #1a0d06;
+      font: 700 1.06rem "Space Grotesk", sans-serif; letter-spacing: -0.01em;
+    }
+    .start-cta:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .start-fine { margin: 0; text-align: center; color: var(--muted); font-size: 0.84rem; line-height: 1.5; }
+    .start-fine a { color: var(--accent); text-decoration: underline; }
+    .start-back {
+      background: none; border: 0; cursor: pointer; padding: 0;
+      color: var(--muted); font: 600 0.86rem Inter, sans-serif; text-decoration: underline;
+    }
+    .start-back[hidden] { display: none; }
+
+    @media (min-width: 700px) {
+      .start-shell { padding: 0 24px; }
+      .screen { gap: 18px; }
+      .shot { max-height: 38vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-fire"></span>
+    <span class="orb orb-water"></span>
+    <span class="orb orb-amber"></span>
+  </div>
+
+  <div class="start-shell">
+    <div class="start-top">
+      <a class="start-brand" href="/"><img src="./assets/logo.png" alt="" class="brand-mark" /><span>SprinkFlow</span></a>
+      <button type="button" class="start-skip" id="skipBtn">Skip to the plan</button>
+    </div>
+
+    <div class="deck" id="deck">
+      <div class="track" id="track">
+
+        <section class="screen" data-screen="0" aria-label="Screen 1 of 5">
+          <div class="kicker">Material data submittals</div>
+          <h1>A finished submittal before your coffee&nbsp;cools.</h1>
+          <p class="lede">Drop in the job's cut sheets. SprinkFlow pulls the products, matches the datasheets, and hands back a clean, bookmarked package — cover sheet and index included.</p>
+          <div class="shot"><img src="./assets/screenshots/submittal-flow/06-result.png" alt="A finished, bookmarked SprinkFlow submittal package" /></div>
+        </section>
+
+        <section class="screen" data-screen="1" aria-label="Screen 2 of 5">
+          <div class="kicker kicker-water">Plan scan</div>
+          <h2>Hand it the plans. It reads&nbsp;them.</h2>
+          <p class="lede">Job name, address, contractor, the products called out on the sheets — read straight off the PDF and filled in for you. You check the details instead of typing them.</p>
+          <div class="shot"><img src="./assets/screenshots/ai-import.png" alt="SprinkFlow reading project details out of a plan set" /></div>
+        </section>
+
+        <section class="screen" data-screen="2" aria-label="Screen 3 of 5">
+          <div class="kicker">Hydraulic calcs</div>
+          <h2>Know your demand. Package the&nbsp;calcs.</h2>
+          <p class="lede">Size up flow and pressure before you draw a thing with a real hydraulic pass — then bundle your calc PDFs into the same cover-sheeted, bookmarked package as your submittal.</p>
+          <div class="shot"><img src="./assets/screenshots/tools/hydraulic.png" alt="Hydraulic calculation package builder" /></div>
+        </section>
+
+        <section class="screen" data-screen="3" aria-label="Screen 4 of 5">
+          <div class="kicker kicker-fire">Design Studio — Spotter</div>
+          <h2>Place heads right on the&nbsp;plan.</h2>
+          <p class="lede">Our Windows CAD platform, focused on one job: head placement. Import the DWG background, drop heads with ceiling-tile and spacing snaps, watch coverage shade in live.</p>
+          <!-- No screenshot here on purpose: the repo has no Spotter capture yet, and
+               the other desktop shots show different tools. Better blank than wrong. -->
+          <ul class="ticks">
+            <li><strong>Included in your subscription</strong> — no extra charge</li>
+            <li>Ceiling-tile and spacing snaps, live coverage shading</li>
+            <li>Sign in with the same SprinkFlow account</li>
+          </ul>
+        </section>
+
+        <section class="screen" data-screen="4" aria-label="Screen 5 of 5">
+          <div class="kicker">Your plan</div>
+          <div class="plan">
+            <span class="plan-badge">7 days free</span>
+            <div class="plan-price">$39<span> /month</span></div>
+            <p class="plan-after">after your free trial · cancel anytime</p>
+            <ul class="plan-list">
+              <li>Unlimited submittals, calc packages &amp; exports</li>
+              <li>Every calculator and generator in the toolbox</li>
+              <li>Design Studio Spotter for head placement</li>
+              <li>Free mobile tools at app.sprinkflow.studio</li>
+              <li>Cancel in one click — no contract</li>
+            </ul>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="start-foot">
+      <div class="progress" id="progress" role="tablist" aria-label="Progress"></div>
+      <a class="start-cta" id="ctaBtn" href="#" role="button">Next</a>
+      <p class="start-fine" id="finePrint">Free to look around · $39/month when you're ready to export</p>
+      <div style="text-align:center"><button type="button" class="start-back" id="backBtn" hidden>Back</button></div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    "use strict";
+    var COUNT = 5;
+    var LAST = COUNT - 1;
+    var CHECKOUT_URL = "/account.html?checkout=1&trial=1";
+    var index = 0;
+
+    var track = document.getElementById("track");
+    var deck = document.getElementById("deck");
+    var progress = document.getElementById("progress");
+    var cta = document.getElementById("ctaBtn");
+    var fine = document.getElementById("finePrint");
+    var back = document.getElementById("backBtn");
+    var screens = Array.prototype.slice.call(track.querySelectorAll(".screen"));
+
+    // progress dots
+    var dots = [];
+    for (var i = 0; i < COUNT; i++) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("role", "tab");
+      dot.setAttribute("aria-label", "Screen " + (i + 1) + " of " + COUNT);
+      dot.dataset.go = String(i);
+      progress.appendChild(dot);
+      dots.push(dot);
+    }
+    progress.addEventListener("click", function (event) {
+      var target = event.target.closest("button[data-go]");
+      if (target) go(Number(target.dataset.go));
+    });
+
+    function render() {
+      track.style.transform = "translateX(" + (index * -20) + "%)";
+      dots.forEach(function (dot, n) {
+        dot.classList.toggle("is-active", n === index);
+        dot.setAttribute("aria-selected", n === index ? "true" : "false");
+      });
+      screens.forEach(function (screen, n) {
+        screen.setAttribute("aria-hidden", n === index ? "false" : "true");
+      });
+      var onPlan = index === LAST;
+      cta.textContent = onPlan ? "Start my free trial" : "Next";
+      // The CTA is a real link on the last screen so it survives with JS off too.
+      cta.setAttribute("href", onPlan ? CHECKOUT_URL : "#");
+      fine.innerHTML = onPlan
+        ? "7 days free, then $39/mo. Cancel anytime. We ask for a card so nothing stops on day 8. <a href=\"/privacy.html\">Privacy</a>"
+        : "Free to look around · $39/month when you're ready to export";
+      back.hidden = index === 0;
+      if (screens[index]) screens[index].scrollTop = 0;
+    }
+
+    function go(next) {
+      index = Math.max(0, Math.min(LAST, next));
+      render();
+    }
+
+    cta.addEventListener("click", function (event) {
+      if (index === LAST) return;          // let the link navigate to checkout
+      event.preventDefault();
+      go(index + 1);
+    });
+    back.addEventListener("click", function () { go(index - 1); });
+    document.getElementById("skipBtn").addEventListener("click", function () { go(LAST); });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowRight") go(index + 1);
+      else if (event.key === "ArrowLeft") go(index - 1);
+    });
+
+    // swipe: horizontal drags move the deck, vertical drags still scroll a screen
+    var startX = 0, startY = 0, tracking = false;
+    deck.addEventListener("touchstart", function (event) {
+      var touch = event.changedTouches[0];
+      startX = touch.clientX; startY = touch.clientY; tracking = true;
+    }, { passive: true });
+    deck.addEventListener("touchend", function (event) {
+      if (!tracking) return;
+      tracking = false;
+      var touch = event.changedTouches[0];
+      var dx = touch.clientX - startX;
+      var dy = touch.clientY - startY;
+      if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy)) return;
+      go(index + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
+    render();
+  })();
+  </script>
+</body>
+</html>
