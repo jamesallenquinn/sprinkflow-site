@@ -52,13 +52,27 @@
 
   <main class="rn-wrap">
     <h1>Release Notes</h1>
-    <p class="rn-lead">Everything that's shipped, version by version — 40 releases since June 11, 2026. Latest: <strong>1.1.15</strong> (August 14, 2026).</p>
+    <p class="rn-lead">Everything that's shipped, version by version — 43 releases since June 11, 2026. Latest: <strong>1.1.16</strong> (August 17, 2026).</p>
     <nav class="rn-nav">
-      <div class="rn-grp">Stable</div><div class="rn-chips"><a href="#v1.1.15">1.1.15</a><a href="#v1.1.14">1.1.14</a><a href="#v1.1.13">1.1.13</a><a href="#v1.1.12">1.1.12</a><a href="#v1.1.11">1.1.11</a><a href="#v1.1.10">1.1.10</a><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
-      <div class="rn-grp">Spotter Edition</div><div class="rn-chips"><a href="#spotter-v1.0.5">Spotter 1.0.5</a><a href="#spotter-v1.0.4">Spotter 1.0.4</a><a href="#spotter-v1.0.3">Spotter 1.0.3</a><a href="#spotter-v1.0.2">Spotter 1.0.2</a><a href="#spotter-v1.0.1">Spotter 1.0.1</a><a href="#spotter-v1.0.0">Spotter 1.0.0</a></div>
+      <div class="rn-grp">Stable</div><div class="rn-chips"><a href="#v1.1.16">1.1.16</a><a href="#v1.1.15">1.1.15</a><a href="#v1.1.14">1.1.14</a><a href="#v1.1.13">1.1.13</a><a href="#v1.1.12">1.1.12</a><a href="#v1.1.11">1.1.11</a><a href="#v1.1.10">1.1.10</a><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
+      <div class="rn-grp">Spotter Edition</div><div class="rn-chips"><a href="#spotter-v1.1.1">Spotter 1.1.1</a><a href="#spotter-v1.1.0">Spotter 1.1.0</a><a href="#spotter-v1.0.5">Spotter 1.0.5</a><a href="#spotter-v1.0.4">Spotter 1.0.4</a><a href="#spotter-v1.0.3">Spotter 1.0.3</a><a href="#spotter-v1.0.2">Spotter 1.0.2</a><a href="#spotter-v1.0.1">Spotter 1.0.1</a><a href="#spotter-v1.0.0">Spotter 1.0.0</a></div>
       <div class="rn-grp">Private Beta</div><div class="rn-chips"><a href="#v0.2.1-beta.21">0.2.1-beta.21</a><a href="#v0.2.1-beta.20">0.2.1-beta.20</a><a href="#v0.2.1-beta.19">0.2.1-beta.19</a><a href="#v0.2.1-beta.18">0.2.1-beta.18</a><a href="#v0.2.1-beta.17">0.2.1-beta.17</a><a href="#v0.2.1-beta.16">0.2.1-beta.16</a><a href="#v0.2.1-beta.15">0.2.1-beta.15</a><a href="#v0.2.1-beta.14">0.2.1-beta.14</a><a href="#v0.2.1-beta.13">0.2.1-beta.13</a><a href="#v0.2.1-beta.12">0.2.1-beta.12</a><a href="#v0.2.1-beta.11">0.2.1-beta.11</a><a href="#v0.2.1-beta.10">0.2.1-beta.10</a><a href="#v0.2.1-beta.9">0.2.1-beta.9</a><a href="#v0.2.1-beta.8">0.2.1-beta.8</a><a href="#v0.2.1-beta.7">0.2.1-beta.7</a><a href="#v0.2.1-beta.6">0.2.1-beta.6</a><a href="#v0.2.1-beta.5">0.2.1-beta.5</a></div>
     </nav>
     <div class="rn-era">Stable releases</div>
+<article class="rn-rel" id="v1.1.16">
+  <header><h2>1.1.16</h2><span class="rn-chip stable">Stable</span><time>August 17, 2026</time></header>
+  <div class="rn-body"><p>Your contractor profiles are safe now, your loadouts fire themselves, and the catalog grew by 97 verified datasheets.</p>
+<p>FIXED - Contractor profiles no longer lose their details</p>
+<p>Two long-standing bugs could wipe a saved contractor down to just its logo - typing into a new profile was silently discarded, and an unloaded form could overwrite a good profile with blanks. Both fixed. Details now save as you type (no Save click needed), and a profile that ever loses its fields rebuilds itself from the jobs it was used on. Saved loadouts had a similar bug - they were never written to disk at all - also fixed.</p>
+<p>NEW - Loadouts fire on plan-scan detections</p>
+<p>Give a loadout triggers - CPVC, Riser Assembly, Lateral Brace, and every other concept the scan can name - and when a scan detects one, that loadout's datasheets arrive in the review pre-checked and labelled with where they came from. Build your CPVC hanger set once; every CPVC job pulls it automatically.</p>
+<p>NEW - 97 more datasheets, every link verified</p>
+<p>Grooved fittings and couplings from Grinnell G-FIRE, Reliable, ARGCO, Gruvlok, Shurjoint, Viking, SCI COOPLOK, Anvil and GemLock - the catalog had only Victaulic before. Plus the full SAMMYS and Sidewinder rod hanger line. Every URL was checked to return the genuine manufacturer PDF.</p>
+<p>IMPROVED - Datasheet catalog filters</p>
+<p>Filters are on screen from the start - no more clicking Filters to open them - laid out in an even grid, with a new filter to show only datasheets already in your database. Fittings can finally be filtered by manufacturer.</p>
+<p>IMPROVED - The scan knows more products</p>
+<p>Hanger detection grew from 5 types to 19: CPVC hangers, riser clamps, side beam brackets, C-clamps, retaining straps, wrap-arounds, bar joists, trapeze, eye rods, concrete anchors and more - each defaulting to a sensible catalog pick. "Threaded rod" now brings up all-thread rod, never Sammys - and "Sammy" brings up Sammys, which have datasheets at last. Bare "grooved coupling" spec language now resolves instead of being skipped. Backflow defaults to the Ames 3000SS and lateral braces to the Tolco Fig. 1001.</p></div>
+</article>
 <article class="rn-rel" id="v1.1.15">
   <header><h2>1.1.15</h2><span class="rn-chip stable">Stable</span><time>August 14, 2026</time></header>
   <div class="rn-body"><p>Plan scan: smarter project-address selection - the scanner now picks the address by proximity and affinity to the project name instead of the first plausible match, measurably improving address accuracy on real title blocks.</p></div>
@@ -209,6 +223,19 @@
 <p>Existing beta users update automatically.</p></div>
 </article>
     <div class="rn-era">Spotter Edition</div>
+<article class="rn-rel" id="spotter-v1.1.1">
+  <header><h2>Spotter 1.1.1</h2><span class="rn-chip spotter">Spotter</span><time>August 14, 2026</time></header>
+  <div class="rn-body"><p>Major update since v1.0.5:</p>
+<ul><li>IFC coordination import: models ground to 0'-0", meshes are snappable, bodies convert to native beams/columns, and a roof plane can be created from a platform deck</li><li>Rhythm Assist placement ghosts</li><li>Disconnect Heads and Select Full Branch Run on the pipe right-click menu</li><li>Connect to Nearby Sprinklers with a max-distance prompt (default 7'-6")</li><li>Sprinkler clearance bubbles with intrusion flagging</li><li>Multi-select Isolate Layer</li><li>Hard ortho lock on sprinkler drags (identical to pipe/line ortho)</li><li>Snapping while dragging a multi-selection</li><li>Dimension text always lands above the dimension line</li><li>DWG import fix: re-importing into a saved job no longer fails with a duplicate id</li><li>Validated hydraulic calculations: the engine matched an AutoSPRINK-sealed job node-for-node</li></ul>
+<p>The installer is not yet code-signed — SmartScreen will warn; choose "More info", then "Run anyway". Sign in with your SprinkFlow account to activate.</p>
+<p>v1.1.1: the installer is now fully self-contained - no .NET runtime download on first launch; install and run.</p></div>
+</article>
+<article class="rn-rel" id="spotter-v1.1.0">
+  <header><h2>Spotter 1.1.0</h2><span class="rn-chip spotter">Spotter</span><time>August 14, 2026</time></header>
+  <div class="rn-body"><p>Major update since v1.0.5:</p>
+<ul><li>IFC coordination import: models ground to 0'-0", meshes are snappable, bodies convert to native beams/columns, and a roof plane can be created from a platform deck</li><li>Rhythm Assist placement ghosts</li><li>Disconnect Heads and Select Full Branch Run on the pipe right-click menu</li><li>Connect to Nearby Sprinklers with a max-distance prompt (default 7'-6")</li><li>Sprinkler clearance bubbles with intrusion flagging</li><li>Multi-select Isolate Layer</li><li>Hard ortho lock on sprinkler drags (identical to pipe/line ortho)</li><li>Snapping while dragging a multi-selection</li><li>Dimension text always lands above the dimension line</li><li>DWG import fix: re-importing into a saved job no longer fails with a duplicate id</li><li>Validated hydraulic calculations: the engine matched an AutoSPRINK-sealed job node-for-node</li></ul>
+<p>The installer is not yet code-signed — SmartScreen will warn; choose "More info", then "Run anyway". Sign in with your SprinkFlow account to activate.</p></div>
+</article>
 <article class="rn-rel" id="spotter-v1.0.5">
   <header><h2>Spotter 1.0.5</h2><span class="rn-chip spotter">Spotter</span><time>August 6, 2026</time></header>
   <div class="rn-body"><p>SprinkFlow Design Suite — Spotter Version (head placement)</p>
