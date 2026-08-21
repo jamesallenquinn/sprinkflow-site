@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Release Notes — SprinkFlow</title>
+  <meta name="description" content="What's new in SprinkFlow — release notes for every version." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/release-notes.html" />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .rn-wrap { max-width: 780px; margin: 0 auto; padding: 40px 22px 90px; }
+    .rn-wrap h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin: 0 0 8px; }
+    .rn-lead { color: var(--muted); margin: 0 0 24px; }
+    .rn-nav .rn-grp { color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin: 16px 0 7px; }
+    .rn-nav .rn-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .rn-nav a { background: var(--surface); border: 1px solid var(--line); border-radius: 7px; color: var(--ink);
+      font-size: .82rem; font-weight: 600; padding: 4px 10px; text-decoration: none; font-variant-numeric: tabular-nums; }
+    .rn-nav a:hover { border-color: var(--brand); color: var(--brand); }
+    .rn-era { color: var(--muted); font-size: .75rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      margin: 44px 0 4px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+    .rn-rel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+      margin-top: 18px; padding: 22px 26px; scroll-margin-top: 18px; }
+    .rn-rel header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+      border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 4px; }
+    .rn-rel h2 { font-size: 1.25rem; margin: 0; font-variant-numeric: tabular-nums; }
+    .rn-rel time { color: var(--muted); font-size: .85rem; margin-left: auto; white-space: nowrap; }
+    .rn-chip { border-radius: 999px; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; }
+    .rn-chip.stable { background: rgba(255, 90, 47, 0.14); color: var(--brand); border: 1px solid rgba(255, 90, 47, 0.35); }
+    .rn-chip.beta { background: rgba(55, 183, 228, 0.12); color: var(--water); border: 1px solid rgba(55, 183, 228, 0.35); }
+    .rn-chip.spotter { background: rgba(255, 176, 58, 0.12); color: var(--accent); border: 1px solid rgba(255, 176, 58, 0.35); }
+    .rn-body { font-size: .95rem; line-height: 1.6; }
+    .rn-body h3, .rn-body h4, .rn-body h5 { margin: 18px 0 4px; font-size: 1.02rem; }
+    .rn-body p { margin: 10px 0; }
+    .rn-body ul, .rn-body ol { margin: 8px 0; padding-left: 22px; }
+    .rn-body li { margin: 4px 0; }
+    .rn-body li::marker { color: var(--brand); }
+    .rn-body code { background: rgba(255,255,255,0.07); border-radius: 5px; font-size: .86em; padding: 1px 5px; }
+    .rn-body a { color: var(--brand); }
+    .rn-none { color: var(--muted); font-style: italic; }
+    @media (max-width: 560px) { .rn-rel { padding: 16px; } .rn-rel time { margin-left: 0; width: 100%; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="./assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <a href="/#download" class="btn btn-primary btn-sm">Get SprinkFlow</a>
+  </header>
+
+  <main class="rn-wrap">
+    <h1>Release Notes</h1>
+    <p class="rn-lead">Everything that's shipped, version by version — 45 releases since June 11, 2026. Latest: <strong>1.1.18</strong> (August 20, 2026).</p>
+    <nav class="rn-nav">
+      <div class="rn-grp">Stable</div><div class="rn-chips"><a href="#v1.1.18">1.1.18</a><a href="#v1.1.17">1.1.17</a><a href="#v1.1.16">1.1.16</a><a href="#v1.1.15">1.1.15</a><a href="#v1.1.14">1.1.14</a><a href="#v1.1.13">1.1.13</a><a href="#v1.1.12">1.1.12</a><a href="#v1.1.11">1.1.11</a><a href="#v1.1.10">1.1.10</a><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
+      <div class="rn-grp">Spotter Edition</div><div class="rn-chips"><a href="#spotter-v1.1.1">Spotter 1.1.1</a><a href="#spotter-v1.1.0">Spotter 1.1.0</a><a href="#spotter-v1.0.5">Spotter 1.0.5</a><a href="#spotter-v1.0.4">Spotter 1.0.4</a><a href="#spotter-v1.0.3">Spotter 1.0.3</a><a href="#spotter-v1.0.2">Spotter 1.0.2</a><a href="#spotter-v1.0.1">Spotter 1.0.1</a><a href="#spotter-v1.0.0">Spotter 1.0.0</a></div>
+      <div class="rn-grp">Private Beta</div><div class="rn-chips"><a href="#v0.2.1-beta.21">0.2.1-beta.21</a><a href="#v0.2.1-beta.20">0.2.1-beta.20</a><a href="#v0.2.1-beta.19">0.2.1-beta.19</a><a href="#v0.2.1-beta.18">0.2.1-beta.18</a><a href="#v0.2.1-beta.17">0.2.1-beta.17</a><a href="#v0.2.1-beta.16">0.2.1-beta.16</a><a href="#v0.2.1-beta.15">0.2.1-beta.15</a><a href="#v0.2.1-beta.14">0.2.1-beta.14</a><a href="#v0.2.1-beta.13">0.2.1-beta.13</a><a href="#v0.2.1-beta.12">0.2.1-beta.12</a><a href="#v0.2.1-beta.11">0.2.1-beta.11</a><a href="#v0.2.1-beta.10">0.2.1-beta.10</a><a href="#v0.2.1-beta.9">0.2.1-beta.9</a><a href="#v0.2.1-beta.8">0.2.1-beta.8</a><a href="#v0.2.1-beta.7">0.2.1-beta.7</a><a href="#v0.2.1-beta.6">0.2.1-beta.6</a><a href="#v0.2.1-beta.5">0.2.1-beta.5</a></div>
+    </nav>
+    <div class="rn-era">Stable releases</div>
+<article class="rn-rel" id="v1.1.18">
+  <header><h2>1.1.18</h2><span class="rn-chip stable">Stable</span><time>August 20, 2026</time></header>
+  <div class="rn-body"><p>The UX release: a faster app that remembers where you were.</p>
+<p>NEW - Home SprinkFlow opens to your last job with a Resume button, your last three generated packages (open the PDF or its folder in one click), and a clean start for new work. Turn it off in Settings if you prefer the old behavior.</p>
+<p>NEW - Command palette Press Ctrl+K anywhere. Type a few letters to jump to any tool, load a saved project, apply a loadout, toggle a datasheet, switch themes, or generate - all without touching the mouse. Press ? to see every shortcut.</p>
+<p>NEW - Pin your tools Star the tools you live in and they form a Favorites group at the top of the sidebar, in whatever order you drag them into.</p>
+<p>NEW - Undo instead of "are you sure?" Deleting a contractor, loadout, saved project, or datasheet now just happens, with a ten-second Undo and a 30-day trash behind it.</p>
+<p>NEW - Settings that earn the name Sections for shop defaults (default contractor, cover template), scanning (per-category toggles), and appearance - including a Compact density mode.</p>
+<p>IMPROVED - Plan scan Pipe types with multiple datasheets now offer a choice (Sch. 10: Bull Moose or Wheatland; CPVC: IPEX or Spears) instead of silently picking one. When CPVC is detected, the review offers CPVC hangers: pick a manufacturer, then add all of theirs or choose individually. A note appears when a pipe datasheet also covers its fittings.</p>
+<p>BIGGER CATALOG - 111 new verified datasheets Grooved fittings and couplings across nine manufacturers (Grinnell G-FIRE, Reliable, ARGCO, Gruvlok, Shurjoint, Viking, SCI, Anvil, GemLock), SAMMYS rod hangers, and CPVC hangers from nVent CADDY, Anvil and PHD - every link verified to serve the real manufacturer PDF.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.17">
+  <header><h2>1.1.17</h2><span class="rn-chip stable">Stable</span><time>August 20, 2026</time></header>
+  <div class="rn-body"><p>Pick your pipe on the scan.</p>
+<p>CHANGED - Plan scan: pipe types offer a choice</p>
+<p>When the scan detects a pipe type that more than one datasheet in your catalog covers, the review now shows a Choose dropdown instead of silently taking the top match. Sch. 10 offers Bull Moose Tube and Wheatland Tube; CPVC offers IPEX and Spears. The previous pick stays preselected, so nothing changes unless you choose otherwise. Pipe types with a single matching datasheet behave exactly as before.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.16">
+  <header><h2>1.1.16</h2><span class="rn-chip stable">Stable</span><time>August 17, 2026</time></header>
+  <div class="rn-body"><p>Your contractor profiles are safe now, your loadouts fire themselves, and the catalog grew by 97 verified datasheets.</p>
+<p>FIXED - Contractor profiles no longer lose their details</p>
+<p>Two long-standing bugs could wipe a saved contractor down to just its logo - typing into a new profile was silently discarded, and an unloaded form could overwrite a good profile with blanks. Both fixed. Details now save as you type (no Save click needed), and a profile that ever loses its fields rebuilds itself from the jobs it was used on. Saved loadouts had a similar bug - they were never written to disk at all - also fixed.</p>
+<p>NEW - Loadouts fire on plan-scan detections</p>
+<p>Give a loadout triggers - CPVC, Riser Assembly, Lateral Brace, and every other concept the scan can name - and when a scan detects one, that loadout's datasheets arrive in the review pre-checked and labelled with where they came from. Build your CPVC hanger set once; every CPVC job pulls it automatically.</p>
+<p>NEW - 97 more datasheets, every link verified</p>
+<p>Grooved fittings and couplings from Grinnell G-FIRE, Reliable, ARGCO, Gruvlok, Shurjoint, Viking, SCI COOPLOK, Anvil and GemLock - the catalog had only Victaulic before. Plus the full SAMMYS and Sidewinder rod hanger line. Every URL was checked to return the genuine manufacturer PDF.</p>
+<p>IMPROVED - Datasheet catalog filters</p>
+<p>Filters are on screen from the start - no more clicking Filters to open them - laid out in an even grid, with a new filter to show only datasheets already in your database. Fittings can finally be filtered by manufacturer.</p>
+<p>IMPROVED - The scan knows more products</p>
+<p>Hanger detection grew from 5 types to 19: CPVC hangers, riser clamps, side beam brackets, C-clamps, retaining straps, wrap-arounds, bar joists, trapeze, eye rods, concrete anchors and more - each defaulting to a sensible catalog pick. "Threaded rod" now brings up all-thread rod, never Sammys - and "Sammy" brings up Sammys, which have datasheets at last. Bare "grooved coupling" spec language now resolves instead of being skipped. Backflow defaults to the Ames 3000SS and lateral braces to the Tolco Fig. 1001.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.15">
+  <header><h2>1.1.15</h2><span class="rn-chip stable">Stable</span><time>August 14, 2026</time></header>
+  <div class="rn-body"><p>Plan scan: smarter project-address selection - the scanner now picks the address by proximity and affinity to the project name instead of the first plausible match, measurably improving address accuracy on real title blocks.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.14">
+  <header><h2>1.1.14</h2><span class="rn-chip stable">Stable</span><time>August 13, 2026</time></header>
+  <div class="rn-body"><p>Smarter contractor handling on the plan scan.</p>
+<p>CHANGED - Plan scan: contractor matching</p>
+<p>The scan review no longer shows an editable contractor form. It now matches the contractor it detects on the plans against YOUR saved contractors - by name (tolerant of Inc/LLC and punctuation), license number, or phone - and simply offers it: "Contractor detected", Use / Don't use. One click applies the saved contractor exactly as if you picked it on the Contractor tab.</p>
+<p>If nothing matches, it says so plainly and you pick or enter the contractor on the next step, same as always. No more half-filled address boxes from plan text.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.13">
+  <header><h2>1.1.13</h2><span class="rn-chip stable">Stable</span><time>August 13, 2026</time></header>
+  <div class="rn-body"><p>The plan scan now reads the title block like a person does.</p>
+<p>IMPROVED - Plan scan: project name and address</p>
+<p>Measured on 35 real plan sets, the detected project name went from right 32% of the time to 93.5% with a subscription, 74% without. Addresses improved too.</p>
+<p>What changed under the hood:</p>
+<ul><li>The title block is located by real glyph positions now, so CAD-produced plan sets - where the old reader saw nothing at all - parse properly.</li><li>When the sheet is a scan, the title-block area is re-read at high resolution instead of squinting at the whole sheet at once.</li><li>OCR now ships WITH SprinkFlow. No PDF24, no Ghostscript, no setup - scanned plans read out of the box on any machine.</li><li>Subscribers: when the local read still is not confident, SprinkFlow sends just the small title-block snippet (never your plan set) to the cloud AI, which reads it like a plan reviewer would. That is the 93.5% path.</li></ul>
+<p>The scan is also honest now. Every detected name says where it came from ("Detected from title block, sheet 1" vs "Guessed from PDF filename"). When confidence is low the field stays EMPTY instead of confidently wrong, and the ranked candidates appear as one-click "Did you mean" suggestions.</p>
+<p>Engineer letterheads no longer win the project-name slot, notes headings ("SEISMIC DESIGN INFORMATION") are stopped, and a name that repeats in the title block across sheets beats anything that appears once.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.12">
+  <header><h2>1.1.12</h2><span class="rn-chip stable">Stable</span><time>August 12, 2026</time></header>
+  <div class="rn-body"><p>Plan Symbols now follows the office standard legend.</p>
+<p>CHANGED - Plan Symbols library rebuilt</p>
+<p>The library was redrawn against the office fire sprinkler symbols legend so the symbols you copy out match the symbols on your plans. Twenty-two are new and six were redrawn: fire hydrant, post indicator valve, check valve, backflow assembly, pendent head and inspector's test connection.</p>
+<p>New in the library: two-way and four-way seismic bracing, pipe hanger, sprinkler with head guard, hydraulic reference point, grooved coupling, thrust block, threaded plug, threaded or grooved cap, change in pipe elevation, local alarm bell, auxiliary drain, upright head, sidewall head, existing head, radial-spoke head, plain gate valve and a two-way fire department connection.</p>
+<p>Everything is drawn in the same house style at the same weights, so a legend you assemble out of these reads as one drawing rather than a scrapbook. A new Hangers &amp; bracing category joins the browse rail.</p>
+<p>The legend draws flex and rigid grooved couplings identically - the flex one is called out with an FC tag rather than a different glyph - so the library carries one grooved coupling, not two.</p>
+<p>The revision delta ships bare now; the number is lettered in by hand, so the symbol is no longer locked to a 1.</p>
+<p>REMOVED</p>
+<p>The four-way fire department connection, the waterflow switch, the underground pipe linetype and the three overhead run linetypes (main, branch line, arm-over) have been taken out of the library.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.11">
+  <header><h2>1.1.11</h2><span class="rn-chip stable">Stable</span><time>August 12, 2026</time></header>
+  <div class="rn-body"><p>Hazen-Williams calculator, and PDF-to-CAD sheet thumbnails that stay readable on big plan sets.</p>
+<p>NEW - Hazen-Williams Calculator (Design Tools)</p>
+<p>Pick a pipe, type a flow, read the friction loss in psi/ft as you type. An optional length adds the total. Schedule 40, Schedule 10, CPVC SDR 13.5 and cement-lined ductile iron are built in with their actual internal diameters, or enter your own ID. C factors default per NFPA 13 Table 23.4.4.7.1 and stay editable for aged or specialty pipe, with the common values listed on screen.</p>
+<p>The shown-work block spells the formula out with your numbers substituted, including the intermediate powers, so a plan reviewer can check it by hand - and it copies to the clipboard in one click. Velocity comes along for free.</p>
+<p>Also on the phone: app.sprinkflow.studio has the same calculator under Field Tools.</p>
+<p>FIXED - PDF to CAD: sheet cards collapsed on large plan sets</p>
+<p>On a 220-sheet set every thumbnail crushed down to a 2-pixel sliver, so the Sheets panel was a stack of blank bars. The grid was splitting the panel's height equally across every row instead of sizing rows to their content, which also meant a large import fired 178 thumbnail renders at once. Cards now hold their proper size at any sheet count and the panel scrolls; a big set queues about ten previews and loads more as you scroll.</p>
+<p>FIXED - Feet / Inch on the phone showed a stray field</p>
+<p>The web tools had a CSS rule that outranked the browser's own hide behaviour, so the "Multiply by" box stayed on screen in add and subtract mode. Fixed for every tool at once.</p>
+<p>NEW - No Contractor option on Material Data Submittals</p>
+<p>The Saved Contractor dropdown now has "No Contractor (leave blank)" for jobs where the contractor block should stay empty on the cover, matching the hydraulic tool's existing toggle.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.10">
+  <header><h2>1.1.10</h2><span class="rn-chip stable">Stable</span><time>August 10, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.10 — the spacing optimizer now tells you what its answer is based on.</p>
+<p><strong>Fixed: max spacing was calculated from hardware you hadn't chosen yet</strong></p>
+<p>The Step 3 spacing optimizer answers "the largest brace spacing that passes every check" — but it ran the hardware checks against whatever happened to be left in the form, which could be a concrete anchor when your brace is landing on wood. On one real stretch that was the difference between 40 ft and 9 ft. Not a rounding error, a different design.</p>
+<p><strong>Now the answer always states its basis, and updates live</strong></p>
+<ul><li><strong>Pipe only</strong> — the code spacing limit plus the braced-pipe zone-of-influence table (18.5.5.2) for the main you picked in Step 3. Independent of hardware, so it's a true ceiling.</li><li><strong>Provisional</strong> — some load-path checks are in play; it names which are still unpicked.</li><li><strong>Final</strong> — brace member, assembly and fastener all selected.</li></ul>
+<p>The readout moved out of the collapsed Step 3 panel and into the context bar, so it stays visible while you pick hardware. It shows the governing element and its allowable load next to the spacing — swap a 3/8" anchor for a 3/4" and watch the max jump from 25 ft to 40 ft, with the weakest link named either way.</p>
+<p>Turn it on with the <strong>Auto-optimize</strong> checkbox in the Spacing Optimizer panel.</p>
+<p><strong>Also</strong></p>
+<ul><li>At Review, if the spacing you applied exceeds what your final hardware allows, the result says so with the component responsible.</li><li>A longitudinal brace reports "no pipe-based limit — pick hardware" rather than the meaningless 80 ft code ceiling, since Table 18.5.5.2 is a lateral table.</li></ul></div>
+</article>
+<article class="rn-rel" id="v1.1.9">
+  <header><h2>1.1.9</h2><span class="rn-chip stable">Stable</span><time>August 9, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.9 — a small correctness fix on top of 1.1.8.</p>
+<p><strong>Fixed: Convert PDF to CAD showed the wrong output format</strong></p>
+<p>The Convert button read "Convert &amp; Save DXF..." until a PDF had been imported, even with the free ODA File Converter installed and DWG output available. You only found out the tool could produce DWG after committing to an import.</p>
+<p>The button now reports the real output format as soon as the tool opens, and the format is decided in one place so the button, the converter prompt and the conversion itself always agree. With the converter installed it reads "Convert &amp; Save DWG..."; without it, "Convert &amp; Save DXF..." alongside the install prompt.</p>
+<p>Conversion output itself was always correct — this only affected the label.</p>
+<p>Everything from v1.1.8 is included: the Plan Symbol Library (Experimental), the Blueprint / Vellum / Graphite themes, the seismic governing element with safety margin %, and the ODA detection, scan-window and Check Valve fixes.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.8">
+  <header><h2>1.1.8</h2><span class="rn-chip stable">Stable</span><time>August 9, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.8 — the Plan Symbol Library, three new themes, and a much clearer seismic result.</p>
+<p><strong>New: Plan Symbol Library</strong> <em>(Experimental)</em> A searchable library of clean 2D plan symbols. Find a symbol, click it, and a transparent PNG lands on your clipboard ready to paste into Bluebeam, Acrobat or Foxit. Alias search means "siamese" finds the fire department connection and "os&amp;y" finds the gate valve. Four style families (Standard, Bold, Solid and a white-knockout Halo that stays legible over dark hatch), six ink colors, and favorites plus recents. Eight symbols to start, growing each release.</p>
+<p><strong>Three new appearance themes</strong> Blueprint (prussian cyanotype with pale cyan ink), Vellum (warm drafting paper instead of screen-white) and Graphite (quiet neutral charcoal with brass). Dark and Plain Light are unchanged. Every pairing meets WCAG AA contrast.</p>
+<p><strong>Seismic bracing: what's actually limiting you</strong> The calc now names the governing element — the weakest link in the load path — with its maximum allowable load, the demand, and why. A GOVERNS badge marks the row so you can see at a glance that upsizing the brace member buys nothing while a 183 lb anchor is the real ceiling. New optional safety margin % display.</p>
+<p><strong>Fixed</strong></p>
+<ul><li>Installing the ODA File Converter is now picked up without restarting SprinkFlow, plus an "I've installed it — check again" button on every prompt.</li><li>The Review Plans Scan window no longer closes when you press inside it and release outside — that could silently discard a scan.</li><li>Backflow preventers no longer appear under Check Valve in catalog matches.</li></ul>
+<p><strong>Also</strong></p>
+<ul><li>Explode CAD Blocks now outputs DWG instead of DXF.</li><li>DWG to PDF lets you choose which xrefs to bind.</li><li>Four selectable north arrow styles in the vicinity map, in the app and the free web tool.</li><li>Tools still maturing are now marked "Experimental" rather than "Early Access".</li></ul></div>
+</article>
+<article class="rn-rel" id="v1.1.7">
+  <header><h2>1.1.7</h2><span class="rn-chip stable">Stable</span><time>August 4, 2026</time></header>
+  <div class="rn-body"><h3>What's new in 1.1.7</h3>
+<p><strong>8 new cover templates + a preview gallery.</strong> The Material Data Submittal and Hydraulic Calc Package cover picker grows from 5 to 13 designs — from copier-proof black &amp; white to design-forward layouts. The new gallery shows live thumbnails, and you can star your favorites to pin them to the top (shared across both tools).</p>
+<p><strong>Slip Sheet — visual page editor.</strong> New mode in the PDF workspace: your base PDF renders as page preview cards. Click a page to replace it with the next slip-in sheet, drag a sheet onto a page to replace it, or drop it between two pages to insert. Click any placed page to undo.</p>
+<p><strong>PDF to CAD — line weights &amp; colors tuned for AutoSPRINK.</strong> Converted drawings import with Element Widths pre-filled (~0.5 / 0.25 / 0.1) and colors mapped to AutoSPRINK's palette — no more everything-at-zero. Weight-split layers (-W050/-W025/-W010), stipple &amp; hatch dots on their own -HATCH layer, a 3/32" = 1'-0" preset, and a custom scale box that takes 3/32, 1:50, or a raw factor.</p>
+<p><strong>Hydraulic Analysis Report — residential design bases.</strong> New System Design Basis selector: NFPA 13 residential sprinklers (19.3.1), NFPA 13R (7.1.1), and NFPA 13D (10.1/10.2), each writing the real code criteria into the report. Residential also joins the occupancy hazard dropdown with basis-aware density (0.1 under 13, 0.05 under 13R/13D).</p>
+<p><strong>Preliminary Calculation — Supply Safety Margin.</strong> Converts demand pressure into the supply needed for a chosen cushion, measured correctly as a percentage of the supply (supply = demand ÷ (1 − margin)). Auto-fills from your estimate; also available as a standalone tool in the mobile app.</p>
+<p>Plus: the web edition (web.sprinkflow.studio) gains the vicinity map, flow test sheet PDF export, and the Slip Sheet tool.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.6">
+  <header><h2>1.1.6</h2><span class="rn-chip stable">Stable</span><time>July 28, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.6 — lighter, freer, and smarter about xrefs.</p>
+<p>Fixed</p>
+<ul><li><strong>Free accounts get the local scans back.</strong> The plans scan (it's local OCR + pattern matching, not AI), PDF classification, bid plan intake, and hydraulic-calc scanning were incorrectly locked behind a subscription in 1.1.3–1.1.5. Cut-sheet and spec scans also run their built-in analysis for everyone; only the hosted AI enhancement requires a subscription.</li><li><strong>Explode CAD Blocks now binds xrefs first.</strong> Attached xrefs used to silently vanish from the exploded DXF. Use the new "Choose file (binds xrefs)" button so xrefs sitting next to the drawing are found and merged in before exploding.</li></ul>
+<p>Changed</p>
+<ul><li><strong>22 MB smaller download</strong> (78 → 56 MB): removed an unused PDF library and the early DWG/DXF viewer.</li><li>Sign-in fields work with your browser/OS password manager.</li></ul>
+<p>Update from within the app (Account → check for updates), or download the installer below.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.5">
+  <header><h2>1.1.5</h2><span class="rn-chip stable">Stable</span><time>July 28, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.5</p>
+<p>Fixed</p>
+<ul><li>Sign-in window: final visual polish (the thin white line above the buttons is gone).</li><li>Your browser's password manager now recognizes the sign-in fields, so saved SprinkFlow credentials autofill on the web edition, and the desktop sign-in works the same way.</li><li>Sign-in copy updated for the account era.</li></ul>
+<p>Update from within the app (Account → check for updates), or download the installer below.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.4">
+  <header><h2>1.1.4</h2><span class="rn-chip stable">Stable</span><time>July 28, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.4</p>
+<p>Fixed</p>
+<ul><li>The startup sign-in window is cleaned up: properly sized logo, no scrollbars, and polished buttons (the white band around Look Around / Sign In is gone).</li><li>Sign-in copy now reflects the free tier: any SprinkFlow account unlocks the free design tools; subscribing adds exports and document generation. New users can create an account at sprinkflow.studio.</li></ul>
+<p>Update from within the app (Account → check for updates), or download the installer below.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.3">
+  <header><h2>1.1.3</h2><span class="rn-chip stable">Stable</span><time>July 28, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.3</p>
+<p>Changed</p>
+<ul><li><strong>Free tier for lapsed accounts.</strong> If your beta or subscription has ended, you can still sign in and use every calculator and design tool — seismic bracing, hydraulic analysis, spacing, the material catalog, viewers, and more. Exports and document generation (submittal packages, calc packages, PDFs, DXF, AI features) require an active subscription: Account → Billing → Subscribe.</li></ul>
+<p>Also includes the v1.1.2 fixes (expired accounts can sign in; DWG/DXF Viewer; ODA converter links; hydraulic Saved Projects picker).</p></div>
+</article>
+<article class="rn-rel" id="v1.1.2">
+  <header><h2>1.1.2</h2><span class="rn-chip stable">Stable</span><time>July 28, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.2</p>
+<p>Fixed</p>
+<ul><li><strong>Expired accounts can now sign in and subscribe.</strong> Previously an expired beta license blocked sign-in entirely, which left the Subscribe button grayed out — the exact "billing subscribe option is grayed out" report. If your beta ended: sign in, open Account → Billing, and Subscribe works.</li></ul>
+<p>New</p>
+<ul><li><strong>DWG / DXF Viewer</strong> (Tools): open any DWG or DXF and see it rendered like a plotted sheet — quick-check a customer's drawing without launching CAD. DWG viewing uses the free ODA File Converter; download links are provided in-app.</li><li>Convert PDF to CAD now links the free ODA File Converter so you can get direct-to-DWG output.</li><li>Hydraulic Calculation Package: pull project name/address from Saved Projects.</li></ul>
+<p>Update from within the app (Account → check for updates), or download the installer below.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.1">
+  <header><h2>1.1.1</h2><span class="rn-chip stable">Stable</span><time>July 24, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.1 — Seismic Bracing UI fixes.</p>
+<p>Fixed</p>
+<ul><li>The brace-type pill in the seismic context bar rendered brown with near-black text; it's now a clean orange with white text (longitudinal and 4-way pills tuned to match).</li><li>New <strong>Start Over</strong> button next to Clear: a true full reset. Clear only wiped the calc inputs and New Project left the previous job behind — Start Over now also clears the looked-up job address and SDS lookup (including the saved job info), so a prior Lookup-From-Address job is completely gone, even after a reload.</li><li>Removed filler text from the Brace rack &amp; results panel.</li></ul>
+<p>Update from within the app (Account → check for updates), or download the installer below.</p></div>
+</article>
+<article class="rn-rel" id="v1.1.0">
+  <header><h2>1.1.0</h2><span class="rn-chip stable">Stable</span><time>July 24, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow v1.1.0 — first feature release since 1.0.0.</p>
+<p>New</p>
+<ul><li>Material Catalog tab: browse and manage every datasheet in your catalog without starting a submittal. Faceted sprinkler filters (Manufacturer, Type, Orientation, K-factor, Temperature, Response) that constrain each other so you never hit a dead-end combination, plus "Ask AI to find this datasheet".</li><li>Seismic Bracing: USGS SDS source-documentation (full ASCE 7 parameter set + one-page PDF), RedBuilt structural-member load ratings, Cp attachment-height reduction (18.5.9.3.3/.3.4), brace-specific elevation, and even-spacing brace / branch-line-restraint layout with a 12"–6' end-setback slider.</li><li>Hydraulic Analysis: minimum remote-area length auto-calc.</li></ul>
+<p>Update from within the app (Account → check for updates), or download the installer below.</p></div>
+</article>
+<article class="rn-rel" id="v1.0.0">
+  <header><h2>1.0.0</h2><span class="rn-chip stable">Stable</span><time>July 19, 2026</time></header>
+  <div class="rn-body"><p><strong>SprinkFlow 1.0.0 — the official release.</strong> Out of beta and here to stay.</p>
+<p>SprinkFlow turns a pile of cut sheets and calcs into a clean, bookmarked submittal package, and packs the full toolbox a fire sprinkler designer reaches for — material submittals, hydraulic calc packages, storage &amp; water-supply analysis, head layouts, bid estimating, PDF-to-CAD, CAD block exploding, and more.</p>
+<p>Free to download and explore; a $39/month membership unlocks exporting your deliverables.</p>
+<p>Existing beta users update automatically.</p></div>
+</article>
+    <div class="rn-era">Spotter Edition</div>
+<article class="rn-rel" id="spotter-v1.1.1">
+  <header><h2>Spotter 1.1.1</h2><span class="rn-chip spotter">Spotter</span><time>August 14, 2026</time></header>
+  <div class="rn-body"><p>Major update since v1.0.5:</p>
+<ul><li>IFC coordination import: models ground to 0'-0", meshes are snappable, bodies convert to native beams/columns, and a roof plane can be created from a platform deck</li><li>Rhythm Assist placement ghosts</li><li>Disconnect Heads and Select Full Branch Run on the pipe right-click menu</li><li>Connect to Nearby Sprinklers with a max-distance prompt (default 7'-6")</li><li>Sprinkler clearance bubbles with intrusion flagging</li><li>Multi-select Isolate Layer</li><li>Hard ortho lock on sprinkler drags (identical to pipe/line ortho)</li><li>Snapping while dragging a multi-selection</li><li>Dimension text always lands above the dimension line</li><li>DWG import fix: re-importing into a saved job no longer fails with a duplicate id</li><li>Validated hydraulic calculations: the engine matched an AutoSPRINK-sealed job node-for-node</li></ul>
+<p>The installer is not yet code-signed — SmartScreen will warn; choose "More info", then "Run anyway". Sign in with your SprinkFlow account to activate.</p>
+<p>v1.1.1: the installer is now fully self-contained - no .NET runtime download on first launch; install and run.</p></div>
+</article>
+<article class="rn-rel" id="spotter-v1.1.0">
+  <header><h2>Spotter 1.1.0</h2><span class="rn-chip spotter">Spotter</span><time>August 14, 2026</time></header>
+  <div class="rn-body"><p>Major update since v1.0.5:</p>
+<ul><li>IFC coordination import: models ground to 0'-0", meshes are snappable, bodies convert to native beams/columns, and a roof plane can be created from a platform deck</li><li>Rhythm Assist placement ghosts</li><li>Disconnect Heads and Select Full Branch Run on the pipe right-click menu</li><li>Connect to Nearby Sprinklers with a max-distance prompt (default 7'-6")</li><li>Sprinkler clearance bubbles with intrusion flagging</li><li>Multi-select Isolate Layer</li><li>Hard ortho lock on sprinkler drags (identical to pipe/line ortho)</li><li>Snapping while dragging a multi-selection</li><li>Dimension text always lands above the dimension line</li><li>DWG import fix: re-importing into a saved job no longer fails with a duplicate id</li><li>Validated hydraulic calculations: the engine matched an AutoSPRINK-sealed job node-for-node</li></ul>
+<p>The installer is not yet code-signed — SmartScreen will warn; choose "More info", then "Run anyway". Sign in with your SprinkFlow account to activate.</p></div>
+</article>
+<article class="rn-rel" id="spotter-v1.0.5">
+  <header><h2>Spotter 1.0.5</h2><span class="rn-chip spotter">Spotter</span><time>August 6, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow Design Suite — Spotter Version (head placement)</p>
+<p><strong>Download SprinkFlow-Spotter-Setup-v1.0.5.exe and run it</strong> — no admin rights needed. Sign in with your SprinkFlow account on first launch.</p>
+<p>New in v1.0.5:</p>
+<ul><li>Help → <strong>Refresh License…</strong> — sign in again to pick up license changes without reinstalling. If your access level changed and the app doesn't reflect it, use this.</li><li>Selecting a sprinkler now highlights just the symbol (no solid disc overlay).</li></ul>
+<p>Note: not yet code-signed — Windows SmartScreen may warn on first run ("More info → Run anyway").</p></div>
+</article>
+<article class="rn-rel" id="spotter-v1.0.4">
+  <header><h2>Spotter 1.0.4</h2><span class="rn-chip spotter">Spotter</span><time>August 6, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow Design Suite — Spotter Version (head placement)</p>
+<p><strong>Download SprinkFlow-Spotter-Setup-v1.0.4.exe and run it</strong> — no admin rights needed. Sign in with your SprinkFlow account on first launch; an active subscription includes access.</p>
+<p>Since v1.0.3: license-tier improvements and small fixes.</p>
+<p>Note: not yet code-signed — Windows SmartScreen may warn on first run ("More info → Run anyway").</p></div>
+</article>
+<article class="rn-rel" id="spotter-v1.0.3">
+  <header><h2>Spotter 1.0.3</h2><span class="rn-chip spotter">Spotter</span><time>August 6, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow Design Suite — Spotter Version (head placement)</p>
+<p><strong>Easiest install: download SprinkFlow-Spotter-Setup-v1.0.3.exe and run it.</strong> No admin rights needed. Sign in with your SprinkFlow account on first launch — an active subscription includes Spotter access.</p>
+<p>Important fixes in this release:</p>
+<ul><li>Autosave and crash recovery now actually run — work is snapshotted seconds after you pause editing, and the app offers recovery after a crash. (Previous builds silently never autosaved; please update.)</li><li>The app process reliably exits when you close the window.</li><li>Fabrication safety: impossible spools and out-of-catalog fitting sizes now warn instead of producing silently wrong cut lengths; flow-test curves clamp at 0 psi.</li><li>150+ new engine regression tests.</li></ul>
+<p>Note: not yet code-signed — Windows SmartScreen may warn on first run ("More info → Run anyway"). Signed builds coming shortly.</p></div>
+</article>
+<article class="rn-rel" id="spotter-v1.0.2">
+  <header><h2>Spotter 1.0.2</h2><span class="rn-chip spotter">Spotter</span><time>August 6, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow Design Suite — Spotter Version (head placement)</p>
+<p><strong>Easiest install: download SprinkFlow-Spotter-Setup-v1.0.2.exe and run it.</strong> No admin rights needed — it installs per-user with a Start Menu and desktop shortcut. (The .zip is the same build for portable/manual use.)</p>
+<p>Sign in with your SprinkFlow account on first launch — an active SprinkFlow subscription includes Spotter access.</p>
+<p>New since v1.0.1: Windows installer, "SprinkFlow Design Suite — Spotter Version" branding throughout, fixed solid-hatch rendering on imported DWGs with island holes, line weight display slider, Select Objects on Layer in every right-click menu.</p>
+<p>Note: the installer is not yet code-signed, so Windows SmartScreen may warn on first run — click "More info → Run anyway". Signed builds are coming shortly.</p></div>
+</article>
+<article class="rn-rel" id="spotter-v1.0.1">
+  <header><h2>Spotter 1.0.1</h2><span class="rn-chip spotter">Spotter</span><time>August 5, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow Design Suite — Spotter Version (head placement, tester build 2026-08-05)</p>
+<p>Requires an active SprinkFlow account with Spotter access granted, or a license key from James.</p>
+<p>Setup: unzip anywhere, run "SprinkFlow Spotter.cmd", then sign in with your SprinkFlow account (or paste your key) on the license screen.</p>
+<p>New since v1.0.0: line weight display slider (model space previews plotted stroke widths), Select Objects on Layer in every right-click menu, editable line-weight combo with typed custom weights, DWG xref include picker, faster large-DWG imports.</p></div>
+</article>
+<article class="rn-rel" id="spotter-v1.0.0">
+  <header><h2>Spotter 1.0.0</h2><span class="rn-chip spotter">Spotter</span><time>August 3, 2026</time></header>
+  <div class="rn-body"><p>SprinkFlow Spotter — heads-only edition, first tester build.</p>
+<p>How to run</p>
+<ol><li>Download the zip below and unzip it anywhere (Desktop is fine).</li><li>Run "SprinkFlow Spotter.cmd".</li><li>Sign in with the SprinkFlow account you were given access to.</li></ol>
+<p>Windows may warn about an unrecognised app the first time — choose More info, then Run anyway.</p>
+<p>Requires access on your SprinkFlow account. If sign-in says you have no Spotter access, tell James which email you used.</p></div>
+</article>
+    <div class="rn-era">Private beta (0.2.1)</div>
+<article class="rn-rel" id="v0.2.1-beta.21">
+  <header><h2>0.2.1-beta.21</h2><span class="rn-chip beta">Private beta</span><time>July 18, 2026</time></header>
+  <div class="rn-body"><p>New CAD Prep tools:</p>
+<ul><li><strong>Convert PDF to CAD</strong> — turn a PDF sheet into an editable DXF. Browse the whole set as thumbnail cards, click the sheet you want, pick a plot scale, and import every color layer as its own CAD layer.</li><li><strong>Explode CAD Blocks</strong> — drop a DWG or DXF and flatten every block into plain lines, arcs, text, and hatches — AutoCAD's XPLODE with no AutoCAD needed. DWG files are read with the free ODA File Converter; DXF needs nothing.</li></ul></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.20">
+  <header><h2>0.2.1-beta.20</h2><span class="rn-chip beta">Private beta</span><time>July 18, 2026</time></header>
+  <div class="rn-body"><p><strong>Save Project button restored in Legacy Mode</strong> - it's back in the Project card header, on both the New Project and Saved Projects tabs. Thanks to Gerald E. for the catch.</p>
+<p><strong>NEW: Hydraulic Analysis Report tool</strong> (Design Tools) - build a copy-paste design-basis report for your plan sheets: applicable codes, occupancy hazard by room (grouped, with densities), a <strong>QR design-area reduction calculator</strong> (enter ceiling height, get the reduction), dry/preaction and sloped-ceiling +30% modifiers, custom hazard classifications you can save for reuse, and size-banded piping specs including underground pipe types. Save reports to reopen/edit and link them to a saved project. Ceiling height accepts feet-inches (e.g. 15-2).</p>
+<p><strong>Vicinity Map</strong> - pan controls moved below the map so the map screenshots clean, plus a Copy Image button to paste the map straight into your plan set.</p>
+<p>Installer unsigned while code-signing is pending.</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.19">
+  <header><h2>0.2.1-beta.19</h2><span class="rn-chip beta">Private beta</span><time>July 9, 2026</time></header>
+  <div class="rn-body"><p><strong>NEW: Vicinity Map Generator</strong> — type a project address, and SprinkFlow pulls the surrounding streets from OpenStreetMap and draws a plan-set-style vicinity map: heavy major roads, thin minor streets, a dashed AREA OF WORK box, north arrow, and labels. Everything's editable — drag the AREA OF WORK box and its callout, drag street labels, and right-click any street or label to rename or remove it (without changing line weight). Click a street to flip it heavy/thin. Export to <strong>PNG</strong> for a plan sheet or <strong>DXF</strong> (feet, layered) for your design software. Needs an internet connection; only the address is sent out.</p>
+<p><strong>Hanger spacing now enforces the NFPA 13 end-of-line limit</strong> — the last hanger on each end stays within the unsupported-length maximum (36/48/60 in for 1"/1-1/4"/larger steel), with the run re-spaced as evenly as the code allows.</p>
+<p>Plus the water-supply safety margins and HydraCalc import from recent updates. Installer unsigned while code-signing is pending.</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.18">
+  <header><h2>0.2.1-beta.18</h2><span class="rn-chip beta">Private beta</span><time>July 7, 2026</time></header>
+  <div class="rn-body"><p><strong>Safety margins on the Water Flow Test Sheet</strong> — every system demand now shows its safety margin in exact PSI and as a percentage of the residual pressure at the demand flow: on screen, in the report summary, and as a new Safety Margins table on the printed sheet. Demands the supply can't cover are flagged in bold red. Thanks to Justin for the request.</p>
+<p><strong>Also in this update:</strong></p>
+<ul><li>The demand row's Remove button no longer runs off-screen on narrower panels</li><li>Head Layout diagram dimensions are readable at any head count (uniform runs now dimension as "N SPA @ spacing = total", drafting-style)</li></ul>
+<p>Installer unsigned while code-signing is pending.</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.17">
+  <header><h2>0.2.1-beta.17</h2><span class="rn-chip beta">Private beta</span><time>July 2, 2026</time></header>
+  <div class="rn-body"><p><strong>HydraCalc / Hydratec calc support</strong> — calcs from HydraCalc (Revit) now read correctly: Job Name → project name, Location → project address, occupancy classification → hazard (LH/OH/EH/RES expanded), and area numbers like L1-1 keep their formatting. Thanks to Gerald E. for the sample files that drove this.</p>
+<p><strong>NEW: Spec Materials Finder</strong> — drop a full project spec book (even 1,800+ pages) on Step 1. SprinkFlow finds the fire-sprinkler sections (Div 21 or legacy Div 15), pulls the material requirements — pipe schedules, hanger types, stainless callouts, prohibitions — with page references, and matches them against your datasheet catalog.</p>
+<p><strong>Wizard upgrades</strong> — clickable step chips to jump between the 4 steps, an always-visible Save Project button, Start Over now confirms and truly clears, and a session banner when a previous submittal is still loaded.</p>
+<p>Plus light-mode polish, layout fixes throughout, and under-the-hood security hardening. Installer unsigned while code-signing is pending.</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.16">
+  <header><h2>0.2.1-beta.16</h2><span class="rn-chip beta">Private beta</span><time>June 29, 2026</time></header>
+  <div class="rn-body"><p>Security-hardening release (pre-payment audit).</p>
+<ul><li>The local app API now rejects cross-origin requests (CSRF protection) and binds to loopback by default.</li><li>Companion server-side hardening is already live (admin-role lockdown, dev-auth disabled, AI cost ceiling, real client-IP rate limiting).</li></ul>
+<p>No user-facing feature changes. Installer unsigned while code-signing is pending; the updater still verifies every download by SHA-256.</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.15">
+  <header><h2>0.2.1-beta.15</h2><span class="rn-chip beta">Private beta</span><time>June 28, 2026</time></header>
+  <div class="rn-body"><p>Fixes and refinements:</p>
+<ul><li>Datasheet preview <strong>Download</strong> now actually saves the file (pywebview download support was off).</li><li><strong>Project Package export</strong>: everything lands in one folder (no "Plans" subfolder), and no console window appears.</li><li>Submittal wizard: <strong>Start Over</strong> button, full-width workspace, and a Both/Cover/TOC preview toggle.</li><li>Light-mode contrast fixes (privacy popover, AI confidence badges, catalog row menu).</li></ul>
+<p>Installer unsigned while code-signing is pending. Existing testers will get an in-app update prompt.</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.14">
+  <header><h2>0.2.1-beta.14</h2><span class="rn-chip beta">Private beta</span><time>June 27, 2026</time></header>
+  <div class="rn-body"><p>The final beta before the SprinkFlow full launch on <strong>July 1, 2025</strong>. Builds on beta.13.</p>
+<h4>New in beta.14</h4>
+<ul><li><strong>AI "find this datasheet" now actually finds it.</strong> Search the catalog for a product that isn't there, click <strong>Ask AI to find this datasheet</strong>, and it web-searches for the manufacturer's real datasheet, pulls the PDF in for one-click import, and links the product page when it can't fetch the file directly.</li></ul>
+<h4>Also included (since beta.12)</h4>
+<ul><li><strong>Preliminary Calculation</strong> — fast early demand/feasibility estimate with a tree &amp; grid hydraulic network solver, design bases (occupancy / residential / ESFR-storage), auto K-factor, and a pipe-size optimizer.</li><li><strong>Project Package export</strong> — one click bundles your submittal, calc package, and scanned plans into a folder.</li><li><strong>Water Flow-Test Sheet</strong> — formatted hydrant flow-test report PDF.</li><li><strong>Hanger Spacing calculator</strong> — NFPA 13 (2025) maximum hanger spacing.</li><li><strong>Recent Outputs</strong> in the PDF workspace; merge / compress / merge+compress PDF tools.</li><li>Guided submittal builder with the step indicator at the top; Legacy layout toggle moved to Settings.</li></ul>
+<p>_Unsigned beta build — Windows SmartScreen may warn on first run; choose <strong>More info → Run anyway</strong>._</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.13">
+  <header><h2>0.2.1-beta.13</h2><span class="rn-chip beta">Private beta</span><time>June 27, 2026</time></header>
+  <div class="rn-body"><p>The final beta before the SprinkFlow full launch on <strong>July 1, 2025</strong>.</p>
+<h4>New</h4>
+<ul><li><strong>Preliminary Calculation</strong> — a fast early demand/feasibility estimate: density/area, Hazen-Williams friction, a real tree &amp; grid hydraulic network solver, ESFR/storage/residential design bases, auto K-factor selection, and a pipe-size optimizer.</li><li><strong>Project Package export</strong> — one click bundles your material data submittal, hydraulic calc package, and scanned plans into a single folder.</li><li><strong>Water Flow-Test Sheet</strong> — generate a formatted hydrant flow-test report PDF.</li><li><strong>Hanger Spacing calculator</strong> — NFPA 13 (2025) maximum hanger spacing, with an editable table and diagram.</li><li><strong>Recent Outputs</strong> — your latest generated PDFs are one drag away in the merge workspace.</li><li><strong>AI "find this datasheet"</strong> — look up a cut sheet by name when it isn't already in your catalog.</li></ul>
+<h4>Improved</h4>
+<ul><li>Guided submittal builder — the step indicator now sits at the top of the page.</li><li>The Legacy (all-in-one) layout toggle moved into <strong>Settings</strong>.</li></ul>
+<p>_Unsigned beta build — Windows SmartScreen may warn on first run; choose <strong>More info → Run anyway</strong>._</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.12">
+  <header><h2>0.2.1-beta.12</h2><span class="rn-chip beta">Private beta</span><time>June 23, 2026</time></header>
+  <div class="rn-body"><h3>SprinkFlow 0.2.1 — Private Beta 12</h3>
+<p><strong>AI Plan Reviewer (premium)</strong> — now built in and cloud-hosted. Sign in, drop in your plans, and get an automatic plan-review markup + comment letter. Capped at 5 reviews/day per account during beta.</p>
+<p><strong>New: Hanger Detail Generator</strong> — draw fire-sprinkler pipe hanger details and export a clean PNG.</p>
+<p><strong>Head Layout Generator → DXF export</strong> — export the proposed head layout as 8-inch circles, anchored to the lower-left wall corner so it drops straight into your CAD.</p>
+<p><strong>Bid Estimator</strong> — drag in a bid set to auto-fill project name, address, and area, plus a square-footage → head-count estimator with a building-layout adjustment.</p>
+<p><strong>Material Data submittal</strong> — new toggle to show or hide the disclaimer on the cover sheet.</p>
+<p><strong>Hydraulic Calc Package</strong> — cleaner cover (disclaimer removed).</p>
+<p>_Installer is unsigned while code-signing certificate validation is pending._</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.11">
+  <header><h2>0.2.1-beta.11</h2><span class="rn-chip beta">Private beta</span><time>June 19, 2026</time></header>
+  <div class="rn-body"><p>Storage Hazard Analysis: corrected Group A plastic rack CMDA criteria across all NFPA 13 editions (2019/2022/2025).</p>
+<ul><li>Added the missing ceiling-only Table 21.5.1.1 / 21.5.2 design options.</li><li>Removed the nonexistent "Figure 25.9.x" references from the 2022 and 2025 paths (those figures only exist in the 2019 edition).</li><li>Encoded each edition's table exactly (the 2019 table differs from 2022/2025 in clearance bands and footnotes).</li></ul>
+<p>Installer is unsigned while code-signing is pending.</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.10">
+  <header><h2>0.2.1-beta.10</h2><span class="rn-chip beta">Private beta</span><time>June 18, 2026</time></header>
+  <div class="rn-body"><p>Private beta build 0.2.1-beta.10.</p>
+<ul><li>Clear sign-in feedback: when you press Sign In, you now get an obvious result right at the button — green "Signed in, tools unlocked", or red "Sign-in failed" with the reason. (Previously the result could render where you couldn't see it.)</li></ul>
+<p>Installer is unsigned while code-signing certificate validation is pending.</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.9">
+  <header><h2>0.2.1-beta.9</h2><span class="rn-chip beta">Private beta</span><time>June 18, 2026</time></header>
+  <div class="rn-body"><p>Private beta build 0.2.1-beta.9.</p>
+<ul><li>Contractor logo: new "Paste from Clipboard" button (Ctrl+V and drag-drop still work).</li><li>Sign-in: show/hide (eyeball) toggle on password fields.</li><li>More resilient licensing: the app now rides out a slow/cold server when refreshing its license instead of locking out, and license leases last longer so a brief outage never locks you out.</li></ul>
+<p>Installer is unsigned while code-signing certificate validation is pending.</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.8">
+  <header><h2>0.2.1-beta.8</h2><span class="rn-chip beta">Private beta</span><time>June 12, 2026</time></header>
+  <div class="rn-body"><p>Private beta build 0.2.1-beta.8.</p>
+<p>Fixed: the in-app "Download Update" button. In beta.6 and beta.7 it silently did nothing (the request 404'd). It now correctly opens the latest installer in your browser. Because the button was broken in the version you currently have, this update is a one-time manual download — future updates will work from the button.</p>
+<p>Also in 0.2.x: AI-assisted import (cut sheets + hydraulic calc packages read by Claude for accurate model, K-factor, listings, and design criteria) is now live, with automatic fallback to the built-in parser.</p>
+<p>Installer is unsigned while code-signing certificate validation is pending.</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.7">
+  <header><h2>0.2.1-beta.7</h2><span class="rn-chip beta">Private beta</span><time>June 12, 2026</time></header>
+  <div class="rn-body"><p>Private beta build 0.2.1-beta.7.</p>
+<p>New: AI-assisted import. When you import cut sheets or hydraulic calc packages, SprinkFlow now reads them with Claude for far more accurate auto-fill:</p>
+<ul><li>Cut sheets: manufacturer, model, K-factor, listings, temperatures, and the per-orientation SIN/listing map.</li><li>Hydraulic calcs: hazard, design density/area, demand flow &amp; pressure, available supply, safety margin, system type, and K-factor.</li></ul>
+<p>The existing parser stays as an automatic fallback, so import works unchanged when AI is unavailable. This is the same auto-update-enabled build line; after installing 0.2.1-beta.6 or later you will see "Update Available" in the app for future releases.</p>
+<p>The installer is unsigned while our code-signing certificate is pending.</p>
+<p>SHA-256 (SprinkFlow-Setup.exe): 54796c9f1040911b265569c48ea43b92f5a482aa6d0a8e192776a7fdd8719200</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.6">
+  <header><h2>0.2.1-beta.6</h2><span class="rn-chip beta">Private beta</span><time>June 12, 2026</time></header>
+  <div class="rn-body"><p>Private beta build 0.2.1-beta.6.</p>
+<p>This is the last build you need to download by hand. After installing it, SprinkFlow checks for updates automatically and shows an "Update Available" notice at the top of the app.</p>
+<p>Changes since beta.5:</p>
+<ul><li>Automatic update checking with an in-app "Update Available" notice</li><li>Redesigned Account window with Overview / Sign In &amp; Profile / Billing / Advanced tabs</li><li>Open Folder and Copy Path buttons after generating submittals and calc packages</li><li>Unsaved-changes indicator and Ctrl+S to save the current project</li><li>Clearer messages for unsupported files and a friendly notice if a background error occurs</li><li>Email attachment size pre-check before building the full submittal draft</li><li>Plain-English wording across license and account messages, plus polish fixes</li></ul>
+<p>The installer is unsigned while our code-signing certificate is pending.</p>
+<p>SHA-256 (SprinkFlow-Setup.exe): da0eb63dc263bd4cf2d04706ebdeec861c7c9a041d14801f20623787ebd558be</p></div>
+</article>
+<article class="rn-rel" id="v0.2.1-beta.5">
+  <header><h2>0.2.1-beta.5</h2><span class="rn-chip beta">Private beta</span><time>June 11, 2026</time></header>
+  <div class="rn-body"><p>Private beta build 0.2.1-beta.5.</p>
+<p>Changes since beta.4 distribution:</p>
+<ul><li>New SprinkFlow app icon</li><li>Additional Information cover sheets (AHJ, General Contractor, Engineer, Owner) for material and hydraulic packages</li><li>Material submittal Web Links Table TOC with fillable fields and multi-page support</li><li>Hydraulic calc package: hide-contractor option and cleaner TOC/bookmark naming</li><li>Plain Light theme fixes and dropdown contrast improvements</li><li>Catalog: Ames Fire &amp; Waterworks Deringer and SS-series backflow preventers</li></ul>
+<p>The installer is unsigned while code-signing certificate validation is pending.</p>
+<p>SHA-256 (SprinkFlow-Setup.exe): 21e5b1818522534b5626be6d8cff316e220224fb2ffb712dde9e54f9514e4a50</p></div>
+</article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="./assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+  <script>
+    // the sticky nav's frosted background lives on .scrolled (added by the
+    // homepage script, which this page doesn't load)
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>

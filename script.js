@@ -1,0 +1,165 @@
+// Password-recovery links from Supabase land on the site root with the tokens
+// in the URL hash - bounce them to the account page (which has the set-new-
+// password form) BEFORE the Supabase client below consumes the hash.
+if (/type=recovery|error_code=/.test(location.hash)) {
+  location.replace("/account.html" + location.hash);
+}
+
+// --- config (public values; the anon key is designed to be exposed client-side) ---
+const SUPABASE_URL = "https://aebghirpjiwiergkafej.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFlYmdoaXJwaml3aWVyZ2thZmVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMjA0NTQsImV4cCI6MjA5NTg5NjQ1NH0.ogDc26YGo3AEAZZcPII_p3htPml4pjQa4vOyYAU1sSg";
+const CLOUD_API = "https://sprinkflow-cloud-api.onrender.com";
+const SITE_URL = "https://sprinkflow.studio";
+
+const supa = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+// --- year ---
+document.getElementById("year").textContent = String(new Date().getFullYear());
+
+// --- sticky nav shadow ---
+const nav = document.getElementById("nav");
+const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 12);
+onScroll();
+window.addEventListener("scroll", onScroll, { passive: true });
+
+// --- scroll reveal ---
+const io = new IntersectionObserver(
+  (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); } }),
+  { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+);
+document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+// --- password show/hide ---
+const pwToggle = document.getElementById("suPwToggle");
+const pwInput = document.getElementById("suPassword");
+pwToggle?.addEventListener("click", () => {
+  const reveal = pwInput.type === "password";
+  pwInput.type = reveal ? "text" : "password";
+  pwToggle.textContent = reveal ? "🙈" : "👁";
+  pwToggle.setAttribute("aria-label", reveal ? "Hide password" : "Show password");
+  pwInput.focus();
+});
+
+// --- signup ---
+const form = document.getElementById("signupForm");
+const note = document.getElementById("suNote");
+const submit = document.getElementById("suSubmit");
+
+function setNote(msg, kind) {
+  note.textContent = msg;
+  note.className = "form-note" + (kind ? " " + kind : "");
+}
+
+// After a successful signup, surface BOTH next steps instead of silently
+// scrolling to the installer — subscribing was previously never offered.
+function showPostSignupActions() {
+  if (document.getElementById("suNext")) return;
+  const box = document.createElement("div");
+  box.id = "suNext";
+  box.style.cssText = "display:flex;gap:10px;flex-wrap:wrap;margin-top:12px";
+  box.innerHTML =
+    '<a class="btn btn-primary" href="/account.html?checkout=1">Subscribe &mdash; $39/mo</a>' +
+    '<a class="btn btn-ghost" href="#download">Download the app</a>';
+  note.insertAdjacentElement("afterend", box);
+}
+
+form?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const name = document.getElementById("suName").value.trim();
+  const company = document.getElementById("suCompany").value.trim();
+  const email = document.getElementById("suEmail").value.trim();
+  const password = document.getElementById("suPassword").value;
+
+  if (!email || !email.includes("@")) { setNote("Please enter a valid email.", "err"); return; }
+  if (password.length < 8) { setNote("Password needs to be at least 8 characters.", "err"); return; }
+  if (!supa) { setNote("Signup is temporarily unavailable. Please try again shortly.", "err"); return; }
+
+  submit.disabled = true;
+  setNote("Creating your account…", "");
+
+  try {
+    const { data, error } = await supa.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: SITE_URL + "/?confirmed=1",
+        data: { full_name: name, company },
+      },
+    });
+    if (error) throw error;
+
+    // The account starts on the free tier; a paid license is granted by the
+    // Stripe subscription (via the billing webhook), not at signup.
+    const identities = data?.user?.identities;
+    if (Array.isArray(identities) && identities.length === 0) {
+      setNote("You already have an account with this email. Sign in on your account page to subscribe, or just download below.", "ok");
+    } else {
+      setNote("Almost there — check your email and click the confirmation link. Then subscribe to unlock exports, or download below.", "ok");
+    }
+    // Signup used to scroll straight to the download button, which left the
+    // purchase step invisible. Offer both, with subscribing first.
+    showPostSignupActions();
+    form.reset();
+  } catch (err) {
+    const msg = (err && err.message) || "Something went wrong. Please try again.";
+    setNote(msg, "err");
+  } finally {
+    submit.disabled = false;
+  }
+});
+
+// --- graceful screenshot placeholders (until real captures are dropped in) ---
+document.querySelectorAll("img[data-shot]").forEach((img) => {
+  img.addEventListener("error", () => {
+    const frame = img.closest(".frame");
+    if (!frame || frame.querySelector(".shot-ph")) return;
+    img.style.display = "none";
+    const ph = document.createElement("div");
+    ph.className = "shot-ph";
+    ph.textContent = (img.getAttribute("alt") || "Screenshot") + " — coming soon";
+    frame.appendChild(ph);
+  });
+});
+
+// --- post-confirmation greeting ---
+if (new URLSearchParams(location.search).get("confirmed") === "1") {
+  setNote("Email confirmed — you're in! Subscribe to unlock exports, or download the app below.", "ok");
+  showPostSignupActions();
+  document.getElementById("signup")?.scrollIntoView({ behavior: "smooth" });
+}
+
+// --- feature showcase: auto-advancing walkthrough slides ---
+document.querySelectorAll("[data-showcase]").forEach((box) => {
+  const slides = [...box.querySelectorAll(".slide")];
+  const dots = [...box.querySelectorAll(".dot")];
+  const stepEl = box.querySelector(".showcase-step");
+  const labelEl = box.querySelector(".showcase-label");
+  if (slides.length < 2) return;
+  const interval = Number(box.dataset.interval) || 3000;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let i = 0, timer = null, visible = true, hovered = false;
+
+  const show = (n) => {
+    i = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle("is-active", k === i));
+    dots.forEach((d, k) => d.classList.toggle("is-active", k === i));
+    if (stepEl) stepEl.textContent = String(i + 1);
+    if (labelEl && dots[i]) labelEl.innerHTML = dots[i].dataset.label || "";
+  };
+  const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+  const start = () => {
+    stop();
+    if (reduce || !visible || hovered) return;
+    timer = setInterval(() => show(i + 1), interval);
+  };
+
+  dots.forEach((d, k) => d.addEventListener("click", () => { show(k); start(); }));
+  box.addEventListener("mouseenter", () => { hovered = true; stop(); });
+  box.addEventListener("mouseleave", () => { hovered = false; start(); });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; start(); }, { threshold: 0.35 })
+      .observe(box);
+  }
+  show(0);
+  start();
+});

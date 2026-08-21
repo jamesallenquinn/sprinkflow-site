@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign in to SprinkFlow</title>
+  <meta name="description" content="Sign in to activate the SprinkFlow desktop app." />
+  <meta name="robots" content="noindex" />
+  <meta name="referrer" content="no-referrer" />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .acct-wrap { max-width: 480px; margin: 0 auto; padding: 56px 22px 90px; }
+    .acct-wrap h1 { font-size: clamp(1.7rem, 4vw, 2.3rem); margin: 0 0 6px; text-align: center; }
+    .acct-sub { color: var(--muted); text-align: center; margin: 0 0 26px; }
+    .acct-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+    .acct-card label { display: block; font: 600 0.8rem Inter; color: var(--muted); margin: 14px 0 6px; letter-spacing: 0.03em; text-transform: uppercase; }
+    .acct-card input { width: 100%; box-sizing: border-box; background: var(--surface-soft); border: 1px solid var(--line); border-radius: 10px; color: var(--ink); font: 500 1rem Inter; padding: 12px 14px; }
+    .acct-card input:focus { border-color: var(--accent); outline: none; }
+    .acct-btn { width: 100%; margin-top: 18px; border: 0; border-radius: 12px; padding: 14px; font: 700 1rem 'Space Grotesk'; cursor: pointer; background: var(--grad-fire); color: #1a0d06; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+    .acct-btn:disabled { opacity: 0.6; cursor: default; }
+    .acct-note { margin-top: 14px; font: 500 0.9rem/1.5 Inter; color: var(--muted); text-align: center; min-height: 1.2em; }
+    .acct-note.err { color: #ff9b85; }
+    .acct-note.ok { color: var(--ok); }
+    .acct-field { position: relative; }
+    .acct-field input { padding-right: 82px; }
+    .acct-reveal { position: absolute; right: 8px; bottom: 8px; border: 1px solid var(--line); background: transparent; border-radius: 8px; color: var(--muted); cursor: pointer; font: 600 0.75rem Inter; letter-spacing: 0.04em; padding: 7px 10px; text-transform: uppercase; }
+    .acct-reveal:hover { color: var(--ink); border-color: var(--accent); }
+    /* Stacked, not a space-between row: the card is narrow enough that a row
+       wraps and leaves one link stranded mid-line. */
+    .acct-links { display: grid; gap: 8px; justify-items: start; margin-top: 16px; }
+    .acct-link { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; font: 600 0.88rem Inter; text-decoration: none; }
+    .acct-link:hover { text-decoration: underline; }
+    .acct-spin { width: 15px; height: 15px; border: 2px solid rgba(26, 13, 6, 0.35); border-top-color: #1a0d06; border-radius: 50%; animation: acct-spin 0.7s linear infinite; }
+    @keyframes acct-spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .acct-spin { animation-duration: 2.4s; } }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="./assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+  </header>
+
+  <main class="acct-wrap">
+    <h1>Sign in</h1>
+    <p class="acct-sub">Sign in to activate the SprinkFlow app on this computer.</p>
+
+    <!--
+      Desktop-app sign-in hop: the app opens this page with ?redirect=<loopback>&state=<nonce>,
+      the user signs in HERE (so the browser's password manager autofills), and we hand the
+      short-lived session back to the app. Only http://localhost / http://127.0.0.1 redirect
+      targets are ever honored.
+
+      The hand-off is a hidden form POST, not a GET redirect:
+        * a form navigation is not subject to CORS or the mixed-content block that
+          would stop fetch()/XHR from https:// reaching http://127.0.0.1, and
+        * POST bodies keep the tokens out of browser history, the address bar,
+          and any Referer header.
+    -->
+    <form class="acct-card" id="signinForm" method="post" action="#">
+      <label for="dsEmail">Email</label>
+      <input id="dsEmail" name="email" type="email" autocomplete="username email" placeholder="you@company.com" required autofocus />
+      <label for="dsPassword">Password</label>
+      <div class="acct-field">
+        <input id="dsPassword" name="password" type="password" autocomplete="current-password" placeholder="Your SprinkFlow password" required />
+        <button class="acct-reveal" id="dsReveal" type="button" aria-label="Show password">Show</button>
+      </div>
+      <button class="acct-btn" id="dsSubmit" type="submit"><span id="dsSubmitLabel">Sign in &amp; return to the app</span></button>
+      <p class="acct-note" id="dsNote">Use the same login as your SprinkFlow account.</p>
+      <div class="acct-links">
+        <button class="acct-link" id="dsForgot" type="button">Forgot password?</button>
+        <span class="acct-note" style="margin:0;min-height:0;text-align:left">No account yet? <a class="acct-link" href="/">Start at sprinkflow.studio</a></span>
+      </div>
+    </form>
+
+    <div class="acct-card hidden" id="doneCard">
+      <p class="acct-note ok" style="font-size:1.05rem">You're signed in.</p>
+      <p class="acct-note">Return to the SprinkFlow app &mdash; it finishes activating automatically. You can close this tab.</p>
+    </div>
+  </main>
+
+  <!-- The hand-off form. Its action is set only after the redirect passes the
+       strict loopback check, so it can never point at a remote host. -->
+  <form id="handoffForm" method="post" action="" class="hidden">
+    <input type="hidden" name="state" id="hoState" />
+    <input type="hidden" name="access_token" id="hoAccess" />
+    <input type="hidden" name="refresh_token" id="hoRefresh" />
+  </form>
+
+  <script>
+    (function () {
+      "use strict";
+      var SB_URL = "https://aebghirpjiwiergkafej.supabase.co";
+      var SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFlYmdoaXJwaml3aWVyZ2thZmVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMjA0NTQsImV4cCI6MjA5NTg5NjQ1NH0.ogDc26YGo3AEAZZcPII_p3htPml4pjQa4vOyYAU1sSg";
+
+      var params = new URLSearchParams(window.location.search);
+      var redirect = params.get("redirect") || "";
+      var state = params.get("state") || "";
+      var note = document.getElementById("dsNote");
+      var form = document.getElementById("signinForm");
+      var submit = document.getElementById("dsSubmit");
+      var submitLabel = document.getElementById("dsSubmitLabel");
+      var emailInput = document.getElementById("dsEmail");
+      var passwordInput = document.getElementById("dsPassword");
+      var reveal = document.getElementById("dsReveal");
+      var forgot = document.getElementById("dsForgot");
+      var handoff = document.getElementById("handoffForm");
+
+      function loopbackOnly(url) {
+        return /^http:\/\/(localhost|127\.0\.0\.1):\d+\//.test(url);
+      }
+
+      function setNote(message, kind) {
+        note.textContent = message;
+        note.className = "acct-note" + (kind ? " " + kind : "");
+      }
+
+      function setBusy(busy, label) {
+        submit.disabled = busy;
+        submitLabel.textContent = label || "Sign in & return to the app";
+        var spinner = submit.querySelector(".acct-spin");
+        if (busy && !spinner) {
+          spinner = document.createElement("span");
+          spinner.className = "acct-spin";
+          submit.insertBefore(spinner, submit.firstChild);
+        } else if (!busy && spinner) {
+          spinner.remove();
+        }
+      }
+
+      reveal.addEventListener("click", function () {
+        var showing = passwordInput.type === "password";
+        passwordInput.type = showing ? "text" : "password";
+        reveal.textContent = showing ? "Hide" : "Show";
+        reveal.setAttribute("aria-label", showing ? "Hide password" : "Show password");
+        passwordInput.focus();
+      });
+
+      if (!redirect || !loopbackOnly(redirect) || !state) {
+        setNote("Open this page from the SprinkFlow app's sign-in screen (Sign in with browser).", "err");
+        submit.disabled = true;
+        forgot.disabled = true;
+        return;
+      }
+
+      forgot.addEventListener("click", async function () {
+        var email = emailInput.value.trim();
+        if (!email) {
+          setNote("Enter your email above first, then choose Forgot password.", "err");
+          emailInput.focus();
+          return;
+        }
+        forgot.disabled = true;
+        setNote("Sending a reset link…", "");
+        try {
+          await fetch(SB_URL + "/auth/v1/recover", {
+            method: "POST",
+            headers: { "apikey": SB_ANON, "Authorization": "Bearer " + SB_ANON, "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email })
+          });
+          // Supabase intentionally answers the same way whether or not the
+          // address exists, so the copy must not imply the account is real.
+          setNote("Check your email — if that address has a SprinkFlow account, a reset link is on its way.", "ok");
+        } catch (err) {
+          setNote("Could not reach the sign-in service. Check your connection.", "err");
+        } finally {
+          forgot.disabled = false;
+        }
+      });
+
+      // The card IS a <form>, so Enter in either field submits it.
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        setBusy(true, "Signing in…");
+        setNote("Signing in…", "");
+        try {
+          var res = await fetch(SB_URL + "/auth/v1/token?grant_type=password", {
+            method: "POST",
+            headers: { "apikey": SB_ANON, "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: emailInput.value.trim(),
+              password: passwordInput.value
+            })
+          });
+          var data = await res.json();
+          if (!res.ok || !data.access_token) {
+            var msg = (data && (data.error_description || data.msg)) || "Sign-in failed.";
+            if (/invalid login credentials/i.test(msg)) { msg = "Email or password is incorrect."; }
+            setNote(msg, "err");
+            setBusy(false);
+            return;
+          }
+          form.classList.add("hidden");
+          document.getElementById("doneCard").classList.remove("hidden");
+          document.getElementById("hoState").value = state;
+          document.getElementById("hoAccess").value = data.access_token;
+          document.getElementById("hoRefresh").value = data.refresh_token || "";
+          handoff.action = redirect;
+          handoff.submit();
+        } catch (err) {
+          setNote("Could not reach the sign-in service. Check your connection.", "err");
+          setBusy(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
