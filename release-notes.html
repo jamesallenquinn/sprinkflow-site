@@ -56,13 +56,24 @@
 
   <main class="rn-wrap">
     <h1>Release Notes</h1>
-    <p class="rn-lead">Everything that's shipped, version by version — 46 releases since June 11, 2026. Latest SprinkFlow Tools: <strong>1.1.18</strong> (August 20, 2026).</p>
+    <p class="rn-lead">Everything that's shipped, version by version — 47 releases since June 11, 2026. Latest SprinkFlow Tools: <strong>1.1.19</strong> (August 25, 2026).</p>
     <nav class="rn-nav">
-      <div class="rn-grp">SprinkFlow Tools</div><div class="rn-chips"><a href="#v1.1.18">1.1.18</a><a href="#v1.1.17">1.1.17</a><a href="#v1.1.16">1.1.16</a><a href="#v1.1.15">1.1.15</a><a href="#v1.1.14">1.1.14</a><a href="#v1.1.13">1.1.13</a><a href="#v1.1.12">1.1.12</a><a href="#v1.1.11">1.1.11</a><a href="#v1.1.10">1.1.10</a><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
+      <div class="rn-grp">SprinkFlow Tools</div><div class="rn-chips"><a href="#v1.1.19">1.1.19</a><a href="#v1.1.18">1.1.18</a><a href="#v1.1.17">1.1.17</a><a href="#v1.1.16">1.1.16</a><a href="#v1.1.15">1.1.15</a><a href="#v1.1.14">1.1.14</a><a href="#v1.1.13">1.1.13</a><a href="#v1.1.12">1.1.12</a><a href="#v1.1.11">1.1.11</a><a href="#v1.1.10">1.1.10</a><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
       <div class="rn-grp">Design Studio (Alpha)</div><div class="rn-chips"><a href="#studio-v1.2.0">Design Studio 1.2.0</a><a href="#spotter-v1.1.1">Design Studio 1.1.1</a><a href="#spotter-v1.1.0">Design Studio 1.1.0</a><a href="#spotter-v1.0.5">Design Studio 1.0.5</a><a href="#spotter-v1.0.4">Design Studio 1.0.4</a><a href="#spotter-v1.0.3">Design Studio 1.0.3</a><a href="#spotter-v1.0.2">Design Studio 1.0.2</a><a href="#spotter-v1.0.1">Design Studio 1.0.1</a><a href="#spotter-v1.0.0">Design Studio 1.0.0</a></div>
       <div class="rn-grp">Private Beta</div><div class="rn-chips"><a href="#v0.2.1-beta.21">0.2.1-beta.21</a><a href="#v0.2.1-beta.20">0.2.1-beta.20</a><a href="#v0.2.1-beta.19">0.2.1-beta.19</a><a href="#v0.2.1-beta.18">0.2.1-beta.18</a><a href="#v0.2.1-beta.17">0.2.1-beta.17</a><a href="#v0.2.1-beta.16">0.2.1-beta.16</a><a href="#v0.2.1-beta.15">0.2.1-beta.15</a><a href="#v0.2.1-beta.14">0.2.1-beta.14</a><a href="#v0.2.1-beta.13">0.2.1-beta.13</a><a href="#v0.2.1-beta.12">0.2.1-beta.12</a><a href="#v0.2.1-beta.11">0.2.1-beta.11</a><a href="#v0.2.1-beta.10">0.2.1-beta.10</a><a href="#v0.2.1-beta.9">0.2.1-beta.9</a><a href="#v0.2.1-beta.8">0.2.1-beta.8</a><a href="#v0.2.1-beta.7">0.2.1-beta.7</a><a href="#v0.2.1-beta.6">0.2.1-beta.6</a><a href="#v0.2.1-beta.5">0.2.1-beta.5</a></div>
     </nav>
     <div class="rn-era">SprinkFlow Tools — stable releases</div>
+<article class="rn-rel" id="v1.1.19">
+  <header><h2>1.1.19</h2><span class="rn-chip stable">Stable</span><time>August 25, 2026</time></header>
+  <div class="rn-body"><p><strong>Sign in, modernized</strong></p>
+<ul><li>Sign in with Browser: the app opens sprinkflow.studio in your default browser (where your password manager lives) and finishes activation automatically.</li><li>Email me a code: passwordless sign-in with a 6-digit code.</li><li>Forgot-password link, remembered email, show/hide password everywhere, and clear inline status messages.</li><li>Account dialog: billing text now reflects your real subscription state, and Check for Updates always answers — "you're on the latest" or "version X available" with the download button armed.</li></ul>
+<p><strong>Plan scans you can trust</strong></p>
+<ul><li>Real progress stages while a scan runs (title block → OCR → AI read → matching) instead of a simulated timeline.</li><li>"Show source" on detected fields opens the actual title-block crop with the read region highlighted.</li><li>New different-job guard: applying a scan that looks like a different job than the submittal you have open now asks — start a fresh submittal (your current work is saved first), add anyway, or cancel. No more accidentally mixed submittals.</li></ul>
+<p><strong>Builder &amp; workflow</strong></p>
+<ul><li>Live cover + table-of-contents preview that updates as you type.</li><li>Drop any file anywhere: plan sets, cut sheets, DWG/DXF, and calc PDFs are recognized and routed to the right tool.</li><li>Undo now covers deletes across the app (30-day trash) — the remaining confirm dialogs are gone.</li></ul>
+<p><strong>Tools</strong></p>
+<ul><li>Seismic Bracing: the spacing optimizer now judges its own main pipe selection, independent of Step 3's main size.</li><li>Web edition: Convert PDF to CAD now runs entirely in the browser (DXF output).</li></ul></div>
+</article>
 <article class="rn-rel" id="v1.1.18">
   <header><h2>1.1.18</h2><span class="rn-chip stable">Stable</span><time>August 20, 2026</time></header>
   <div class="rn-body"><p>The UX release: a faster app that remembers where you were.</p>
