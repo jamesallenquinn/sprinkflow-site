@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Backgrounds &amp;amp; imports — Design Studio Support</title>
+  <meta name="description" content="DWG and PDF backgrounds, layer control, classification, and proving the scale is true." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/studio/support/import.html" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .sup-wrap { max-width: 820px; margin: 0 auto; padding: 34px 22px 90px; }
+    .sup-crumb { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+    .sup-crumb a { color: var(--muted); }
+    .sup-crumb a:hover { color: var(--brand); }
+    .sup-wrap h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 4px 0 10px; }
+    .sup-lead { color: var(--muted); margin: 0 0 8px; max-width: 64ch; }
+    .sup-kicker { color: var(--brand); font: 700 .74rem 'Space Grotesk', sans-serif;
+      letter-spacing: .14em; text-transform: uppercase; }
+    .sup-note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; padding: 14px 18px; margin: 22px 0; color: var(--muted); font-size: .93rem; }
+    .sup-note strong { color: var(--ink); }
+    .sup-alpha { border-left-color: var(--water); }
+    .sup-sec { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      margin: 40px 0 6px; border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+    .sup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 14px; }
+    .sup-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px;
+      display: flex; flex-direction: column; gap: 6px; color: var(--ink); text-decoration: none; }
+    a.sup-card:hover { border-color: var(--brand); }
+    .sup-card h3 { margin: 0; font-size: .98rem; line-height: 1.3; }
+    .sup-card p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .sup-chip { align-self: flex-start; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 9px; margin-top: 3px;
+      background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); }
+    .sup-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
+      margin-top: 42px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .sup-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 230px; }
+
+    /* article body */
+    .sup-body { font-size: .97rem; line-height: 1.65; }
+    .sup-body h2 { font-size: 1.18rem; margin: 32px 0 8px; scroll-margin-top: 80px; }
+    .sup-body h3 { font-size: 1rem; margin: 20px 0 4px; }
+    .sup-body p { margin: 9px 0; }
+    .sup-body ol, .sup-body ul { margin: 8px 0; padding-left: 22px; }
+    .sup-body li { margin: 7px 0; }
+    .sup-body li::marker { color: var(--brand); font-weight: 700; }
+    .sup-body code, .sup-key { background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+      border-radius: 5px; font-size: .84em; padding: 1px 6px; white-space: nowrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .sup-key { font-weight: 600; color: var(--ink); }
+    .sup-body a { color: var(--brand); }
+    .sup-body a:hover { text-decoration: underline; }
+
+    /* where-it-lives table */
+    .sup-where { margin: 20px 0 8px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      background: var(--surface); }
+    .sup-where table { width: 100%; border-collapse: collapse; font-size: .89rem; }
+    .sup-where th { text-align: left; padding: 9px 14px; background: var(--surface-soft); color: var(--muted);
+      font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 700; }
+    .sup-where td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+    .sup-where td:first-child { color: var(--ink); font-weight: 600; width: 44%; }
+    .sup-where td:last-child { color: var(--muted); }
+    .sup-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .sup-rel { margin-top: 38px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .sup-rel h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 10px; }
+    .sup-rel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sup-rel a { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px;
+      font-size: .85rem; color: var(--muted); background: var(--surface); }
+    .sup-rel a:hover { border-color: var(--brand); color: var(--ink); }
+
+    /* index filter */
+    .sup-filter { margin: 22px 0 4px; }
+    .sup-filter input { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      color: var(--ink); font: inherit; font-size: .95rem; padding: 12px 16px; }
+    .sup-filter input:focus { outline: none; border-color: var(--brand); }
+    .sup-filter-note { color: var(--muted); font-size: .82rem; margin: 8px 2px 0; }
+    .sup-empty { color: var(--muted); font-size: .93rem; padding: 18px 2px; display: none; }
+
+    @media (max-width: 560px) {
+      .sup-wrap { padding: 26px 16px 70px; }
+      .sup-where td:first-child { width: 42%; }
+      .sup-where table { font-size: .84rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="/assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">SprinkFlow Tools</a><a href="/design-studio.html">Design Studio</a><a href="/studio/support/">Studio Support</a><a href="/learn/">Learn</a><a href="/account.html">Account</a></nav>
+    <a href="/design-studio-alpha.html" class="btn btn-primary btn-sm nav-buy">Get the alpha</a>
+  </header>
+
+  <main class="sup-wrap">
+    <nav class="sup-crumb"><a href="/">SprinkFlow</a> / <a href="/design-studio.html">Design Studio</a> / <a href="/studio/support/">Support</a> / Backgrounds &amp; imports</nav>
+    <span class="sup-kicker">Bringing in the job</span>
+    <h1>Backgrounds &amp; imports</h1>
+    <p class="sup-lead">Nearly every job starts with somebody else's drawing. Design Studio imports it, keeps it on its own layers, and lets you tell the program which lines are walls and which are ceiling grid &mdash; which is what makes the snaps and the automatic tools useful later.</p>
+
+    <div class="sup-where sup-scroll">
+      <table>
+        <thead><tr><th>What</th><th>Where you'll find it</th></tr></thead>
+        <tbody>
+        <tr><td>Import DWG</td><td><strong>File &rarr; Import DWG&hellip;</strong>, or the DWG button in the FILE toolbar group</td></tr>
+        <tr><td>Import a PDF as a background</td><td><strong>File &rarr; Import PDF Background&hellip;</strong></td></tr>
+        <tr><td>Set the PDF's scale</td><td><strong>File &rarr; Calibrate PDF Background Scale</strong></td></tr>
+        <tr><td>Import a PDF as real CAD lines</td><td><strong>File &rarr; Import PDF as CAD (vector)&hellip;</strong></td></tr>
+        <tr><td>Layer control</td><td>The <strong>Layers</strong> pane at the top of the side panel</td></tr>
+        <tr><td>Classify linework</td><td>Right-click any imported line &rarr; <strong>Classify</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sup-body">
+
+      <h2>Importing a DWG</h2>
+      <ol>
+        <li><strong>File &rarr; Import DWG&hellip;</strong> and pick the architect's file.</li>
+        <li>Choose an import mode in the options dialog, then let it run. Big files import on a background
+            thread with a progress bar and an <strong>Abort</strong> button &mdash; the program stays usable.</li>
+        <li>If the drawing has external references, an <strong>xref picker</strong> lists the top-level ones so you
+            can bring in only the sheets you actually want.</li>
+        <li>Read the import summary when it finishes. It tells you what came in, and it is where a units warning
+            would appear.</li>
+      </ol>
+      <!-- SCREENSHOT: site/assets/support/dwg-import-options.png - the DWG import options dialog with the mode choices -->
+
+      <p>The imported drawing arrives on its own layers with the original colours and line weights. Lighting and
+      mechanical linework is drawn on top so it stays readable under your sprinkler work.</p>
+
+      <div class="sup-note"><strong>Units.</strong> A DWG with no units in its header is guessed from its extents.
+      Metric drawings are detected and rescaled, and the summary says so. Where an imperial reading is ambiguous the
+      Studio keeps inches and warns you &mdash; Revit exports are often in feet, and the summary tells you how to
+      re-import the other way in one step. <em>Always check one known dimension after importing.</em></div>
+
+      <h2>Other things you can import</h2>
+      <ul>
+        <li><strong>Import AutoSPRINK DWG&hellip;</strong> &mdash; rebuilds an AutoSPRINK export as native Studio objects
+            instead of dumb linework: real pipe, real heads, real fittings.</li>
+        <li><strong>Import Converted PDF (.DWG)&hellip;</strong> &mdash; for a PDF you already converted elsewhere.</li>
+        <li><strong>Import Title Block (DWG)&hellip;</strong> &mdash; drops your title block into paper space. See
+            <a href="/studio/support/sheets.html">Sheets &amp; plotting</a>.</li>
+        <li><strong>Import Project Spec PDF&hellip;</strong> &mdash; attaches the job specification to the project.</li>
+      </ul>
+
+      <h2>PDF backgrounds</h2>
+      <p>Two different things, and it is worth knowing which you want:</p>
+      <ol>
+        <li><strong>Import PDF Background&hellip;</strong> places the page as an image behind your work. Fast, always
+            works, but it is a picture &mdash; you cannot snap to it precisely.</li>
+        <li><strong>Import PDF as CAD (vector)&hellip;</strong> reads the PDF's actual paths, text and fills and turns
+            them into real drawing objects, with a colour and layer picker so you choose what becomes what. Only
+            works on a vector PDF (one that was plotted, not scanned), and it is worth trying first &mdash; you get
+            snappable geometry.</li>
+      </ol>
+      <p>Either way, <strong>calibrate the scale before you draw anything</strong>: <strong>File &rarr; Calibrate PDF
+      Background Scale</strong>, then click two points you know the distance between (a dimensioned wall, a column
+      grid bay) and type that distance. Everything you measure afterwards depends on this one step.</p>
+      <!-- SCREENSHOT: site/assets/support/pdf-calibrate.png - two-point calibration in progress with the distance prompt -->
+
+      <h3>White-out masks</h3>
+      <p><strong>File &rarr; White-Out Mask Tool</strong> draws a box that hides part of the background &mdash; the
+      quickest way to kill somebody else's sprinkler layout or a legend you are replacing.
+      <strong>Show White-Out</strong> toggles a visible border around your masks while you work; that border never
+      plots.</p>
+
+      <h2>Cleaning up what came in</h2>
+      <ul>
+        <li><strong>File &rarr; Delete Imported Electrical</strong> and <strong>Delete Imported Non-Sprinkler
+            Content</strong> &mdash; bulk removal of the layers you will never need.</li>
+        <li><strong>Tools &rarr; Purge Duplicate Overlapping Objects</strong> &mdash; for drawings that were exported twice.</li>
+        <li><strong>Tools &rarr; Convert Circle-Like Polylines to Circles</strong> &mdash; makes centre snaps work on
+            columns and bollards that came in as many-sided polylines.</li>
+        <li><strong>Tools &rarr; Fix Room Number Boxes</strong> &mdash; refits room-number text inside its box. Import
+            does this automatically by default.</li>
+      </ul>
+
+      <h2>Layers</h2>
+      <p>The <strong>Layers</strong> pane at the top of the side panel is where you control everything that came in:
+      visibility, lock, colour and weight overrides, and saved layer states you can restore later. There is also a
+      <strong>Dim BG</strong> control for pushing the background back so your own work reads.</p>
+      <p>Right-click any imported object for the fast versions:</p>
+      <ul>
+        <li><strong>Isolate layer (hide others)</strong> &mdash; or <span class="sup-key">I</span> with something selected.</li>
+        <li><strong>Hide layer</strong> &mdash; <span class="sup-key">Shift+H</span>.</li>
+        <li><strong>Unisolate (show all)</strong> &mdash; <span class="sup-key">Shift+I</span> puts back exactly what was
+            visible before you isolated.</li>
+        <li><strong>Select all items on layer</strong> and <strong>Select all like selected on layer</strong> &mdash; the
+            &ldquo;wand&rdquo;: same layer, same type.</li>
+      </ul>
+
+      <h2>Classification &mdash; the step that pays off</h2>
+      <p>Right-click imported linework and choose <strong>Classify</strong> to tell the Studio what it is looking at:
+      walls, ceiling grid, lights, and so on. This is not cosmetic. Classification drives:</p>
+      <ul>
+        <li>which lines the wall and ceiling-tile snaps aim at;</li>
+        <li>which layer the automatic head tools treat as room boundaries;</li>
+        <li>the colour and line weight those objects plot at.</li>
+      </ul>
+      <p>Once linework is classified you can also promote it into real geometry:
+      <strong>Tools &rarr; Detect Walls from Walls Linework</strong>,
+      <strong>Detect Columns from Walls Linework</strong>,
+      <strong>Generate 3D Lights from Lights Linework</strong>, and
+      <strong>Convert Selected Lines to Walls (measured width)</strong> from the right-click menu.</p>
+
+      <div class="sup-note"><strong>Hatch and pattern layers turn their own snapping off</strong> on import. A hatched
+      floor finish would otherwise offer thousands of useless endpoints under your cursor.</div>
+
+      <h2>Performance on big drawings</h2>
+      <p>Site plans with a couple of hundred thousand shapes import and apply in seconds, and pan and zoom stay
+      smooth. If a huge background does start to drag, switch <strong>Perf</strong> to <strong>Draft</strong> in the
+      <strong>Display &amp; Defaults</strong> dropdown, and hide the layers you are not using.</p>
+    </div>
+
+    <div class="sup-rel">
+      <h2>Related</h2>
+      <ul>
+        <li><a href="coordination.html">3D models &amp; coordination</a></li>
+        <li><a href="snapping.html">Snapping &amp; drawing aids</a></li>
+        <li><a href="sprinklers.html">Sprinkler placement</a></li>
+        <li><a href="export.html">Export &amp; handoff</a></li>
+        <li><a href="/studio/support/">All support topics</a></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="/assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> &middot; <a href="/design-studio.html">Design Studio</a> &middot; <a href="/studio/support/">Studio Support</a> &middot; <a href="/learn/">Learn</a> &middot; <a href="/release-notes.html">Release notes</a> &middot; <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+  <script>
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>

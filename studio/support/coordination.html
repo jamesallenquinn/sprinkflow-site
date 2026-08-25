@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3D models &amp;amp; coordination — Design Studio Support</title>
+  <meta name="description" content="IFC and 3D DWG models, clearance zones, and finding clashes before the field does." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/studio/support/coordination.html" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .sup-wrap { max-width: 820px; margin: 0 auto; padding: 34px 22px 90px; }
+    .sup-crumb { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+    .sup-crumb a { color: var(--muted); }
+    .sup-crumb a:hover { color: var(--brand); }
+    .sup-wrap h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 4px 0 10px; }
+    .sup-lead { color: var(--muted); margin: 0 0 8px; max-width: 64ch; }
+    .sup-kicker { color: var(--brand); font: 700 .74rem 'Space Grotesk', sans-serif;
+      letter-spacing: .14em; text-transform: uppercase; }
+    .sup-note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; padding: 14px 18px; margin: 22px 0; color: var(--muted); font-size: .93rem; }
+    .sup-note strong { color: var(--ink); }
+    .sup-alpha { border-left-color: var(--water); }
+    .sup-sec { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      margin: 40px 0 6px; border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+    .sup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 14px; }
+    .sup-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px;
+      display: flex; flex-direction: column; gap: 6px; color: var(--ink); text-decoration: none; }
+    a.sup-card:hover { border-color: var(--brand); }
+    .sup-card h3 { margin: 0; font-size: .98rem; line-height: 1.3; }
+    .sup-card p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .sup-chip { align-self: flex-start; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 9px; margin-top: 3px;
+      background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); }
+    .sup-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
+      margin-top: 42px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .sup-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 230px; }
+
+    /* article body */
+    .sup-body { font-size: .97rem; line-height: 1.65; }
+    .sup-body h2 { font-size: 1.18rem; margin: 32px 0 8px; scroll-margin-top: 80px; }
+    .sup-body h3 { font-size: 1rem; margin: 20px 0 4px; }
+    .sup-body p { margin: 9px 0; }
+    .sup-body ol, .sup-body ul { margin: 8px 0; padding-left: 22px; }
+    .sup-body li { margin: 7px 0; }
+    .sup-body li::marker { color: var(--brand); font-weight: 700; }
+    .sup-body code, .sup-key { background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+      border-radius: 5px; font-size: .84em; padding: 1px 6px; white-space: nowrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .sup-key { font-weight: 600; color: var(--ink); }
+    .sup-body a { color: var(--brand); }
+    .sup-body a:hover { text-decoration: underline; }
+
+    /* where-it-lives table */
+    .sup-where { margin: 20px 0 8px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      background: var(--surface); }
+    .sup-where table { width: 100%; border-collapse: collapse; font-size: .89rem; }
+    .sup-where th { text-align: left; padding: 9px 14px; background: var(--surface-soft); color: var(--muted);
+      font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 700; }
+    .sup-where td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+    .sup-where td:first-child { color: var(--ink); font-weight: 600; width: 44%; }
+    .sup-where td:last-child { color: var(--muted); }
+    .sup-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .sup-rel { margin-top: 38px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .sup-rel h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 10px; }
+    .sup-rel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sup-rel a { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px;
+      font-size: .85rem; color: var(--muted); background: var(--surface); }
+    .sup-rel a:hover { border-color: var(--brand); color: var(--ink); }
+
+    /* index filter */
+    .sup-filter { margin: 22px 0 4px; }
+    .sup-filter input { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      color: var(--ink); font: inherit; font-size: .95rem; padding: 12px 16px; }
+    .sup-filter input:focus { outline: none; border-color: var(--brand); }
+    .sup-filter-note { color: var(--muted); font-size: .82rem; margin: 8px 2px 0; }
+    .sup-empty { color: var(--muted); font-size: .93rem; padding: 18px 2px; display: none; }
+
+    @media (max-width: 560px) {
+      .sup-wrap { padding: 26px 16px 70px; }
+      .sup-where td:first-child { width: 42%; }
+      .sup-where table { font-size: .84rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="/assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">SprinkFlow Tools</a><a href="/design-studio.html">Design Studio</a><a href="/studio/support/">Studio Support</a><a href="/learn/">Learn</a><a href="/account.html">Account</a></nav>
+    <a href="/design-studio-alpha.html" class="btn btn-primary btn-sm nav-buy">Get the alpha</a>
+  </header>
+
+  <main class="sup-wrap">
+    <nav class="sup-crumb"><a href="/">SprinkFlow</a> / <a href="/design-studio.html">Design Studio</a> / <a href="/studio/support/">Support</a> / 3D models &amp; coordination</nav>
+    <span class="sup-kicker">Bringing in the job</span>
+    <h1>3D models &amp; coordination</h1>
+    <p class="sup-lead">Design Studio can carry the other trades' models alongside your system, so a duct that lands on your main is something you find on screen instead of in the ceiling.</p>
+
+    <div class="sup-where sup-scroll">
+      <table>
+        <thead><tr><th>What</th><th>Where you'll find it</th></tr></thead>
+        <tbody>
+        <tr><td>Import an IFC model</td><td><strong>File &rarr; Import IFC Model (BIM)&hellip;</strong></td></tr>
+        <tr><td>Import a 3D DWG</td><td><strong>File &rarr; Import 3D Model (DWG)&hellip;</strong></td></tr>
+        <tr><td>Ground models to the floor</td><td><strong>File &rarr; Ground IFC Models to 0'-0&quot;</strong> (a tick)</td></tr>
+        <tr><td>Clash and obstruction results</td><td>Side panel &rarr; <strong>Analysis</strong> &rarr; <strong>Clashes</strong> / <strong>Issues</strong></td></tr>
+        <tr><td>Clearance zones</td><td>Right-click an object &rarr; clearance zone commands; ANNOTATE &rarr; <strong>More</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sup-body">
+
+      <h2>IFC is the one to ask for</h2>
+      <p>If the mechanical or structural trade can export IFC (IFC2x3 or IFC4), ask for that rather than a 3D DWG.
+      An IFC import brings in real geometry, split onto per-discipline reference layers, storey by storey, ready to
+      snap to and ready to clash against.</p>
+      <ol>
+        <li><strong>File &rarr; Import IFC Model (BIM)&hellip;</strong> and pick the file.</li>
+        <li>Everything arrives on layers named for its discipline, so you can show one trade at a time from the
+            Layers pane.</li>
+        <li>Leave <strong>Ground IFC Models to 0'-0&quot;</strong> ticked unless the model already shares your
+            drawing's datum. Models routinely arrive at a survey elevation thousands of feet away.</li>
+        <li><strong>Tools &rarr; Convert IFC Beams &amp; Members to Structure</strong> promotes the structural members
+            into Studio building elements, so they behave like beams you drew.</li>
+      </ol>
+      <!-- SCREENSHOT: site/assets/support/ifc-layers.png - an imported IFC model with the per-discipline reference layers listed -->
+
+      <h2>3D DWG has a real limitation</h2>
+      <p><strong>File &rarr; Import 3D Model (DWG)&hellip;</strong> works, with one honest caveat: the free converter the
+      Studio uses cannot read AEC and MEP custom objects. <strong>Ducts come in as plain rectangular envelopes
+      around where the duct is</strong>, not as ducts.</p>
+      <p>That is still useful &mdash; the envelope is where you must not put pipe &mdash; but it is coarse, and it is why
+      IFC is the better ask when the trade can produce one.</p>
+
+      <h2>Obstructions the Studio already knows about</h2>
+      <p>You do not need a model for everything. The BUILDING toolbar group places ducts (round and rectangular)
+      and light fixtures directly, and the Studio treats them as obstructions:</p>
+      <ul>
+        <li>Ducts sit with their bottom at the Duct default elevation and block spray.</li>
+        <li>High-bay light fixtures count as obstructions; small troffers do not.</li>
+        <li>Beams, columns and roof planes all participate &mdash; see <a href="/studio/support/structure.html">Structure &amp; elevations</a>.</li>
+      </ul>
+      <p><strong>View &rarr; Show Spray Patterns (Smart Obstruction Detection)</strong> draws what each head can
+      actually reach past all of it.</p>
+
+      <h2>Clearance zones</h2>
+      <p>A clearance zone is a volume you declare off-limits &mdash; around a ceiling fan, a piece of equipment, a
+      column. Any head that falls inside one gets flagged.</p>
+      <ul>
+        <li>Place them from the ANNOTATE group's <strong>More</strong> menu (radius or rectangle).</li>
+        <li><strong>Auto Place Clearance Zones at Ceiling Fans</strong> and <strong>Auto Classify Fans and Assign
+            Clearance Zones</strong> do the fan case in one go.</li>
+        <li><strong>Column Clearance Zones&hellip;</strong> handles structural columns as a set.</li>
+        <li><strong>Head Clearance Bubbles</strong> draws the required clear space around each head on the plan, with
+            a settable distance.</li>
+      </ul>
+
+      <h2>Reading the results</h2>
+      <p>Open the <strong>Analysis</strong> tab in the side panel:</p>
+      <ul>
+        <li><strong>Clashes</strong> &mdash; where your system runs through somebody else's geometry.</li>
+        <li><strong>Issues</strong> &mdash; heads inside clearance zones, obstruction problems, spacing and coverage
+            complaints, written in plain language.</li>
+      </ul>
+      <p>Analysis runs in the background and never blocks your drawing. On a big job the Studio switches itself to
+      Draft mode, which defers the heavier live work &mdash; switch <strong>Perf</strong> back to <strong>Full</strong> in
+      <strong>Display &amp; Defaults</strong> when you want everything recalculated.</p>
+
+      <div class="sup-note sup-alpha"><strong>Revit round-trip is partial.</strong> The Studio can export a Revit
+      bridge handoff and re-import round-trip IDs, but the full Revit workflow is not finished and those entries may
+      be hidden in your build. IFC is the supported path today.</div>
+    </div>
+
+    <div class="sup-rel">
+      <h2>Related</h2>
+      <ul>
+        <li><a href="import.html">Backgrounds &amp; imports</a></li>
+        <li><a href="structure.html">Structure &amp; elevations</a></li>
+        <li><a href="analysis.html">Analysis &amp; compliance</a></li>
+        <li><a href="sprinklers.html">Sprinkler placement</a></li>
+        <li><a href="/studio/support/">All support topics</a></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="/assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> &middot; <a href="/design-studio.html">Design Studio</a> &middot; <a href="/studio/support/">Studio Support</a> &middot; <a href="/learn/">Learn</a> &middot; <a href="/release-notes.html">Release notes</a> &middot; <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+  <script>
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>

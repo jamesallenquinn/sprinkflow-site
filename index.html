@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SprinkFlow — Material data submittals in seconds</title>
-  <meta name="description" content="SprinkFlow builds formatted fire-sprinkler material data submittals in seconds. AI-assisted cut-sheet and hydraulic-calc import, a built-in datasheet catalog, and design tools made for sprinkler designers." />
+  <title>SprinkFlow Tools — Material data submittals in seconds</title>
+  <meta name="description" content="SprinkFlow Tools builds formatted fire-sprinkler material data submittals in seconds. AI-assisted cut-sheet and hydraulic-calc import, a built-in datasheet catalog, and the whole toolbox a sprinkler designer reaches for. $39/month, and every subscriber gets early access to SprinkFlow Design Studio." />
   <link rel="icon" href="./assets/logo.png" type="image/png" />
-  <meta property="og:title" content="SprinkFlow — Material data submittals in seconds" />
-  <meta property="og:description" content="AI-assisted material submittals and design tools built for fire sprinkler designers." />
+  <meta property="og:title" content="SprinkFlow Tools — Material data submittals in seconds" />
+  <meta property="og:description" content="AI-assisted material submittals, calcs, and the whole sprinkler-design toolbox — plus early access to SprinkFlow Design Studio for every subscriber." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,11 +22,11 @@
     <span class="orb orb-amber"></span>
   </div>
 
-  <!-- announcement: SprinkFlow Spotter -->
-  <a class="announce" href="#spotter">
-    <span class="announce-tag">New</span>
-    <span class="announce-text"><strong>SprinkFlow Design Suite — Spotter Version</strong><span class="announce-more">: desktop head placement, included with your subscription</span></span>
-    <span class="announce-cta">Download →</span>
+  <!-- announcement: Design Studio alpha (subscriber perk) -->
+  <a class="announce" href="/design-studio.html">
+    <span class="announce-tag">Included</span>
+    <span class="announce-text"><strong>SprinkFlow Design Studio — Alpha</strong><span class="announce-more">: our CAD program, free while you subscribe to SprinkFlow Tools</span></span>
+    <span class="announce-cta">Take a look →</span>
   </a>
 
   <!-- nav -->
@@ -38,6 +38,7 @@
     <nav class="nav-links">
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
+      <a href="/design-studio.html">Design Studio</a>
       <a href="/learn/">Learn</a>
       <a href="https://app.sprinkflow.studio">Free app &amp; games</a>
       <a href="#download">Download</a>
@@ -49,14 +50,14 @@
   <!-- hero -->
   <section class="hero" id="top">
     <div class="hero-inner reveal">
-      <div class="eyebrow"><span class="dot"></span> Now available for Windows</div>
+      <div class="eyebrow"><span class="dot"></span> SprinkFlow Tools · Windows</div>
       <h1 class="hero-title">Material Data Submittals,<br /><span class="grad">done in seconds.</span></h1>
-      <p class="hero-sub">SprinkFlow turns a pile of cut sheets and calcs into a clean, bookmarked submittal package — plus a full kit of calc and design tools for the trade. Built by a sprinkler designer, for sprinkler designers.</p>
+      <p class="hero-sub">SprinkFlow Tools turns a pile of cut sheets and calcs into a clean, bookmarked submittal package — plus a full kit of calc and design tools for the trade. Built by a sprinkler designer, for sprinkler designers.</p>
       <div class="hero-cta">
-        <a href="/start.html" class="btn btn-primary">Start free trial</a>
-        <a href="/account.html" class="btn btn-ghost">Create free account</a><a href="#download" class="btn btn-ghost">Download free</a>
+        <a href="#download" class="btn btn-primary">Download free</a>
+        <a href="/account.html?checkout=1" class="btn btn-ghost">Subscribe &mdash; $39/mo</a>
       </div>
-      <div class="hero-meta">7 days free, then $39/month · Cancel anytime · One-click updates</div>
+      <div class="hero-meta">Free to download &amp; explore · $39/month to export · One-click updates</div>
     </div>
     <div class="hero-shot reveal">
       <div class="frame">
@@ -89,16 +90,18 @@
     </div>
   </section>
 
-  <!-- SprinkFlow Spotter (subscriber perk) -->
-  <section class="appcta" id="spotter">
-    <div class="appcta-card spotter reveal">
+  <!-- Design Studio alpha (subscriber perk — never sold) -->
+  <section class="appcta" id="studio">
+    <span id="spotter" style="position:absolute;margin-top:-90px" aria-hidden="true"></span>
+    <div class="appcta-card studio reveal">
       <div class="appcta-copy">
-        <div class="kicker">New · Included with your SprinkFlow subscription</div>
-        <h2>SprinkFlow Design Suite — Spotter Version.<span class="ea-chip">Beta</span></h2>
-        <p>The Spotter Version of the SprinkFlow Design Suite, our desktop CAD platform — focused on one job: placing sprinkler heads on a plan. Import the job's DWG background, place heads with smart ceiling-tile and spacing snaps, watch coverage shade in live, and send the project file back. If you can read a reflected ceiling plan, you can run it.</p>
+        <div class="kicker">Included with your subscription</div>
+        <h2>SprinkFlow Design Studio<span class="ea-chip">Alpha</span></h2>
+        <p>Subscribers get early access to <strong>SprinkFlow Design Studio</strong> — our Windows CAD program for sprinkler design. Bring in the job's background, lay out heads, route pipe, run hydraulics on the system you actually drew, and give it real elevations. It's the program we're building next, and you get to use it while we build it.</p>
+        <p><strong>It's an alpha, and we say so on purpose.</strong> Parts of it are unfinished, it changes every week, and what changes is decided by what testers run into. Press <kbd>F12</kbd> anywhere in the Studio to file a bug — it grabs a screenshot for you to mark up and sends it straight to us. That loop is the whole point of the alpha.</p>
         <div class="appcta-btns">
-          <a class="btn btn-primary btn-lg" href="https://github.com/jamesallenquinn/sprinkflow-releases/releases/download/spotter-v1.0.5/SprinkFlow-Spotter-Setup-v1.0.5.exe">Download for Windows →</a>
-          <span class="appcta-meta">Sign in with your SprinkFlow account on first launch. Beta access is rolling out to subscribers — <a href="mailto:jamesallenquinn@gmail.com?subject=SprinkFlow%20Design%20Suite%20Spotter%20access">email us</a> if your sign-in isn't enabled yet.</span>
+          <a class="btn btn-primary btn-lg" href="/design-studio.html">See the Design Studio →</a>
+          <span class="appcta-meta">Already subscribed? <a href="/design-studio-alpha.html">Get the installer and read what alpha means →</a></span>
         </div>
       </div>
     </div>
@@ -141,7 +144,7 @@
     <div class="showcase-head">
       <div class="kicker">The whole toolbox</div>
       <h2>Every tool a sprinkler designer reaches for.</h2>
-      <p>Submittals are just the start. SprinkFlow packs the generators, calcs, lookups, and utilities you'd otherwise keep a dozen tabs and spreadsheets open for — all in one window. Tools marked <span class="ea-chip">Early Access</span> are extra goodies included with your subscription while they mature — fully usable today, sharper with every release.</p>
+      <p>Submittals are just the start. SprinkFlow Tools packs the generators, calcs, lookups, and utilities you'd otherwise keep a dozen tabs and spreadsheets open for — all in one window. Tools marked <span class="ea-chip">Early Access</span> are extra goodies included with your subscription while they mature — fully usable today, sharper with every release.</p>
     </div>
   </section>
 
@@ -303,7 +306,7 @@
   <section class="how" id="how">
     <h2 class="section-title reveal">From zero to submittal in three steps</h2>
     <div class="steps">
-      <div class="step reveal"><div class="step-num">1</div><h3>Create a free account</h3><p>Sign up right here — phone or computer. Then install the Windows app, or start with the free tools at app.sprinkflow.studio. No card to get started.</p></div>
+      <div class="step reveal"><div class="step-num">1</div><h3>Download &amp; look around — free</h3><p>Install the Windows app, create an account, and use every tool. No card to get started.</p></div>
       <div class="step reveal"><div class="step-num">2</div><h3>Add your products &amp; cut sheets</h3><p>Pick from the catalog or drop in PDFs — AI fills in the details.</p></div>
       <div class="step reveal"><div class="step-num">3</div><h3>Subscribe &amp; export</h3><p>Start your $39/month membership and generate clean, bookmarked packages — export anytime.</p></div>
     </div>
@@ -316,11 +319,12 @@
       <div class="signup-copy">
         <div class="kicker">Membership · $39/month</div>
         <h2>Try it free. Subscribe to export.</h2>
-        <p>Download SprinkFlow, create an account, and use every tool to see if it fits your workflow — free. When you're ready to generate and export your submittals, calcs, and deliverables, start a $39/month membership. Cancel anytime.</p>
+        <p>Download SprinkFlow Tools, create an account, and use every tool to see if it fits your workflow — free. When you're ready to generate and export your submittals, calcs, and deliverables, start a $39/month membership. Cancel anytime.</p>
         <ul class="ticks">
           <li>Free to download &amp; explore</li>
           <li>$39/month to export &mdash; cancel anytime</li>
           <li>Windows desktop app · one-click updates</li>
+          <li>Early access to the <a href="/design-studio.html">Design Studio alpha</a> while you subscribe</li>
         </ul>
         <p style="margin-top:18px">
           <a href="/account.html?checkout=1" class="btn btn-primary">Subscribe now &mdash; $39/mo</a>
@@ -346,18 +350,18 @@
   <!-- download -->
   <section class="download" id="download">
     <div class="download-inner reveal">
-      <h2>Download SprinkFlow</h2>
-      <p class="download-phone-note">On your phone? <a href="/account.html">Create your free account now</a> and try the <a href="https://app.sprinkflow.studio">mobile tools</a> — install the Windows app when you’re back at a computer.</p>
+      <h2>Download SprinkFlow Tools</h2>
       <p>Free to download and explore — start a $39/month membership inside the app (or on your <a href="/account.html">account page</a>) when you're ready to export. Windows may show a SmartScreen notice because the installer isn't code-signed yet — choose <strong>More info → Run anyway</strong>.</p>
-      <a class="btn btn-primary btn-lg" id="downloadBtn" href="https://github.com/jamesallenquinn/sprinkflow-releases/releases/latest/download/SprinkFlow-Setup.exe">Download SprinkFlow for Windows</a>
+      <a class="btn btn-primary btn-lg" id="downloadBtn" href="https://github.com/jamesallenquinn/sprinkflow-releases/releases/latest/download/SprinkFlow-Setup.exe">Download SprinkFlow Tools for Windows</a>
       <div class="download-meta">Latest version · Windows 10/11 · free to try</div>
+      <p class="download-refer">Subscribing? The <a href="/design-studio.html">Design Studio alpha</a> is a separate download, included with your membership.</p>
       <p class="download-refer">Know another designer who'd use this? <a href="/share.html">Send it their way &rarr;</a> It's free to try.</p>
     </div>
   </section>
 
   <footer class="footer">
     <div class="footer-brand"><img src="./assets/logo.png" alt="" /><span>SprinkFlow</span></div>
-    <div class="footer-links"><a href="https://app.sprinkflow.studio">Free app &amp; games</a> · <a href="/tools/">Tool guides</a> · <a href="/learn/">Learn</a> · <a href="/release-notes.html">Release notes</a> · <a href="/share.html">Share with a colleague</a> · <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-links"><a href="https://app.sprinkflow.studio">Free app &amp; games</a> · <a href="/design-studio.html">Design Studio</a> · <a href="/studio/support/">Studio Support</a> · <a href="/tools/">Tool guides</a> · <a href="/learn/">Learn</a> · <a href="/release-notes.html">Release notes</a> · <a href="/share.html">Share with a colleague</a> · <a href="/privacy.html">Privacy</a></div>
     <div class="footer-by">A Calculated Fire Suppression product · © <span id="year"></span></div>
   </footer>
 

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hydraulic calculations — Design Studio Support</title>
+  <meta name="description" content="Water supply, remote areas, which heads flow, running the numbers and printing the calc." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/studio/support/hydraulics.html" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .sup-wrap { max-width: 820px; margin: 0 auto; padding: 34px 22px 90px; }
+    .sup-crumb { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+    .sup-crumb a { color: var(--muted); }
+    .sup-crumb a:hover { color: var(--brand); }
+    .sup-wrap h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 4px 0 10px; }
+    .sup-lead { color: var(--muted); margin: 0 0 8px; max-width: 64ch; }
+    .sup-kicker { color: var(--brand); font: 700 .74rem 'Space Grotesk', sans-serif;
+      letter-spacing: .14em; text-transform: uppercase; }
+    .sup-note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; padding: 14px 18px; margin: 22px 0; color: var(--muted); font-size: .93rem; }
+    .sup-note strong { color: var(--ink); }
+    .sup-alpha { border-left-color: var(--water); }
+    .sup-sec { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      margin: 40px 0 6px; border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+    .sup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 14px; }
+    .sup-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px;
+      display: flex; flex-direction: column; gap: 6px; color: var(--ink); text-decoration: none; }
+    a.sup-card:hover { border-color: var(--brand); }
+    .sup-card h3 { margin: 0; font-size: .98rem; line-height: 1.3; }
+    .sup-card p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .sup-chip { align-self: flex-start; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 9px; margin-top: 3px;
+      background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); }
+    .sup-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
+      margin-top: 42px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .sup-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 230px; }
+
+    /* article body */
+    .sup-body { font-size: .97rem; line-height: 1.65; }
+    .sup-body h2 { font-size: 1.18rem; margin: 32px 0 8px; scroll-margin-top: 80px; }
+    .sup-body h3 { font-size: 1rem; margin: 20px 0 4px; }
+    .sup-body p { margin: 9px 0; }
+    .sup-body ol, .sup-body ul { margin: 8px 0; padding-left: 22px; }
+    .sup-body li { margin: 7px 0; }
+    .sup-body li::marker { color: var(--brand); font-weight: 700; }
+    .sup-body code, .sup-key { background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+      border-radius: 5px; font-size: .84em; padding: 1px 6px; white-space: nowrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .sup-key { font-weight: 600; color: var(--ink); }
+    .sup-body a { color: var(--brand); }
+    .sup-body a:hover { text-decoration: underline; }
+
+    /* where-it-lives table */
+    .sup-where { margin: 20px 0 8px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      background: var(--surface); }
+    .sup-where table { width: 100%; border-collapse: collapse; font-size: .89rem; }
+    .sup-where th { text-align: left; padding: 9px 14px; background: var(--surface-soft); color: var(--muted);
+      font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 700; }
+    .sup-where td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+    .sup-where td:first-child { color: var(--ink); font-weight: 600; width: 44%; }
+    .sup-where td:last-child { color: var(--muted); }
+    .sup-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .sup-rel { margin-top: 38px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .sup-rel h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 10px; }
+    .sup-rel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sup-rel a { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px;
+      font-size: .85rem; color: var(--muted); background: var(--surface); }
+    .sup-rel a:hover { border-color: var(--brand); color: var(--ink); }
+
+    /* index filter */
+    .sup-filter { margin: 22px 0 4px; }
+    .sup-filter input { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      color: var(--ink); font: inherit; font-size: .95rem; padding: 12px 16px; }
+    .sup-filter input:focus { outline: none; border-color: var(--brand); }
+    .sup-filter-note { color: var(--muted); font-size: .82rem; margin: 8px 2px 0; }
+    .sup-empty { color: var(--muted); font-size: .93rem; padding: 18px 2px; display: none; }
+
+    @media (max-width: 560px) {
+      .sup-wrap { padding: 26px 16px 70px; }
+      .sup-where td:first-child { width: 42%; }
+      .sup-where table { font-size: .84rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="/assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">SprinkFlow Tools</a><a href="/design-studio.html">Design Studio</a><a href="/studio/support/">Studio Support</a><a href="/learn/">Learn</a><a href="/account.html">Account</a></nav>
+    <a href="/design-studio-alpha.html" class="btn btn-primary btn-sm nav-buy">Get the alpha</a>
+  </header>
+
+  <main class="sup-wrap">
+    <nav class="sup-crumb"><a href="/">SprinkFlow</a> / <a href="/design-studio.html">Design Studio</a> / <a href="/studio/support/">Support</a> / Hydraulic calculations</nav>
+    <span class="sup-kicker">Checking the design</span>
+    <h1>Hydraulic calculations</h1>
+    <p class="sup-lead">The Studio calculates the system you actually drew &mdash; the same pipe, fittings and elevations. There is no separate hydraulic model to keep in step.</p>
+
+    <div class="sup-where sup-scroll">
+      <table>
+        <thead><tr><th>What</th><th>Where you'll find it</th></tr></thead>
+        <tbody>
+        <tr><td>Water supply &middot; fire pump</td><td><span class="sup-key">Ctrl+Shift+W</span> &middot; <span class="sup-key">Ctrl+Shift+P</span>, or the <strong>SUPPLY</strong> / <strong>HYDRAULICS</strong> toolbar groups</td></tr>
+        <tr><td>Remote area boundary</td><td>The remote-area button in the <strong>HYDRAULICS</strong> group</td></tr>
+        <tr><td>Live calculations on/off</td><td>The <strong>Live</strong> pill in <strong>HYDRAULICS</strong></td></tr>
+        <tr><td>Results</td><td>Side panel &rarr; <strong>Analysis</strong> &rarr; Calc, Demand, Nodes, Links, Runs, Remote Areas, Warnings</td></tr>
+        <tr><td>Node tags on the plan</td><td><strong>View &rarr; Hydraulic Node Tags</strong></td></tr>
+        <tr><td>Printed calcs</td><td><strong>Reports &rarr; Hydraulic Calc Package</strong> / <strong>Print&hellip;Remote Area Calcs</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sup-body">
+
+      <h2>1. Give it a supply</h2>
+      <p>Place a <strong>water supply ball</strong> (<span class="sup-key">Ctrl+Shift+W</span>) where the supply
+      enters, and edit its curve &mdash; static, residual and flow from the flow test. If there is a pump, place a
+      <strong>fire pump</strong> element (<span class="sup-key">Ctrl+Shift+P</span>) and right-click it to
+      <strong>Adjust pump curve&hellip;</strong>. <strong>Flip pump</strong> reverses suction and discharge if you drew
+      it the other way round.</p>
+      <div class="sup-note"><strong>Supply curves clamp at zero.</strong> Ask for more flow than the test measured and
+      the answer is &ldquo;no pressure available&rdquo; &mdash; never a negative number pretending to be a result.</div>
+
+      <h2>2. Draw the remote area</h2>
+      <p>Pick the remote-area tool from the HYDRAULICS group and outline the area. The boundary snaps to the
+      midline between heads, so it lands where a reviewer expects it rather than through a sprinkler.</p>
+      <ul>
+        <li>Inclusion can be by plan area, by an elevation range, or by name &mdash; useful when several systems
+            overlap in plan.</li>
+        <li>Right-click a placed boundary for its live hydraulic report, its printed reports,
+            <strong>Edit Boundary Here&hellip;</strong>, and delete.</li>
+        <li>You can have several remote areas in one project and calculate them independently.</li>
+      </ul>
+      <!-- SCREENSHOT: site/assets/support/remote-area-boundary.png - a remote area boundary snapped between head rows -->
+
+      <h2>3. Decide which heads flow</h2>
+      <p>Every sprinkler carries its own flow setting, and every part of the program &mdash; the remote-area calc, the
+      project-wide preview, and the printed report &mdash; resolves it the same way, so they cannot disagree.</p>
+      <ul>
+        <li><strong>Automatic</strong> (the default, and what every older project loads as) &mdash; the head flows only
+            when it is inside the remote area being calculated.</li>
+        <li><strong>Open</strong> &mdash; it always flows, anywhere on the drawing, in every area's calculation.</li>
+        <li><strong>Closed</strong> &mdash; it never flows, even inside the remote area. A closed head produces no demand
+            at all, so it also drops out of the report and off the node tags.</li>
+      </ul>
+      <p>A head can also carry a <strong>minimum to flow</strong> &mdash; either a minimum psi <em>or</em> a minimum gpm,
+      never both (if both somehow get set, psi wins). A minimum is a floor on a head that is already flowing; it
+      never turns a dry head on. Flow and pressure stay tied through the head's K-factor, the same way the NFPA 13
+      7&nbsp;psi minimum operating pressure is applied.</p>
+      <p>Set it from the sprinkler's <strong>Properties</strong> panel, or right-click in the drawing &rarr;
+      <strong>Set Flow &rarr; Open / Closed / Automatic / Minimum to Flow&hellip; / Clear minimum</strong>. Either route
+      works on a whole multi-selection in one undo and keeps your selection.</p>
+      <p>A project with <em>no</em> remote area has nothing to scope to, so it flows every head that has demand,
+      minus the closed ones.</p>
+
+      <h2>4. Run it</h2>
+      <ul>
+        <li>Leave the <strong>Live</strong> pill on and the calculation re-runs after every edit.</li>
+        <li>Turn it off to draft at full speed, then right-click any object &rarr; <strong>Run Hydraulic
+            Calculation</strong> when you want numbers. Turning Live back on catches up immediately.</li>
+        <li>Right-click &rarr; <strong>Open Live Hydraulic Preview</strong> overlays demand against the supply curve, so
+            you can watch a change move the point.</li>
+      </ul>
+      <!-- SCREENSHOT: site/assets/support/live-hydraulic-preview.png - demand plotted against the supply curve -->
+
+      <h2>5. Read the results</h2>
+      <p>The <strong>Analysis</strong> tab in the side panel carries the whole answer:</p>
+      <ul>
+        <li><strong>Calc</strong> &mdash; the calculation itself.</li>
+        <li><strong>Demand</strong> &mdash; what the system is asking for.</li>
+        <li><strong>Nodes</strong>, <strong>Links</strong>, <strong>Runs</strong> &mdash; the model the solver built from your
+            drawing, node by node.</li>
+        <li><strong>Remote Areas</strong> &mdash; each area and its result.</li>
+        <li><strong>Warnings</strong> &mdash; anything the solver is unhappy about. Read this before you trust a number.</li>
+      </ul>
+      <p><strong>View &rarr; Hydraulic Node Tags</strong> puts the node numbers on the plan in hex tags &mdash; prefix,
+      starting number, size and colour are all settable, they can carry leader lines, and you can drag them clear
+      of your linework.</p>
+
+      <h2>Friction losses</h2>
+      <p>Valves and flex drops carry their own losses, entered as an equivalent length or a custom curve. A flex
+      drop's loss is on its right-click menu alongside its length.</p>
+
+      <h2>Printing the calc</h2>
+      <ul>
+        <li><strong>Reports &rarr; Hydraulic Calc Package (HTML)&hellip;</strong> &mdash; the full package.</li>
+        <li><strong>Reports &rarr; Print All Remote Area Calcs (PDF)&hellip;</strong> or <strong>Print Selected&hellip;</strong>.</li>
+        <li>The <strong>Water Supply Curve Report</strong> button in the FILE toolbar group.</li>
+        <li><strong>Tools &rarr; NFPA 1142 Water Supply Calculator&hellip;</strong> for the rural water-supply case.</li>
+      </ul>
+      <p>The printed layout is being matched to the calc report format reviewers already know.</p>
+
+      <div class="sup-note sup-alpha"><strong>Where this is still moving.</strong> The solver and the reports are real
+      and in daily use, but calc-report formatting is still being brought to parity, and fluid delivery time is
+      designed but not yet a feature you can run. Check the numbers before you stamp anything &mdash; that is true of
+      every tool, and doubly true of an alpha.</div>
+    </div>
+
+    <div class="sup-rel">
+      <h2>Related</h2>
+      <ul>
+        <li><a href="piping.html">Drawing pipe</a></li>
+        <li><a href="analysis.html">Analysis &amp; compliance</a></li>
+        <li><a href="sprinklers.html">Sprinkler placement</a></li>
+        <li><a href="export.html">Export &amp; handoff</a></li>
+        <li><a href="/studio/support/">All support topics</a></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="/assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> &middot; <a href="/design-studio.html">Design Studio</a> &middot; <a href="/studio/support/">Studio Support</a> &middot; <a href="/learn/">Learn</a> &middot; <a href="/release-notes.html">Release notes</a> &middot; <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+  <script>
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>

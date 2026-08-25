@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Auto Route Piping — Design Studio Support</title>
+  <meta name="description" content="The guided six-step flow: branch preview, elevations, cross main, riser &amp;mdash; all previewed before it commits." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/studio/support/auto-route.html" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .sup-wrap { max-width: 820px; margin: 0 auto; padding: 34px 22px 90px; }
+    .sup-crumb { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+    .sup-crumb a { color: var(--muted); }
+    .sup-crumb a:hover { color: var(--brand); }
+    .sup-wrap h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 4px 0 10px; }
+    .sup-lead { color: var(--muted); margin: 0 0 8px; max-width: 64ch; }
+    .sup-kicker { color: var(--brand); font: 700 .74rem 'Space Grotesk', sans-serif;
+      letter-spacing: .14em; text-transform: uppercase; }
+    .sup-note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; padding: 14px 18px; margin: 22px 0; color: var(--muted); font-size: .93rem; }
+    .sup-note strong { color: var(--ink); }
+    .sup-alpha { border-left-color: var(--water); }
+    .sup-sec { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      margin: 40px 0 6px; border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+    .sup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 14px; }
+    .sup-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px;
+      display: flex; flex-direction: column; gap: 6px; color: var(--ink); text-decoration: none; }
+    a.sup-card:hover { border-color: var(--brand); }
+    .sup-card h3 { margin: 0; font-size: .98rem; line-height: 1.3; }
+    .sup-card p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .sup-chip { align-self: flex-start; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 9px; margin-top: 3px;
+      background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); }
+    .sup-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
+      margin-top: 42px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .sup-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 230px; }
+
+    /* article body */
+    .sup-body { font-size: .97rem; line-height: 1.65; }
+    .sup-body h2 { font-size: 1.18rem; margin: 32px 0 8px; scroll-margin-top: 80px; }
+    .sup-body h3 { font-size: 1rem; margin: 20px 0 4px; }
+    .sup-body p { margin: 9px 0; }
+    .sup-body ol, .sup-body ul { margin: 8px 0; padding-left: 22px; }
+    .sup-body li { margin: 7px 0; }
+    .sup-body li::marker { color: var(--brand); font-weight: 700; }
+    .sup-body code, .sup-key { background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+      border-radius: 5px; font-size: .84em; padding: 1px 6px; white-space: nowrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .sup-key { font-weight: 600; color: var(--ink); }
+    .sup-body a { color: var(--brand); }
+    .sup-body a:hover { text-decoration: underline; }
+
+    /* where-it-lives table */
+    .sup-where { margin: 20px 0 8px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      background: var(--surface); }
+    .sup-where table { width: 100%; border-collapse: collapse; font-size: .89rem; }
+    .sup-where th { text-align: left; padding: 9px 14px; background: var(--surface-soft); color: var(--muted);
+      font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 700; }
+    .sup-where td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+    .sup-where td:first-child { color: var(--ink); font-weight: 600; width: 44%; }
+    .sup-where td:last-child { color: var(--muted); }
+    .sup-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .sup-rel { margin-top: 38px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .sup-rel h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 10px; }
+    .sup-rel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sup-rel a { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px;
+      font-size: .85rem; color: var(--muted); background: var(--surface); }
+    .sup-rel a:hover { border-color: var(--brand); color: var(--ink); }
+
+    /* index filter */
+    .sup-filter { margin: 22px 0 4px; }
+    .sup-filter input { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      color: var(--ink); font: inherit; font-size: .95rem; padding: 12px 16px; }
+    .sup-filter input:focus { outline: none; border-color: var(--brand); }
+    .sup-filter-note { color: var(--muted); font-size: .82rem; margin: 8px 2px 0; }
+    .sup-empty { color: var(--muted); font-size: .93rem; padding: 18px 2px; display: none; }
+
+    @media (max-width: 560px) {
+      .sup-wrap { padding: 26px 16px 70px; }
+      .sup-where td:first-child { width: 42%; }
+      .sup-where table { font-size: .84rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="/assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">SprinkFlow Tools</a><a href="/design-studio.html">Design Studio</a><a href="/studio/support/">Studio Support</a><a href="/learn/">Learn</a><a href="/account.html">Account</a></nav>
+    <a href="/design-studio-alpha.html" class="btn btn-primary btn-sm nav-buy">Get the alpha</a>
+  </header>
+
+  <main class="sup-wrap">
+    <nav class="sup-crumb"><a href="/">SprinkFlow</a> / <a href="/design-studio.html">Design Studio</a> / <a href="/studio/support/">Support</a> / Auto Route Piping</nav>
+    <span class="sup-kicker">Piping</span>
+    <h1>Auto Route Piping</h1>
+    <p class="sup-lead">With heads placed, Auto Route Piping walks you through building the system a stage at a time. Nothing is committed until the last step, so you can back out of any of it.</p>
+
+    <div class="sup-where sup-scroll">
+      <table>
+        <thead><tr><th>What</th><th>Where you'll find it</th></tr></thead>
+        <tbody>
+        <tr><td>Start it</td><td><strong>Auto &rarr; Auto Route Piping (Guided)</strong></td></tr>
+        <tr><td>Sizes and options</td><td>The step window that appears &mdash; it never steals your keyboard focus</td></tr>
+        <tr><td>Instructions</td><td>The banner across the top of the drawing view</td></tr>
+        <tr><td>Default sizes</td><td>The <strong>Main</strong> and <strong>Branch</strong> boxes in the <strong>AUTO</strong> toolbar group</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sup-body">
+
+      <h2>Before you start</h2>
+      <p>Place your heads first. The router builds branch lines through the rows your heads already form, so the
+      layout is the input.</p>
+
+      <h2>Step 1 &mdash; branch lines</h2>
+      <p>The moment you start, branch lines appear across the sprinklers at half opacity. No fittings, no hangers,
+      no labels &mdash; just straight pipe, so you can read it.</p>
+      <ul>
+        <li><span class="sup-key">Tab</span> flips the orientation (east&ndash;west becomes north&ndash;south) and the
+            preview re-runs immediately.</li>
+        <li><span class="sup-key">Ctrl+Shift</span> + wheel offsets every branch in half-inch steps, with the exact
+            offset shown above the cursor.</li>
+        <li>Pick the branch size in the step window. Sizes 1&quot;&ndash;2&quot; sit at the top because that is what you
+            usually want; the default is 1-1/2&quot;, and <strong>Set as my default</strong> remembers your choice for
+            future jobs.</li>
+        <li><strong>Click a previewed branch to remove it</strong> from the plan; click again to bring it back. The last
+            remaining branch cannot be removed. Removals survive flipping and offsetting.</li>
+      </ul>
+      <!-- SCREENSHOT: site/assets/support/guided-branch-preview.png - half-opacity branch preview with the step banner and step window -->
+
+      <h2>Step 2 &mdash; branch elevation</h2>
+      <p><span class="sup-key">Enter</span> moves on. Choose how the branches sit, and the preview re-elevates live
+      as you change it:</p>
+      <ul>
+        <li>a distance <strong>above or below the sprinklers</strong> (the default is 1'-0&quot; above);</li>
+        <li>a distance <strong>above or below the roof plane</strong> &mdash; branches then slope with the deck;</li>
+        <li>or an exact <strong>above-finished-floor</strong> height.</li>
+      </ul>
+      <p>All of them are feet-first, so <code>10-0</code> is 10'-0&quot;. An AFF height stays level on purpose.</p>
+
+      <h2>Step 3 &mdash; the cross main</h2>
+      <p><span class="sup-key">Enter</span> again and a main appears perpendicular to the branches, riding your
+      cursor. Drag it to where it belongs and click, or press <span class="sup-key">Enter</span>.</p>
+      <ul>
+        <li>Sizes 2-1/2&quot;&ndash;6&quot; are at the top of the picker; the default is 4&quot;.</li>
+        <li><strong>The main snaps to the middle of a bay.</strong> As you drag, it locks dead centre between two
+            adjacent sprinkler rows, draws a dashed guide along itself, and the banner says LOCKED. It only snaps
+            <em>between</em> rows &mdash; there is no invented bay past the outermost one.</li>
+        <li><span class="sup-key">F3</span> releases the magnet, like every other magnet in the program.</li>
+        <li>The main may overrun the branches; it always stays perpendicular.</li>
+      </ul>
+
+      <h2>Step 4 &mdash; main elevation</h2>
+      <p>Same choices as the branches, but the offset can be measured <strong>from the branch lines</strong>, and it
+      defaults to <em>below</em> them by a foot. Type feet-first (<code>3-2</code> is 3'-2&quot;).</p>
+
+      <h2>Step 5 &mdash; connecting</h2>
+      <p>The main joins the branches with riser nipples at the branch size; a box lets you change the nipple size.
+      If the main meets the branches at the same elevation, plain side outlets are used instead and no nipples are
+      created.</p>
+      <p>Press <span class="sup-key">G</span> here to add a <strong>second main</strong> at the far end of the branches
+      &mdash; a grid system. It mirrors the first one and connects the same way.</p>
+
+      <h2>Step 6 &mdash; the riser</h2>
+      <p>The riser rides your cursor with its plan symbol and a live preview of the route back to the main. Click
+      to pin it (click again to move it), then <span class="sup-key">Enter</span> builds everything. The route to
+      the main is chosen for least pipe and fewest 90s: straight if it can, one elbow if it must, two at the most.</p>
+
+      <div class="sup-note"><strong>The whole route is one undo.</strong> Branches, main, nipples, head connections,
+      riser and feed all commit together as a single command &mdash; <span class="sup-key">Ctrl+Z</span> once and the
+      drawing is exactly as it was. Connecting the sprinklers to the new pipe runs as part of the build, with the
+      Rooster option if you ticked it.</div>
+
+      <h2>Moving around the flow</h2>
+      <ul>
+        <li><span class="sup-key">Enter</span> advances a stage.</li>
+        <li><span class="sup-key">Esc</span> goes <em>back</em> one stage. <span class="sup-key">Esc</span> at the first
+            stage cancels everything.</li>
+        <li>The step window has <strong>Back</strong> and <strong>Continue</strong> buttons, so the entire flow can be
+            driven with the mouse.</li>
+        <li>The window never takes keyboard focus, so <span class="sup-key">Tab</span> always reaches the drawing.</li>
+      </ul>
+
+      <div class="sup-note sup-alpha"><strong>Two things are not finished.</strong> The fine-positioning gesture for
+      the riser &mdash; quarter-speed cursor with half-inch clicks and a per-wall offset readout &mdash; is not built yet;
+      your ordinary snaps apply to the riser click instead. And the older non-guided
+      <strong>Auto Route Piping</strong> entry is still in the <strong>Auto</strong> menu while the guided flow is
+      being proven; use the guided one.</div>
+    </div>
+
+    <div class="sup-rel">
+      <h2>Related</h2>
+      <ul>
+        <li><a href="piping.html">Drawing pipe</a></li>
+        <li><a href="sprinklers.html">Sprinkler placement</a></li>
+        <li><a href="hydraulics.html">Hydraulic calculations</a></li>
+        <li><a href="hangers-bracing.html">Hangers &amp; bracing</a></li>
+        <li><a href="/studio/support/">All support topics</a></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="/assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> &middot; <a href="/design-studio.html">Design Studio</a> &middot; <a href="/studio/support/">Studio Support</a> &middot; <a href="/learn/">Learn</a> &middot; <a href="/release-notes.html">Release notes</a> &middot; <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+  <script>
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>

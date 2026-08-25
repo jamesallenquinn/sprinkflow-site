@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Signing in &amp;amp; access — Design Studio Support</title>
+  <meta name="description" content="Why your SprinkFlow Tools account is the key, and what to do when sign-in doesn&#x27;t unlock it." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/studio/support/signing-in.html" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .sup-wrap { max-width: 820px; margin: 0 auto; padding: 34px 22px 90px; }
+    .sup-crumb { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+    .sup-crumb a { color: var(--muted); }
+    .sup-crumb a:hover { color: var(--brand); }
+    .sup-wrap h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 4px 0 10px; }
+    .sup-lead { color: var(--muted); margin: 0 0 8px; max-width: 64ch; }
+    .sup-kicker { color: var(--brand); font: 700 .74rem 'Space Grotesk', sans-serif;
+      letter-spacing: .14em; text-transform: uppercase; }
+    .sup-note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; padding: 14px 18px; margin: 22px 0; color: var(--muted); font-size: .93rem; }
+    .sup-note strong { color: var(--ink); }
+    .sup-alpha { border-left-color: var(--water); }
+    .sup-sec { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      margin: 40px 0 6px; border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+    .sup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 14px; }
+    .sup-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px;
+      display: flex; flex-direction: column; gap: 6px; color: var(--ink); text-decoration: none; }
+    a.sup-card:hover { border-color: var(--brand); }
+    .sup-card h3 { margin: 0; font-size: .98rem; line-height: 1.3; }
+    .sup-card p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .sup-chip { align-self: flex-start; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 9px; margin-top: 3px;
+      background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); }
+    .sup-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
+      margin-top: 42px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .sup-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 230px; }
+
+    /* article body */
+    .sup-body { font-size: .97rem; line-height: 1.65; }
+    .sup-body h2 { font-size: 1.18rem; margin: 32px 0 8px; scroll-margin-top: 80px; }
+    .sup-body h3 { font-size: 1rem; margin: 20px 0 4px; }
+    .sup-body p { margin: 9px 0; }
+    .sup-body ol, .sup-body ul { margin: 8px 0; padding-left: 22px; }
+    .sup-body li { margin: 7px 0; }
+    .sup-body li::marker { color: var(--brand); font-weight: 700; }
+    .sup-body code, .sup-key { background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+      border-radius: 5px; font-size: .84em; padding: 1px 6px; white-space: nowrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .sup-key { font-weight: 600; color: var(--ink); }
+    .sup-body a { color: var(--brand); }
+    .sup-body a:hover { text-decoration: underline; }
+
+    /* where-it-lives table */
+    .sup-where { margin: 20px 0 8px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      background: var(--surface); }
+    .sup-where table { width: 100%; border-collapse: collapse; font-size: .89rem; }
+    .sup-where th { text-align: left; padding: 9px 14px; background: var(--surface-soft); color: var(--muted);
+      font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 700; }
+    .sup-where td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+    .sup-where td:first-child { color: var(--ink); font-weight: 600; width: 44%; }
+    .sup-where td:last-child { color: var(--muted); }
+    .sup-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .sup-rel { margin-top: 38px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .sup-rel h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 10px; }
+    .sup-rel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sup-rel a { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px;
+      font-size: .85rem; color: var(--muted); background: var(--surface); }
+    .sup-rel a:hover { border-color: var(--brand); color: var(--ink); }
+
+    /* index filter */
+    .sup-filter { margin: 22px 0 4px; }
+    .sup-filter input { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      color: var(--ink); font: inherit; font-size: .95rem; padding: 12px 16px; }
+    .sup-filter input:focus { outline: none; border-color: var(--brand); }
+    .sup-filter-note { color: var(--muted); font-size: .82rem; margin: 8px 2px 0; }
+    .sup-empty { color: var(--muted); font-size: .93rem; padding: 18px 2px; display: none; }
+
+    @media (max-width: 560px) {
+      .sup-wrap { padding: 26px 16px 70px; }
+      .sup-where td:first-child { width: 42%; }
+      .sup-where table { font-size: .84rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="/assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">SprinkFlow Tools</a><a href="/design-studio.html">Design Studio</a><a href="/studio/support/">Studio Support</a><a href="/learn/">Learn</a><a href="/account.html">Account</a></nav>
+    <a href="/design-studio-alpha.html" class="btn btn-primary btn-sm nav-buy">Get the alpha</a>
+  </header>
+
+  <main class="sup-wrap">
+    <nav class="sup-crumb"><a href="/">SprinkFlow</a> / <a href="/design-studio.html">Design Studio</a> / <a href="/studio/support/">Support</a> / Signing in &amp; access</nav>
+    <span class="sup-kicker">Getting started</span>
+    <h1>Signing in &amp; access</h1>
+    <p class="sup-lead">Design Studio checks a license at startup. For almost everyone that license is minted automatically from an active SprinkFlow Tools subscription &mdash; you sign in once and the Studio stays unlocked.</p>
+
+    <div class="sup-where sup-scroll">
+      <table>
+        <thead><tr><th>What</th><th>Where you'll find it</th></tr></thead>
+        <tbody>
+        <tr><td>Sign-in dialog</td><td>Appears automatically at startup when there is no valid license.</td></tr>
+        <tr><td>Refresh License&hellip;</td><td><strong>Help</strong> menu &rarr; <strong>Refresh License&hellip;</strong></td></tr>
+        <tr><td>Your account</td><td><a href="/account.html">sprinkflow.studio/account.html</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sup-body">
+
+      <h2>How access works</h2>
+      <p>An active SprinkFlow Tools subscription is the entitlement. When you sign in, the cloud mints a
+      30-day license key for your machine and renews it quietly in the background whenever you are online.
+      There is no separate Studio purchase and no separate Studio account.</p>
+
+      <h2>Signing in</h2>
+      <ol>
+        <li>Start the Studio. The sign-in dialog appears.</li>
+        <li>Enter <strong>the same email and password as your SprinkFlow Tools account</strong>.</li>
+        <li>If you use a password manager, choose the browser hand-off instead &mdash; the Studio opens your
+            default browser to sign in there and picks the session back up automatically when you are done.
+            Your manager can fill the form as usual.</li>
+      </ol>
+      <!-- SCREENSHOT: site/assets/support/signin-dialog.png - the license/sign-in dialog with both options visible -->
+
+      <div class="sup-note"><strong>Once licensed, the Studio runs offline.</strong> It only reaches the internet
+      to renew the license, check for a new build, and send a bug report. Your drawings are never uploaded.</div>
+
+      <h2>Working offline</h2>
+      <p>The key is good for 30 days at a time and self-renews whenever you are online, so an ordinary week
+      of no connectivity is a non-event. If you are heading somewhere with no internet for longer than a
+      month, open the Studio while you still have a connection so the key refreshes before you go.</p>
+
+      <h2>When sign-in doesn't unlock it</h2>
+      <ul>
+        <li><strong>&ldquo;No active subscription&rdquo;</strong> &mdash; check <a href="/account.html">your account page</a>.
+            A lapsed or failed payment removes Studio access along with everything else. Fix the subscription,
+            then use <strong>Help &rarr; Refresh License&hellip;</strong> rather than restarting.</li>
+        <li><strong>Wrong email.</strong> The subscription email and the sign-in email have to be the same one.
+            An address that never subscribed will authenticate fine and still have no entitlement.</li>
+        <li><strong>You just subscribed.</strong> Sign in again, or hit <strong>Refresh License&hellip;</strong> &mdash;
+            the key is minted at sign-in, so a session that started before you subscribed does not have one yet.</li>
+        <li><strong>You were given a key directly.</strong> Testers without an account get a signed key to paste
+            into the same dialog. It works exactly like a signed-in license.</li>
+      </ul>
+
+      <h2>The title bar</h2>
+      <p>The title bar reads <strong>SprinkFlow Design Studio &mdash; Alpha &mdash; Licensed to &lt;your name&gt;</strong>.
+      That is how the copy identifies itself; the &ldquo;Alpha&rdquo; word is what tells you which flavour of access
+      you are on.</p>
+
+      <div class="sup-note sup-alpha"><strong>A note on an old word.</strong> Very early installs and shortcuts
+      were named differently, and a few of them still sit in a folder with the old name. Upgrades keep working
+      from wherever they are installed. If you ever see the old name in the app itself, that is a bug worth
+      reporting with <span class="sup-key">F12</span>.</div>
+    </div>
+
+    <div class="sup-rel">
+      <h2>Related</h2>
+      <ul>
+        <li><a href="install.html">Install &amp; first launch</a></li>
+        <li><a href="updates.html">Updating</a></li>
+        <li><a href="/design-studio-alpha.html">What alpha means</a></li>
+        <li><a href="/studio/support/">All support topics</a></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="/assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> &middot; <a href="/design-studio.html">Design Studio</a> &middot; <a href="/studio/support/">Studio Support</a> &middot; <a href="/learn/">Learn</a> &middot; <a href="/release-notes.html">Release notes</a> &middot; <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+  <script>
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>

@@ -31,8 +31,12 @@
     .rn-chip { border-radius: 999px; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; }
     .rn-chip.stable { background: rgba(255, 90, 47, 0.14); color: var(--brand); border: 1px solid rgba(255, 90, 47, 0.35); }
     .rn-chip.beta { background: rgba(55, 183, 228, 0.12); color: var(--water); border: 1px solid rgba(55, 183, 228, 0.35); }
-    .rn-chip.spotter { background: rgba(255, 176, 58, 0.12); color: var(--accent); border: 1px solid rgba(255, 176, 58, 0.35); }
-    .rn-body { font-size: .95rem; line-height: 1.6; }
+    .rn-chip.studio { background: rgba(255, 176, 58, 0.12); color: var(--accent); border: 1px solid rgba(255, 176, 58, 0.35); }
+    .rn-era-note { color: var(--muted); font-size: .87rem; line-height: 1.55; margin: 10px 0 0; max-width: 62ch; }
+    .rn-era-note a { color: var(--accent); }
+    /* release bodies carry SHA-256 digests and file names with no break opportunity —
+       without this they push the whole page sideways on a phone */
+    .rn-body { font-size: .95rem; line-height: 1.6; overflow-wrap: break-word; }
     .rn-body h3, .rn-body h4, .rn-body h5 { margin: 18px 0 4px; font-size: 1.02rem; }
     .rn-body p { margin: 10px 0; }
     .rn-body ul, .rn-body ol { margin: 8px 0; padding-left: 22px; }
@@ -47,18 +51,18 @@
 <body>
   <header class="nav">
     <a class="brand" href="/"><img src="./assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
-    <a href="/#download" class="btn btn-primary btn-sm">Get SprinkFlow</a>
+    <a href="/#download" class="btn btn-primary btn-sm">Get SprinkFlow Tools</a>
   </header>
 
   <main class="rn-wrap">
     <h1>Release Notes</h1>
-    <p class="rn-lead">Everything that's shipped, version by version — 45 releases since June 11, 2026. Latest: <strong>1.1.18</strong> (August 20, 2026).</p>
+    <p class="rn-lead">Everything that's shipped, version by version — 45 releases since June 11, 2026. Latest SprinkFlow Tools: <strong>1.1.18</strong> (August 20, 2026).</p>
     <nav class="rn-nav">
-      <div class="rn-grp">Stable</div><div class="rn-chips"><a href="#v1.1.18">1.1.18</a><a href="#v1.1.17">1.1.17</a><a href="#v1.1.16">1.1.16</a><a href="#v1.1.15">1.1.15</a><a href="#v1.1.14">1.1.14</a><a href="#v1.1.13">1.1.13</a><a href="#v1.1.12">1.1.12</a><a href="#v1.1.11">1.1.11</a><a href="#v1.1.10">1.1.10</a><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
-      <div class="rn-grp">Spotter Edition</div><div class="rn-chips"><a href="#spotter-v1.1.1">Spotter 1.1.1</a><a href="#spotter-v1.1.0">Spotter 1.1.0</a><a href="#spotter-v1.0.5">Spotter 1.0.5</a><a href="#spotter-v1.0.4">Spotter 1.0.4</a><a href="#spotter-v1.0.3">Spotter 1.0.3</a><a href="#spotter-v1.0.2">Spotter 1.0.2</a><a href="#spotter-v1.0.1">Spotter 1.0.1</a><a href="#spotter-v1.0.0">Spotter 1.0.0</a></div>
+      <div class="rn-grp">SprinkFlow Tools</div><div class="rn-chips"><a href="#v1.1.18">1.1.18</a><a href="#v1.1.17">1.1.17</a><a href="#v1.1.16">1.1.16</a><a href="#v1.1.15">1.1.15</a><a href="#v1.1.14">1.1.14</a><a href="#v1.1.13">1.1.13</a><a href="#v1.1.12">1.1.12</a><a href="#v1.1.11">1.1.11</a><a href="#v1.1.10">1.1.10</a><a href="#v1.1.9">1.1.9</a><a href="#v1.1.8">1.1.8</a><a href="#v1.1.7">1.1.7</a><a href="#v1.1.6">1.1.6</a><a href="#v1.1.5">1.1.5</a><a href="#v1.1.4">1.1.4</a><a href="#v1.1.3">1.1.3</a><a href="#v1.1.2">1.1.2</a><a href="#v1.1.1">1.1.1</a><a href="#v1.1.0">1.1.0</a><a href="#v1.0.0">1.0.0</a></div>
+      <div class="rn-grp">Design Studio (Alpha)</div><div class="rn-chips"><a href="#spotter-v1.1.1">Design Studio 1.1.1</a><a href="#spotter-v1.1.0">Design Studio 1.1.0</a><a href="#spotter-v1.0.5">Design Studio 1.0.5</a><a href="#spotter-v1.0.4">Design Studio 1.0.4</a><a href="#spotter-v1.0.3">Design Studio 1.0.3</a><a href="#spotter-v1.0.2">Design Studio 1.0.2</a><a href="#spotter-v1.0.1">Design Studio 1.0.1</a><a href="#spotter-v1.0.0">Design Studio 1.0.0</a></div>
       <div class="rn-grp">Private Beta</div><div class="rn-chips"><a href="#v0.2.1-beta.21">0.2.1-beta.21</a><a href="#v0.2.1-beta.20">0.2.1-beta.20</a><a href="#v0.2.1-beta.19">0.2.1-beta.19</a><a href="#v0.2.1-beta.18">0.2.1-beta.18</a><a href="#v0.2.1-beta.17">0.2.1-beta.17</a><a href="#v0.2.1-beta.16">0.2.1-beta.16</a><a href="#v0.2.1-beta.15">0.2.1-beta.15</a><a href="#v0.2.1-beta.14">0.2.1-beta.14</a><a href="#v0.2.1-beta.13">0.2.1-beta.13</a><a href="#v0.2.1-beta.12">0.2.1-beta.12</a><a href="#v0.2.1-beta.11">0.2.1-beta.11</a><a href="#v0.2.1-beta.10">0.2.1-beta.10</a><a href="#v0.2.1-beta.9">0.2.1-beta.9</a><a href="#v0.2.1-beta.8">0.2.1-beta.8</a><a href="#v0.2.1-beta.7">0.2.1-beta.7</a><a href="#v0.2.1-beta.6">0.2.1-beta.6</a><a href="#v0.2.1-beta.5">0.2.1-beta.5</a></div>
     </nav>
-    <div class="rn-era">Stable releases</div>
+    <div class="rn-era">SprinkFlow Tools — stable releases</div>
 <article class="rn-rel" id="v1.1.18">
   <header><h2>1.1.18</h2><span class="rn-chip stable">Stable</span><time>August 20, 2026</time></header>
   <div class="rn-body"><p>The UX release: a faster app that remembers where you were.</p>
@@ -239,22 +243,23 @@
 <p>Free to download and explore; a $39/month membership unlocks exporting your deliverables.</p>
 <p>Existing beta users update automatically.</p></div>
 </article>
-    <div class="rn-era">Spotter Edition</div>
+    <div class="rn-era">SprinkFlow Design Studio — Alpha</div>
+<p class="rn-era-note">SprinkFlow Design Studio is early-access software included with an active <a href="/">SprinkFlow Tools</a> subscription — it is not sold separately. Builds released before August 2026 were limited to sprinkler head placement and shipped under the project's old working name; their notes below are reproduced as published, so they still use it.</p>
 <article class="rn-rel" id="spotter-v1.1.1">
-  <header><h2>Spotter 1.1.1</h2><span class="rn-chip spotter">Spotter</span><time>August 14, 2026</time></header>
+  <header><h2>Design Studio 1.1.1</h2><span class="rn-chip studio">Design Studio Alpha</span><time>August 14, 2026</time></header>
   <div class="rn-body"><p>Major update since v1.0.5:</p>
 <ul><li>IFC coordination import: models ground to 0'-0", meshes are snappable, bodies convert to native beams/columns, and a roof plane can be created from a platform deck</li><li>Rhythm Assist placement ghosts</li><li>Disconnect Heads and Select Full Branch Run on the pipe right-click menu</li><li>Connect to Nearby Sprinklers with a max-distance prompt (default 7'-6")</li><li>Sprinkler clearance bubbles with intrusion flagging</li><li>Multi-select Isolate Layer</li><li>Hard ortho lock on sprinkler drags (identical to pipe/line ortho)</li><li>Snapping while dragging a multi-selection</li><li>Dimension text always lands above the dimension line</li><li>DWG import fix: re-importing into a saved job no longer fails with a duplicate id</li><li>Validated hydraulic calculations: the engine matched an AutoSPRINK-sealed job node-for-node</li></ul>
 <p>The installer is not yet code-signed — SmartScreen will warn; choose "More info", then "Run anyway". Sign in with your SprinkFlow account to activate.</p>
 <p>v1.1.1: the installer is now fully self-contained - no .NET runtime download on first launch; install and run.</p></div>
 </article>
 <article class="rn-rel" id="spotter-v1.1.0">
-  <header><h2>Spotter 1.1.0</h2><span class="rn-chip spotter">Spotter</span><time>August 14, 2026</time></header>
+  <header><h2>Design Studio 1.1.0</h2><span class="rn-chip studio">Design Studio Alpha</span><time>August 14, 2026</time></header>
   <div class="rn-body"><p>Major update since v1.0.5:</p>
 <ul><li>IFC coordination import: models ground to 0'-0", meshes are snappable, bodies convert to native beams/columns, and a roof plane can be created from a platform deck</li><li>Rhythm Assist placement ghosts</li><li>Disconnect Heads and Select Full Branch Run on the pipe right-click menu</li><li>Connect to Nearby Sprinklers with a max-distance prompt (default 7'-6")</li><li>Sprinkler clearance bubbles with intrusion flagging</li><li>Multi-select Isolate Layer</li><li>Hard ortho lock on sprinkler drags (identical to pipe/line ortho)</li><li>Snapping while dragging a multi-selection</li><li>Dimension text always lands above the dimension line</li><li>DWG import fix: re-importing into a saved job no longer fails with a duplicate id</li><li>Validated hydraulic calculations: the engine matched an AutoSPRINK-sealed job node-for-node</li></ul>
 <p>The installer is not yet code-signed — SmartScreen will warn; choose "More info", then "Run anyway". Sign in with your SprinkFlow account to activate.</p></div>
 </article>
 <article class="rn-rel" id="spotter-v1.0.5">
-  <header><h2>Spotter 1.0.5</h2><span class="rn-chip spotter">Spotter</span><time>August 6, 2026</time></header>
+  <header><h2>Design Studio 1.0.5</h2><span class="rn-chip studio">Design Studio Alpha</span><time>August 6, 2026</time></header>
   <div class="rn-body"><p>SprinkFlow Design Suite — Spotter Version (head placement)</p>
 <p><strong>Download SprinkFlow-Spotter-Setup-v1.0.5.exe and run it</strong> — no admin rights needed. Sign in with your SprinkFlow account on first launch.</p>
 <p>New in v1.0.5:</p>
@@ -262,14 +267,14 @@
 <p>Note: not yet code-signed — Windows SmartScreen may warn on first run ("More info → Run anyway").</p></div>
 </article>
 <article class="rn-rel" id="spotter-v1.0.4">
-  <header><h2>Spotter 1.0.4</h2><span class="rn-chip spotter">Spotter</span><time>August 6, 2026</time></header>
+  <header><h2>Design Studio 1.0.4</h2><span class="rn-chip studio">Design Studio Alpha</span><time>August 6, 2026</time></header>
   <div class="rn-body"><p>SprinkFlow Design Suite — Spotter Version (head placement)</p>
 <p><strong>Download SprinkFlow-Spotter-Setup-v1.0.4.exe and run it</strong> — no admin rights needed. Sign in with your SprinkFlow account on first launch; an active subscription includes access.</p>
 <p>Since v1.0.3: license-tier improvements and small fixes.</p>
 <p>Note: not yet code-signed — Windows SmartScreen may warn on first run ("More info → Run anyway").</p></div>
 </article>
 <article class="rn-rel" id="spotter-v1.0.3">
-  <header><h2>Spotter 1.0.3</h2><span class="rn-chip spotter">Spotter</span><time>August 6, 2026</time></header>
+  <header><h2>Design Studio 1.0.3</h2><span class="rn-chip studio">Design Studio Alpha</span><time>August 6, 2026</time></header>
   <div class="rn-body"><p>SprinkFlow Design Suite — Spotter Version (head placement)</p>
 <p><strong>Easiest install: download SprinkFlow-Spotter-Setup-v1.0.3.exe and run it.</strong> No admin rights needed. Sign in with your SprinkFlow account on first launch — an active subscription includes Spotter access.</p>
 <p>Important fixes in this release:</p>
@@ -277,7 +282,7 @@
 <p>Note: not yet code-signed — Windows SmartScreen may warn on first run ("More info → Run anyway"). Signed builds coming shortly.</p></div>
 </article>
 <article class="rn-rel" id="spotter-v1.0.2">
-  <header><h2>Spotter 1.0.2</h2><span class="rn-chip spotter">Spotter</span><time>August 6, 2026</time></header>
+  <header><h2>Design Studio 1.0.2</h2><span class="rn-chip studio">Design Studio Alpha</span><time>August 6, 2026</time></header>
   <div class="rn-body"><p>SprinkFlow Design Suite — Spotter Version (head placement)</p>
 <p><strong>Easiest install: download SprinkFlow-Spotter-Setup-v1.0.2.exe and run it.</strong> No admin rights needed — it installs per-user with a Start Menu and desktop shortcut. (The .zip is the same build for portable/manual use.)</p>
 <p>Sign in with your SprinkFlow account on first launch — an active SprinkFlow subscription includes Spotter access.</p>
@@ -285,14 +290,14 @@
 <p>Note: the installer is not yet code-signed, so Windows SmartScreen may warn on first run — click "More info → Run anyway". Signed builds are coming shortly.</p></div>
 </article>
 <article class="rn-rel" id="spotter-v1.0.1">
-  <header><h2>Spotter 1.0.1</h2><span class="rn-chip spotter">Spotter</span><time>August 5, 2026</time></header>
+  <header><h2>Design Studio 1.0.1</h2><span class="rn-chip studio">Design Studio Alpha</span><time>August 5, 2026</time></header>
   <div class="rn-body"><p>SprinkFlow Design Suite — Spotter Version (head placement, tester build 2026-08-05)</p>
 <p>Requires an active SprinkFlow account with Spotter access granted, or a license key from James.</p>
 <p>Setup: unzip anywhere, run "SprinkFlow Spotter.cmd", then sign in with your SprinkFlow account (or paste your key) on the license screen.</p>
 <p>New since v1.0.0: line weight display slider (model space previews plotted stroke widths), Select Objects on Layer in every right-click menu, editable line-weight combo with typed custom weights, DWG xref include picker, faster large-DWG imports.</p></div>
 </article>
 <article class="rn-rel" id="spotter-v1.0.0">
-  <header><h2>Spotter 1.0.0</h2><span class="rn-chip spotter">Spotter</span><time>August 3, 2026</time></header>
+  <header><h2>Design Studio 1.0.0</h2><span class="rn-chip studio">Design Studio Alpha</span><time>August 3, 2026</time></header>
   <div class="rn-body"><p>SprinkFlow Spotter — heads-only edition, first tester build.</p>
 <p>How to run</p>
 <ol><li>Download the zip below and unzip it anywhere (Desktop is fine).</li><li>Run "SprinkFlow Spotter.cmd".</li><li>Sign in with the SprinkFlow account you were given access to.</li></ol>

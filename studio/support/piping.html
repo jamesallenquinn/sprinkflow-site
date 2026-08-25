@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drawing pipe — Design Studio Support</title>
+  <meta name="description" content="Routing runs by hand, connecting heads, fittings and valves, and editing what you&#x27;ve drawn." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/studio/support/piping.html" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .sup-wrap { max-width: 820px; margin: 0 auto; padding: 34px 22px 90px; }
+    .sup-crumb { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+    .sup-crumb a { color: var(--muted); }
+    .sup-crumb a:hover { color: var(--brand); }
+    .sup-wrap h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 4px 0 10px; }
+    .sup-lead { color: var(--muted); margin: 0 0 8px; max-width: 64ch; }
+    .sup-kicker { color: var(--brand); font: 700 .74rem 'Space Grotesk', sans-serif;
+      letter-spacing: .14em; text-transform: uppercase; }
+    .sup-note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; padding: 14px 18px; margin: 22px 0; color: var(--muted); font-size: .93rem; }
+    .sup-note strong { color: var(--ink); }
+    .sup-alpha { border-left-color: var(--water); }
+    .sup-sec { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      margin: 40px 0 6px; border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+    .sup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 14px; }
+    .sup-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px;
+      display: flex; flex-direction: column; gap: 6px; color: var(--ink); text-decoration: none; }
+    a.sup-card:hover { border-color: var(--brand); }
+    .sup-card h3 { margin: 0; font-size: .98rem; line-height: 1.3; }
+    .sup-card p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .sup-chip { align-self: flex-start; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 9px; margin-top: 3px;
+      background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); }
+    .sup-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
+      margin-top: 42px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .sup-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 230px; }
+
+    /* article body */
+    .sup-body { font-size: .97rem; line-height: 1.65; }
+    .sup-body h2 { font-size: 1.18rem; margin: 32px 0 8px; scroll-margin-top: 80px; }
+    .sup-body h3 { font-size: 1rem; margin: 20px 0 4px; }
+    .sup-body p { margin: 9px 0; }
+    .sup-body ol, .sup-body ul { margin: 8px 0; padding-left: 22px; }
+    .sup-body li { margin: 7px 0; }
+    .sup-body li::marker { color: var(--brand); font-weight: 700; }
+    .sup-body code, .sup-key { background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+      border-radius: 5px; font-size: .84em; padding: 1px 6px; white-space: nowrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .sup-key { font-weight: 600; color: var(--ink); }
+    .sup-body a { color: var(--brand); }
+    .sup-body a:hover { text-decoration: underline; }
+
+    /* where-it-lives table */
+    .sup-where { margin: 20px 0 8px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      background: var(--surface); }
+    .sup-where table { width: 100%; border-collapse: collapse; font-size: .89rem; }
+    .sup-where th { text-align: left; padding: 9px 14px; background: var(--surface-soft); color: var(--muted);
+      font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 700; }
+    .sup-where td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+    .sup-where td:first-child { color: var(--ink); font-weight: 600; width: 44%; }
+    .sup-where td:last-child { color: var(--muted); }
+    .sup-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .sup-rel { margin-top: 38px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .sup-rel h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 10px; }
+    .sup-rel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sup-rel a { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px;
+      font-size: .85rem; color: var(--muted); background: var(--surface); }
+    .sup-rel a:hover { border-color: var(--brand); color: var(--ink); }
+
+    /* index filter */
+    .sup-filter { margin: 22px 0 4px; }
+    .sup-filter input { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      color: var(--ink); font: inherit; font-size: .95rem; padding: 12px 16px; }
+    .sup-filter input:focus { outline: none; border-color: var(--brand); }
+    .sup-filter-note { color: var(--muted); font-size: .82rem; margin: 8px 2px 0; }
+    .sup-empty { color: var(--muted); font-size: .93rem; padding: 18px 2px; display: none; }
+
+    @media (max-width: 560px) {
+      .sup-wrap { padding: 26px 16px 70px; }
+      .sup-where td:first-child { width: 42%; }
+      .sup-where table { font-size: .84rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="/assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">SprinkFlow Tools</a><a href="/design-studio.html">Design Studio</a><a href="/studio/support/">Studio Support</a><a href="/learn/">Learn</a><a href="/account.html">Account</a></nav>
+    <a href="/design-studio-alpha.html" class="btn btn-primary btn-sm nav-buy">Get the alpha</a>
+  </header>
+
+  <main class="sup-wrap">
+    <nav class="sup-crumb"><a href="/">SprinkFlow</a> / <a href="/design-studio.html">Design Studio</a> / <a href="/studio/support/">Support</a> / Drawing pipe</nav>
+    <span class="sup-kicker">Piping</span>
+    <h1>Drawing pipe</h1>
+    <p class="sup-lead">Drawing pipe is meant to feel instant &mdash; click, click, click, done. Everything that decorates the pipe (labels, fittings, hangers, bracing) is optional while you draw and can be filled in afterwards.</p>
+
+    <div class="sup-where sup-scroll">
+      <table>
+        <thead><tr><th>What</th><th>Where you'll find it</th></tr></thead>
+        <tbody>
+        <tr><td>Pipe tool</td><td><span class="sup-key">P</span>, or the pipe button in <strong>DRAW</strong></td></tr>
+        <tr><td>Pipe size</td><td>The <strong>Pipe</strong> dropdown on the toolbar's second row</td></tr>
+        <tr><td>Add-ons while drawing</td><td>The <strong>PIPE ADD-ONS</strong> toolbar group</td></tr>
+        <tr><td>Everything else about a pipe</td><td>Right-click the pipe</td></tr>
+        <tr><td>Fittings</td><td>The <strong>FITTINGS</strong> group, or <span class="sup-key">F</span></td></tr>
+        <tr><td>Valves &amp; devices</td><td>The <strong>DEVICES</strong> group, or <span class="sup-key">V</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sup-body">
+
+      <h2>Drawing a run</h2>
+      <ol>
+        <li>Press <span class="sup-key">P</span> and set the size in the <strong>Pipe</strong> dropdown on the
+            second toolbar row.</li>
+        <li>Click the start, then click each corner. Each segment commits as you go.</li>
+        <li><span class="sup-key">Backspace</span> undoes the last segment without leaving the command.</li>
+        <li><span class="sup-key">Enter</span> finishes the run. <span class="sup-key">Esc</span> cancels it.</li>
+      </ol>
+      <p>Instead of clicking a distance you can <strong>type</strong> it &mdash; feet first, so <code>12-6</code> means
+      12'-6&quot;. The arrow keys nudge the point.</p>
+
+      <h3>Staying level, and changing level</h3>
+      <ul>
+        <li><strong>Elev Lock</strong> plus the <strong>Elev</strong> box holds the run at one height even when you
+            snap to something higher or lower. Ortho and <span class="sup-key">Shift</span> lock the elevation
+            while drawing too.</li>
+        <li>To change height mid-route, draw a vertical segment &mdash; the Studio makes it a riser nipple where that
+            is what it is.</li>
+        <li>Riser nipples connect <em>under</em> the branch at the exact plan crossing, and on a sloped pipe they meet
+            the interpolated height at that point rather than the pipe's end.</li>
+      </ul>
+
+      <h3>Nudging the run off the head line</h3>
+      <p>While drawing pipe, <span class="sup-key">Ctrl+Shift</span> + mouse wheel offsets the run in half-inch
+      clicks, with the current offset shown above the cursor. The run stays straight under ortho.
+      <span class="sup-key">Esc</span> clears the offset; a second <span class="sup-key">Esc</span> cancels the run.</p>
+
+      <h2>Picking up the heads</h2>
+      <p>Draw a branch past a row of pendents and the <strong>reachable heads glow</strong>. Press
+      <span class="sup-key">Enter</span> to finish and they connect &mdash; arm-over, drop, sprig or a direct outlet,
+      whichever the geometry calls for.</p>
+      <!-- SCREENSHOT: site/assets/support/pipe-heads-glowing.png - a branch line being drawn past a row of pendents with the reachable heads glowing -->
+      <p>If you would rather do it deliberately, right-click the pipe:</p>
+      <ul>
+        <li><strong>Connect to Nearby Sprinklers&hellip;</strong> &mdash; asks for a maximum plan distance from pipe to
+            head (7'-6&quot; to start with, and it remembers your answer) and previews which heads will connect while
+            you type the number.</li>
+        <li><strong>Connect Pipe to Selected Sprinklers</strong> &mdash; you choose the heads first.</li>
+        <li><strong>Disconnect Heads</strong> &mdash; removes each outlet and tracks the arm-over, drop or sprig hanging
+            off it out to its end, fittings included. If a path ends at a sprinkler the whole path goes; if a head
+            merely sits on piping that carries on past it, that path is left alone and <em>flagged</em> rather than
+            guessed at. The pipe itself is left plain, never deleted or split, and the heads stay where they are.
+            One undo.</li>
+      </ul>
+
+      <h3>Connect Sprinklers to Pipes</h3>
+      <p><strong>Auto &rarr; Connect Sprinklers to Pipes</strong> does the whole drawing at once. The style dropdown in
+      the AUTO toolbar group picks how: <strong>Straight Down</strong>, <strong>Arm Over</strong>, <strong>Return
+      Bend</strong>, or one of the flex-drop styles. Drops honour your Default Object Properties and match materials
+      sensibly. There is a <strong>Rooster</strong> option for uprights &mdash; a reducing tee with a plug, on the bottom
+      when the head is side-fed and on the side when it is sprig-fed.</p>
+
+      <h2>Fittings</h2>
+      <p>Elbow, tee, cross, coupling, bushing, plug, cap, reducer and flange, from the <strong>Fitting</strong>
+      dropdown in the FITTINGS group or with <span class="sup-key">F</span>. End preps follow the pipe: grooved,
+      threaded or flanged. Flanged ductile-iron fittings generate automatically on flanged pipe, and the 4&quot;&ndash;12&quot;
+      centre-to-face figure is an editable AWWA C110 estimate rather than a fixed number.</p>
+      <p>Fittings also generate themselves:</p>
+      <ul>
+        <li>Turn on the <strong>Fittings</strong> pill in PIPE ADD-ONS to have them appear while you draw. It is off
+            by default because bare pipe draws faster.</li>
+        <li>Select a pipe and press <span class="sup-key">F</span> to generate that pipe's missing fittings.</li>
+        <li><span class="sup-key">Z</span> <strong>Resolve Connections</strong> sorts out everything that is touching
+            but not joined. <strong>Auto &rarr; Resolve in Rectangle</strong> limits it to an area.</li>
+      </ul>
+
+      <h2>Valves and devices</h2>
+      <p><span class="sup-key">V</span>, or the DEVICES group: gate, check, butterfly and backflow valves, plus
+      pressure gauges (with a live psi readout), flow switches, hydrants, hose valves and FDCs. A valve seats on a
+      pipe or on a coupling. Its <strong>end connection</strong> is one master setting that drives the body, its
+      couplings and its end prep together.</p>
+      <p><span class="sup-key">Alt</span> + wheel clocks a gauge, flow switch or valve around the pipe axis in
+      45&deg; steps &mdash; one undo for the whole rotation.</p>
+      <div class="sup-note sup-alpha"><strong>In progress:</strong> the flanged-valve end-prep behaviour was reworked
+      recently and is still awaiting a real-job check. If a flanged valve renders or fabricates oddly, that is worth
+      an <span class="sup-key">F12</span>.</div>
+
+      <h2>Editing a run</h2>
+      <ul>
+        <li>Drag a pipe's <strong>endpoint grip</strong> to move an end; drag the <strong>body</strong> to move the
+            whole thing. Both show a live preview.</li>
+        <li>Right-click &rarr; <strong>Edit Run</strong> lights up the same-size run and lets you change size, schedule
+            and system across all of it at once.</li>
+        <li>Right-click &rarr; <strong>Select Full Branch Run</strong> selects it; <strong>Select Host Pipe</strong> goes
+            the other way from a head or a device.</li>
+        <li>Right-click an endpoint &rarr; continue routing from there.</li>
+        <li>Deleting a run is one undo, not one per segment.</li>
+        <li>Turn on <strong>Maintain Connections</strong> (<span class="sup-key">M</span>) and moving a fitting
+            stretches the pipes attached to it.</li>
+      </ul>
+
+      <h2>Labels and colour</h2>
+      <ul>
+        <li>The <strong>Labels</strong> pill in PIPE ADD-ONS draws size and length labels as you go &mdash; off by default.</li>
+        <li>Add them later from a pipe's right-click <strong>Pipe Labels</strong> menu (diameter, cut length, segment,
+            total).</li>
+        <li><strong>Auto &rarr; Clean Up Labels</strong> re-places every label so they stop overlapping.</li>
+        <li><strong>Tools &rarr; Color Pipes by&hellip;</strong> recolours the drawing by system, size, and so on &mdash; the
+            quickest way to see what you actually drew.</li>
+      </ul>
+
+      <h2>Two fabrication rules worth knowing</h2>
+      <ul>
+        <li>Takeouts are looked up from the catalog <strong>exactly</strong>. A size that is not in the catalog gets no
+            takeout at all &mdash; a full-length, field-trimmable cut &mdash; plus a warning in the fabrication report.
+            The Studio will never quietly substitute the nearest size.</li>
+        <li>If takeouts would exceed the pipe's own length, the span is flagged with &ldquo;spool cannot be fabricated
+            as drawn&rdquo; rather than silently collapsing the cut to zero.</li>
+      </ul>
+    </div>
+
+    <div class="sup-rel">
+      <h2>Related</h2>
+      <ul>
+        <li><a href="auto-route.html">Auto Route Piping</a></li>
+        <li><a href="hangers-bracing.html">Hangers &amp; bracing</a></li>
+        <li><a href="hydraulics.html">Hydraulic calculations</a></li>
+        <li><a href="snapping.html">Snapping &amp; drawing aids</a></li>
+        <li><a href="/studio/support/">All support topics</a></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="/assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> &middot; <a href="/design-studio.html">Design Studio</a> &middot; <a href="/studio/support/">Studio Support</a> &middot; <a href="/learn/">Learn</a> &middot; <a href="/release-notes.html">Release notes</a> &middot; <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+  <script>
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>

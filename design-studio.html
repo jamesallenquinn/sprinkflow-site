@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SprinkFlow Design Studio — sprinkler CAD, in the open</title>
+  <meta name="description" content="SprinkFlow Design Studio is native CAD for fire sprinkler design: import the architect's drawing, lay out heads, route pipe, run real hydraulic calcs, coordinate in 3D, and export a DWG that opens straight in AutoSPRINK. In alpha, moving fast, and included with a SprinkFlow Tools subscription." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/design-studio.html" />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <meta property="og:title" content="SprinkFlow Design Studio — sprinkler CAD, in the open" />
+  <meta property="og:description" content="Native CAD for fire sprinkler design, built in the open and included with a SprinkFlow Tools subscription." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    /* hero */
+    .ds-hero { max-width: var(--max); margin: 0 auto; padding: 46px 24px 30px; text-align: center; }
+    .ds-hero h1 { font-size: clamp(2.1rem, 5vw, 3.5rem); margin: 20px auto 16px; max-width: 16ch; }
+    .ds-hero .lead { color: var(--muted); font-size: 1.14rem; max-width: 62ch; margin: 0 auto; }
+    .ds-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin: 30px 0 12px; }
+    .ds-fine { color: var(--line-strong); font-size: .86rem; }
+    .ds-shot { max-width: 1040px; margin: 40px auto 0; padding: 0 24px; }
+
+    /* pace strip */
+    .ds-pace { max-width: var(--max); margin: 56px auto 0; padding: 0 24px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .ds-pace div { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+    .ds-pace strong { display: block; font: 700 1.02rem/1.2 "Space Grotesk", sans-serif; margin-bottom: 5px; }
+    .ds-pace span { color: var(--muted); font-size: .9rem; line-height: 1.5; }
+    @media (max-width: 780px) { .ds-pace { grid-template-columns: 1fr; } }
+
+    /* capability grid */
+    .ds-caps { max-width: var(--max); margin: 0 auto; padding: 74px 24px 10px; }
+    .ds-caps-head { max-width: 660px; margin: 0 auto 30px; text-align: center; }
+    .ds-caps-head h2 { font-size: clamp(1.6rem, 3.2vw, 2.4rem); margin: 10px 0 12px; }
+    .ds-caps-head p { color: var(--muted); font-size: 1.03rem; margin: 0; }
+    .ds-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+    .ds-cap { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; }
+    .ds-cap h3 { font-size: 1.08rem; margin: 0 0 8px; }
+    .ds-cap p { color: var(--muted); font-size: .93rem; line-height: 1.6; margin: 0; }
+    .ds-cap .ds-step { color: var(--water); font: 700 .72rem "Space Grotesk", sans-serif; letter-spacing: .12em;
+      text-transform: uppercase; display: block; margin-bottom: 8px; }
+
+    /* honesty block */
+    .ds-honest { max-width: 860px; margin: 74px auto 0; padding: 0 24px; }
+    .ds-honest-card { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line);
+      border-radius: 20px; padding: 30px 32px; }
+    .ds-honest-card::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .09;
+      background: linear-gradient(120deg, var(--water) 0%, #7cd7f2 55%, var(--accent) 100%); }
+    .ds-honest-card > * { position: relative; }
+    .ds-honest-card h2 { font: 700 1.5rem/1.15 "Space Grotesk", sans-serif; margin: 10px 0 12px; }
+    .ds-honest-card p { color: var(--muted); margin: 0 0 12px; max-width: 66ch; }
+    .ds-honest-card p:last-child { margin-bottom: 0; }
+    .ds-honest-card strong { color: var(--ink); }
+
+    /* funnel */
+    .ds-join { max-width: 860px; margin: 74px auto 0; padding: 0 24px; }
+    .ds-join-card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px;
+      padding: 36px 34px; box-shadow: var(--shadow); text-align: center; }
+    .ds-join-card h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 8px 0 14px; }
+    .ds-join-card > p { color: var(--muted); max-width: 60ch; margin: 0 auto; }
+    .ds-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 30px 0 26px; text-align: left; }
+    .ds-flow div { background: var(--surface-soft); border: 1px solid var(--line); border-radius: 13px; padding: 15px 17px; }
+    .ds-flow b { display: block; font: 700 .72rem "Space Grotesk", sans-serif; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .ds-flow span { color: var(--muted); font-size: .9rem; line-height: 1.5; }
+    @media (max-width: 720px) { .ds-flow { grid-template-columns: 1fr; } .ds-join-card { padding: 28px 22px; } }
+  </style>
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-water"></span>
+    <span class="orb orb-fire"></span>
+    <span class="orb orb-amber"></span>
+  </div>
+
+  <header class="nav">
+    <a class="brand" href="/"><img src="./assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links">
+      <a href="/#features">SprinkFlow Tools</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/studio/support/">Studio Support</a>
+      <a href="/learn/">Learn</a>
+      <a href="/account.html">Account</a>
+    </nav>
+    <a href="/account.html?checkout=1" class="btn btn-primary btn-sm nav-buy">Start free trial</a>
+  </header>
+
+  <section class="ds-hero">
+    <div class="eyebrow"><span class="dot"></span> In alpha · New build most weeks</div>
+    <h1>Sprinkler CAD, built in&nbsp;the&nbsp;open.</h1>
+    <p class="lead">SprinkFlow Design Studio is a native CAD program for fire sprinkler design — the architect's drawing in, a laid-out, piped, calculated system out. It's early, it's moving fast, and every SprinkFlow Tools subscriber gets to use it while we build it.</p>
+    <div class="ds-cta">
+      <a href="/account.html?checkout=1" class="btn btn-primary btn-lg">Start a free trial &amp; join the alpha</a>
+      <a href="/design-studio-alpha.html" class="btn btn-ghost btn-lg">Already subscribed? Get the installer</a>
+    </div>
+    <p class="ds-fine">7-day free trial of SprinkFlow Tools · $39/month after · cancel anytime · Windows 10/11</p>
+  </section>
+
+  <div class="ds-shot">
+    <div class="frame">
+      <div class="frame-bar"><span></span><span></span><span></span></div>
+      <!-- SCREENSHOT NEEDED: Design Studio with a real job on screen — background,
+           heads laid out, pipe routed. Drop the capture in as
+           ./assets/screenshots/studio/overview.png and replace this placeholder. -->
+      <div class="shot-ph">Design Studio · screenshot coming</div>
+    </div>
+  </div>
+
+  <div class="ds-pace">
+    <div><strong>A build most weeks</strong><span>Not a roadmap promise — a cadence. What testers hit on Monday tends to be fixed in the next cut.</span></div>
+    <div><strong>One key press to report</strong><span>F12 anywhere in the Studio grabs the screen, lets you circle the problem, and sends it with your note.</span></div>
+    <div><strong>Testers pick the order</strong><span>The reports coming out of the alpha are the roadmap. The loudest annoyances die first.</span></div>
+  </div>
+
+  <section class="ds-caps">
+    <div class="ds-caps-head">
+      <div class="kicker" style="color:var(--water)">The workflow, end to end</div>
+      <h2>From the architect's file to a drawing you can hand off.</h2>
+      <p>Design Studio isn't a viewer or a calculator bolted to a plan. It's the drawing environment — and it's built around the way sprinkler work actually gets done.</p>
+    </div>
+    <div class="ds-grid">
+      <div class="ds-cap">
+        <span class="ds-step">Step 01</span>
+        <h3>Import the architect's drawing</h3>
+        <p>Bring in the job's DWG as a background reference and toggle off the layers nobody needs. Only got a plotted PDF? Import it <em>as CAD</em> — real vector linework and layers, not a fuzzy raster underlay.</p>
+      </div>
+      <div class="ds-cap">
+        <span class="ds-step">Step 02</span>
+        <h3>Lay out heads</h3>
+        <p>Place heads with snaps that grab ceiling tiles, spacing rhythms, and alignments, or draw a Coverage Cell over a room and let it fill itself with a compliant array. Coverage shades in live, so gaps show up before a reviewer finds them.</p>
+      </div>
+      <div class="ds-cap">
+        <span class="ds-step">Step 03</span>
+        <h3>Route pipe</h3>
+        <p>A guided workflow walks the routing decisions in order — where the riser feeds, how mains run, how branch lines pick up the heads — and you steer at each stage. Then grab and move what you want moved; connected piping follows.</p>
+      </div>
+      <div class="ds-cap">
+        <span class="ds-step">Step 04</span>
+        <h3>Run the hydraulics</h3>
+        <p>Calculate the system you actually drew — real pipe lengths, fittings, and elevations from the model, not a hand abstraction. Demand point against your supply curve, with the pressure margin in plain sight.</p>
+      </div>
+      <div class="ds-cap">
+        <span class="ds-step">Step 05</span>
+        <h3>Coordinate in 3D</h3>
+        <p>Model the structure — columns, beams, roof — elevate the system to hang under what it actually hangs under, and cut live elevation profiles through the run. Bring in other trades' models to find the fight before the field does.</p>
+      </div>
+      <div class="ds-cap">
+        <span class="ds-step">Step 06</span>
+        <h3>Export a DWG that lands clean</h3>
+        <p>Send the drawing out as DWG or DXF — including into AutoSPRINK, where it opens as real geometry on sane layers instead of a mess you spend an afternoon un-picking.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-honest">
+    <div class="ds-honest-card">
+      <div class="kicker" style="color:var(--water)">Straight with you</div>
+      <h2>It's an alpha. That's the deal, and it's a good one.</h2>
+      <p>Design Studio is <strong>a work in progress</strong> — parts are unfinished, some things move between builds, and it will occasionally do something silly. We'd rather say that on the front page than have you discover it on a deadline.</p>
+      <p>What we'll also say: <strong>it's progressing quickly.</strong> There's a new build most weeks, and the fastest way to change what's in the next one is to be in the current one. Use it alongside the tools you trust today and let it earn its way in one task at a time.</p>
+      <p>It is <strong>never sold separately and never will be</strong>. It comes with a SprinkFlow Tools subscription, and if you stop subscribing you simply stop having it. There's no upsell waiting at the end of the alpha.</p>
+      <p><a href="/design-studio-alpha.html" style="color:var(--water)">The full alpha expectations, in detail &rarr;</a></p>
+    </div>
+  </section>
+
+  <section class="ds-join">
+    <div class="ds-join-card">
+      <div class="kicker">How to get in</div>
+      <h2>The alpha rides along with SprinkFlow Tools.</h2>
+      <p>SprinkFlow Tools is the product — submittals, calc packages, estimating, and the whole toolbox a sprinkler designer reaches for. Start a trial of that, and the Studio comes with it.</p>
+      <div class="ds-flow">
+        <div><b>Step 1</b><span>Start your free 7-day trial of SprinkFlow Tools. Cancel any time before it ends and you're not charged.</span></div>
+        <div><b>Step 2</b><span>Download the Design Studio alpha and sign in with the same account. Your subscription is the key.</span></div>
+        <div><b>Step 3</b><span>Use it, break it, press F12 when something's wrong. That's the whole job of a tester.</span></div>
+      </div>
+      <div class="ds-cta" style="margin-bottom:8px">
+        <a href="/account.html?checkout=1" class="btn btn-primary btn-lg">Start my free trial</a>
+        <a href="/" class="btn btn-ghost btn-lg">See what SprinkFlow Tools does</a>
+      </div>
+      <p class="ds-fine">$39/month after the trial · cancel anytime · your card is set up at checkout</p>
+    </div>
+  </section>
+
+  <footer class="footer" style="margin-top:76px">
+    <div class="footer-brand"><img src="./assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> · <a href="/design-studio-alpha.html">Alpha access</a> · <a href="/studio/support/">Studio Support</a> · <a href="/learn/">Learn</a> · <a href="/release-notes.html">Release notes</a> · <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product · © <span id="year"></span></div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>

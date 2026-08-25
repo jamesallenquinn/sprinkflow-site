@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analysis, compliance &amp;amp; takeoff — Design Studio Support</title>
+  <meta name="description" content="The issues list, clash results, quantities, cut lists and estimating." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/studio/support/analysis.html" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .sup-wrap { max-width: 820px; margin: 0 auto; padding: 34px 22px 90px; }
+    .sup-crumb { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+    .sup-crumb a { color: var(--muted); }
+    .sup-crumb a:hover { color: var(--brand); }
+    .sup-wrap h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 4px 0 10px; }
+    .sup-lead { color: var(--muted); margin: 0 0 8px; max-width: 64ch; }
+    .sup-kicker { color: var(--brand); font: 700 .74rem 'Space Grotesk', sans-serif;
+      letter-spacing: .14em; text-transform: uppercase; }
+    .sup-note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; padding: 14px 18px; margin: 22px 0; color: var(--muted); font-size: .93rem; }
+    .sup-note strong { color: var(--ink); }
+    .sup-alpha { border-left-color: var(--water); }
+    .sup-sec { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      margin: 40px 0 6px; border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+    .sup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 14px; }
+    .sup-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px;
+      display: flex; flex-direction: column; gap: 6px; color: var(--ink); text-decoration: none; }
+    a.sup-card:hover { border-color: var(--brand); }
+    .sup-card h3 { margin: 0; font-size: .98rem; line-height: 1.3; }
+    .sup-card p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .sup-chip { align-self: flex-start; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 9px; margin-top: 3px;
+      background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); }
+    .sup-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
+      margin-top: 42px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .sup-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 230px; }
+
+    /* article body */
+    .sup-body { font-size: .97rem; line-height: 1.65; }
+    .sup-body h2 { font-size: 1.18rem; margin: 32px 0 8px; scroll-margin-top: 80px; }
+    .sup-body h3 { font-size: 1rem; margin: 20px 0 4px; }
+    .sup-body p { margin: 9px 0; }
+    .sup-body ol, .sup-body ul { margin: 8px 0; padding-left: 22px; }
+    .sup-body li { margin: 7px 0; }
+    .sup-body li::marker { color: var(--brand); font-weight: 700; }
+    .sup-body code, .sup-key { background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+      border-radius: 5px; font-size: .84em; padding: 1px 6px; white-space: nowrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .sup-key { font-weight: 600; color: var(--ink); }
+    .sup-body a { color: var(--brand); }
+    .sup-body a:hover { text-decoration: underline; }
+
+    /* where-it-lives table */
+    .sup-where { margin: 20px 0 8px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      background: var(--surface); }
+    .sup-where table { width: 100%; border-collapse: collapse; font-size: .89rem; }
+    .sup-where th { text-align: left; padding: 9px 14px; background: var(--surface-soft); color: var(--muted);
+      font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 700; }
+    .sup-where td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+    .sup-where td:first-child { color: var(--ink); font-weight: 600; width: 44%; }
+    .sup-where td:last-child { color: var(--muted); }
+    .sup-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .sup-rel { margin-top: 38px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .sup-rel h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 10px; }
+    .sup-rel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sup-rel a { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px;
+      font-size: .85rem; color: var(--muted); background: var(--surface); }
+    .sup-rel a:hover { border-color: var(--brand); color: var(--ink); }
+
+    /* index filter */
+    .sup-filter { margin: 22px 0 4px; }
+    .sup-filter input { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      color: var(--ink); font: inherit; font-size: .95rem; padding: 12px 16px; }
+    .sup-filter input:focus { outline: none; border-color: var(--brand); }
+    .sup-filter-note { color: var(--muted); font-size: .82rem; margin: 8px 2px 0; }
+    .sup-empty { color: var(--muted); font-size: .93rem; padding: 18px 2px; display: none; }
+
+    @media (max-width: 560px) {
+      .sup-wrap { padding: 26px 16px 70px; }
+      .sup-where td:first-child { width: 42%; }
+      .sup-where table { font-size: .84rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="/assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">SprinkFlow Tools</a><a href="/design-studio.html">Design Studio</a><a href="/studio/support/">Studio Support</a><a href="/learn/">Learn</a><a href="/account.html">Account</a></nav>
+    <a href="/design-studio-alpha.html" class="btn btn-primary btn-sm nav-buy">Get the alpha</a>
+  </header>
+
+  <main class="sup-wrap">
+    <nav class="sup-crumb"><a href="/">SprinkFlow</a> / <a href="/design-studio.html">Design Studio</a> / <a href="/studio/support/">Support</a> / Analysis, compliance &amp; takeoff</nav>
+    <span class="sup-kicker">Checking the design</span>
+    <h1>Analysis, compliance &amp; takeoff</h1>
+    <p class="sup-lead">The <strong>Analysis</strong> tab is where the Studio tells you what it thinks of your drawing &mdash; and where the numbers for buying and building it come from.</p>
+
+    <div class="sup-where sup-scroll">
+      <table>
+        <thead><tr><th>What</th><th>Where you'll find it</th></tr></thead>
+        <tbody>
+        <tr><td>Everything on this page</td><td>Side panel &rarr; <strong>Analysis</strong> tab</td></tr>
+        <tr><td>Exports of the same data</td><td><strong>Reports</strong> menu</td></tr>
+        <tr><td>Performance mode</td><td><strong>Display &amp; Defaults &rarr; Perf</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sup-body">
+
+      <h2>Live checking</h2>
+      <p>Analysis runs in the background and never blocks your drawing. Spacing, coverage, obstruction and general
+      lint checks all produce plain-language issues rather than error codes.</p>
+      <p>On a big job the Studio switches itself to <strong>Draft</strong> performance mode, which defers the heavier
+      live work. Switch <strong>Perf</strong> back to <strong>Full</strong> in <strong>Display &amp; Defaults</strong> when
+      you want everything current.</p>
+
+      <h2>The compliance tabs</h2>
+      <ul>
+        <li><strong>Issues</strong> &mdash; spacing violations, uncovered areas, heads too close to obstructions, heads
+            inside a clearance zone. This is the list to clear before you plot.</li>
+        <li><strong>Clashes</strong> &mdash; where your system runs through other geometry, including imported models.</li>
+        <li><strong>Warnings</strong> &mdash; anything the hydraulic solver is unhappy about.</li>
+      </ul>
+      <!-- SCREENSHOT: site/assets/support/analysis-issues.png - the Issues tab listing spacing and coverage problems in plain language -->
+
+      <h2>Quantities and fabrication</h2>
+      <ul>
+        <li><strong>Takeoff</strong> &mdash; quantities by category, size and material.</li>
+        <li><strong>Cut List</strong> and <strong>Spools</strong> &mdash; cut lengths with takeouts, spool grouping, and a
+            gap/repair check for fabrication problems.</li>
+        <li><strong>Nesting</strong> &mdash; stock-length nesting with a waste percentage, so you know how many sticks.</li>
+        <li><strong>Estimate</strong> &mdash; labour region, labour rate, markup and unit cost factors.</li>
+        <li><strong>Schedule</strong> &mdash; the device and sprinkler schedule with its symbol legend.</li>
+      </ul>
+      <div class="sup-note"><strong>Read the fabrication warnings.</strong> A size that is not in the takeout catalog
+      gets no takeout &mdash; a full-length, field-trimmable cut &mdash; and says so. A spool whose takeouts exceed the pipe
+      length is flagged &ldquo;cannot be fabricated as drawn&rdquo;. Neither is silently fudged, which is the point.</div>
+
+      <h2>Getting it out of the program</h2>
+      <p>The <strong>Reports</strong> menu writes the same information to files:</p>
+      <ul>
+        <li><strong>Project Summary (HTML)</strong> &mdash; heads, pipe and systems at a glance.</li>
+        <li><strong>Sealed Submittal (HTML)</strong>.</li>
+        <li><strong>Bid Takeoff (CSV + MD)</strong>.</li>
+        <li><strong>NFPA 25 ITM Schedule (CSV + MD)</strong> &mdash; the inspection, testing and maintenance schedule.</li>
+        <li><strong>Cut List / Spool Optimize</strong>, <strong>Stock Length Nesting Plan</strong>,
+            <strong>Fabrication Spool Schedule</strong>.</li>
+      </ul>
+      <p>Some of these are behind build flags and may not be in your copy yet.</p>
+
+      <h2>A workflow that keeps you honest</h2>
+      <ol>
+        <li>Lay out heads, then clear <strong>Issues</strong> while it is only heads &mdash; spacing and coverage problems
+            are cheap to fix before pipe exists.</li>
+        <li>Route pipe, then clear <strong>Clashes</strong>.</li>
+        <li>Set the remote area and supply, run the hydraulics, clear <strong>Warnings</strong>.</li>
+        <li>Only then generate hangers, bracing and dimensions &mdash; they are the parts most expensive to redo.</li>
+        <li>Take off quantities last, from a drawing that has already passed the other four.</li>
+      </ol>
+    </div>
+
+    <div class="sup-rel">
+      <h2>Related</h2>
+      <ul>
+        <li><a href="hydraulics.html">Hydraulic calculations</a></li>
+        <li><a href="coordination.html">3D models &amp; coordination</a></li>
+        <li><a href="export.html">Export &amp; handoff</a></li>
+        <li><a href="sprinklers.html">Sprinkler placement</a></li>
+        <li><a href="/studio/support/">All support topics</a></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="/assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> &middot; <a href="/design-studio.html">Design Studio</a> &middot; <a href="/studio/support/">Studio Support</a> &middot; <a href="/learn/">Learn</a> &middot; <a href="/release-notes.html">Release notes</a> &middot; <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+  <script>
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>

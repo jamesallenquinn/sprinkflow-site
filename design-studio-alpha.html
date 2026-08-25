@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SprinkFlow Design Studio (Alpha) — included with your subscription</title>
+  <meta name="description" content="SprinkFlow Design Studio is our Windows CAD program for sprinkler design, in early alpha. Every SprinkFlow Tools subscriber gets access while we build it — here's what alpha means, what testers get, and how to report a bug." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/design-studio-alpha.html" />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <meta property="og:title" content="SprinkFlow Design Studio (Alpha)" />
+  <meta property="og:description" content="Our sprinkler CAD program, in early alpha — free to use while you subscribe to SprinkFlow Tools." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .dsa-wrap { max-width: 820px; margin: 0 auto; padding: 34px 22px 90px; }
+    .dsa-crumb { font-size: .82rem; color: var(--muted); margin-bottom: 16px; }
+    .dsa-crumb a { color: var(--muted); }
+    .dsa-crumb a:hover { color: var(--brand); }
+    .dsa-wrap h1 { font-size: clamp(1.9rem, 4.4vw, 2.7rem); margin: 6px 0 14px; }
+    .dsa-lead { color: var(--muted); font-size: 1.06rem; margin: 0 0 8px; }
+
+    /* download card */
+    .dsa-get { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line);
+      border-radius: 20px; padding: 26px 26px 24px; margin: 30px 0 12px; box-shadow: var(--shadow); }
+    .dsa-get::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .10;
+      background: linear-gradient(120deg, var(--water) 0%, #7cd7f2 55%, var(--accent) 100%); }
+    .dsa-get > * { position: relative; }
+    .dsa-get h2 { font: 700 1.35rem/1.15 "Space Grotesk", sans-serif; margin: 0 0 8px; }
+    .dsa-get p { color: var(--muted); margin: 0 0 18px; font-size: .95rem; }
+    .dsa-get-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .dsa-ver { color: var(--muted); font-size: .86rem; }
+    .dsa-ver strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+    .dsa-steps { list-style: none; margin: 20px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line);
+      display: grid; gap: 12px; counter-reset: dsastep; }
+    .dsa-steps li { display: flex; gap: 12px; align-items: flex-start; color: var(--muted); font-size: .93rem; }
+    .dsa-steps li > span { flex: 1 1 auto; min-width: 0; }   /* keep the sentence one flow, not flex items */
+    .dsa-steps li::before { counter-increment: dsastep; content: counter(dsastep); flex: 0 0 auto;
+      display: inline-grid; place-items: center; width: 22px; height: 22px; margin-top: 1px; border-radius: 7px;
+      background: var(--grad-fire); color: #1a0d06; font: 700 .78rem "Space Grotesk", sans-serif; }
+    .dsa-steps strong { color: var(--ink); }
+
+    /* prose */
+    .dsa-body { font-size: .99rem; line-height: 1.68; }
+    .dsa-body h2 { font-size: 1.32rem; margin: 46px 0 10px; }
+    .dsa-body h3 { font-size: 1.04rem; margin: 24px 0 4px; }
+    .dsa-body p { margin: 10px 0; color: var(--ink); }
+    .dsa-body ul { margin: 10px 0; padding-left: 22px; color: var(--muted); }
+    .dsa-body li { margin: 7px 0; }
+    .dsa-body li::marker { color: var(--brand); }
+    .dsa-body li strong, .dsa-body p strong { color: var(--ink); }
+    .dsa-note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--water);
+      border-radius: 10px; padding: 14px 18px; margin: 18px 0; color: var(--muted); font-size: .94rem; }
+    .dsa-note strong { color: var(--ink); }
+
+    /* "what alpha means" two-column truth table */
+    .dsa-truth { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0 6px; }
+    .dsa-truth > div { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+    .dsa-truth h3 { margin: 0 0 8px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
+    .dsa-truth .yes h3 { color: var(--ok); }
+    .dsa-truth .no h3 { color: var(--accent); }
+    .dsa-truth ul { margin: 0; padding-left: 20px; }
+    @media (max-width: 640px) { .dsa-truth { grid-template-columns: 1fr; } }
+
+    .dsa-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px 24px;
+      margin-top: 46px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .dsa-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 240px; }
+  </style>
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-water"></span>
+    <span class="orb orb-amber"></span>
+  </div>
+
+  <header class="nav">
+    <a class="brand" href="/"><img src="./assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">SprinkFlow Tools</a><a href="/design-studio.html">Design Studio</a><a href="/studio/support/">Studio Support</a><a href="/learn/">Learn</a><a href="/account.html">Account</a></nav>
+    <a href="/account.html?checkout=1" class="btn btn-primary btn-sm nav-buy">Start free trial</a>
+  </header>
+
+  <main class="dsa-wrap">
+    <nav class="dsa-crumb"><a href="/">SprinkFlow</a> / <a href="/design-studio.html">Design Studio</a> / Alpha access</nav>
+    <div class="kicker" style="color:var(--water)">Included with your subscription</div>
+    <h1>SprinkFlow Design Studio<span class="ea-chip">Alpha</span></h1>
+    <p class="dsa-lead">A Windows CAD program built for sprinkler design — backgrounds, head layout, pipe routing, hydraulics on the system you actually drew, structure and elevations. It is early, it is unfinished, and if you subscribe to SprinkFlow Tools you can use it right now while we build it.</p>
+
+    <!-- download -->
+    <section class="dsa-get">
+      <h2>Get the alpha</h2>
+      <p>Windows 10/11. Your SprinkFlow Tools subscription is the key — there is nothing extra to buy and nothing extra to sign up for.</p>
+      <div class="dsa-get-row">
+        <a class="btn btn-primary btn-lg" id="dsaDownload"
+           href="https://github.com/jamesallenquinn/sprinkflow-releases/releases">Download for Windows</a>
+        <span class="dsa-ver" id="dsaVersion" role="status" aria-live="polite">Finding the latest build&hellip;</span>
+      </div>
+      <ol class="dsa-steps">
+        <li><span><strong>Install it.</strong> Windows may show a SmartScreen notice — the installer isn't code-signed yet. Choose <strong>More info → Run anyway</strong>.</span></li>
+        <li><span><strong>Sign in inside the app</strong> with the same email and password as your SprinkFlow Tools account. An active subscription unlocks the Studio automatically.</span></li>
+        <li><span><strong>Keep it updated.</strong> New builds land most weeks. The app checks for them, or come back here for the current installer.</span></li>
+      </ol>
+    </section>
+    <p class="dsa-ver" style="margin:0 0 10px">Not subscribed yet? <a href="/account.html?checkout=1" style="color:var(--brand)">Start a free 7-day trial of SprinkFlow Tools</a> — the Studio comes with it. New to the Studio? <a href="/design-studio.html" style="color:var(--water)">See what it does first &rarr;</a></p>
+
+    <div class="dsa-body">
+      <h2>What &ldquo;alpha&rdquo; means here</h2>
+      <p>Most software calls itself a beta once it's basically finished. This is earlier than that, and we'd rather say so than have you find out on a deadline. Design Studio is a real program doing real work — and it is also a program with rough edges, missing pieces, and things that will move next week.</p>
+
+      <div class="dsa-truth">
+        <div class="yes">
+          <h3>What to expect</h3>
+          <ul>
+            <li>A new build most weeks</li>
+            <li>Features that arrive half-dressed and get better</li>
+            <li>Rough edges, odd wording, and the occasional crash</li>
+            <li>Things moving between builds as the workflow settles</li>
+          </ul>
+        </div>
+        <div class="no">
+          <h3>What not to expect</h3>
+          <ul>
+            <li>A finished product — it isn't one yet</li>
+            <li>A promise that any particular feature ships by a date</li>
+            <li>Support turnaround like a shipping product's</li>
+            <li>That it should carry a job you can't afford to redo</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dsa-note"><strong>Use it as a second set of hands, not your only set.</strong> Keep your production work in the tools you trust today, and let the Studio earn its way in one task at a time. That's how the testers who enjoy this get the most out of it.</div>
+
+      <h2>What testers get</h2>
+      <ul>
+        <li><strong>The whole program.</strong> Not a trimmed-down preview — the same build we use.</li>
+        <li><strong>Every new build, first.</strong> Weekly cuts, as they're cut.</li>
+        <li><strong>A direct line into what gets built.</strong> The bug and idea reports coming out of the alpha are the roadmap. Small annoyances that get reported often tend to disappear fastest.</li>
+        <li><strong>No extra cost, ever.</strong> Access rides along with an active SprinkFlow Tools subscription. We are not selling the Studio, and you are not paying for it.</li>
+      </ul>
+
+      <h2>How to report a bug (please do)</h2>
+      <p>Press <kbd>F12</kbd> anywhere in the Studio. It grabs a screenshot of exactly what you're looking at, hands you a pen to circle the problem, and sends the whole thing — your note, the marked-up image, and what the app was doing — straight to us. No email, no forum account, no reproduction steps typed from memory.</p>
+      <h3>What makes a report useful</h3>
+      <ul>
+        <li>Circle the thing. One arrow beats three paragraphs.</li>
+        <li>Say what you expected to happen. That's usually the actual bug report.</li>
+        <li>File it while it's on screen — the app captures the state for you.</li>
+        <li>Small stuff counts. "This button is where I never look" is a real report.</li>
+      </ul>
+      <p>Ideas are welcome through the same button. If something in the Studio is slower than how you'd do it by hand, we want to hear that most of all.</p>
+
+      <h2>Your drawings, and the fine print</h2>
+      <p>Your project files stay on your machine. The Studio doesn't upload your drawings; a bug report sends only what you chose to send — your note, the screenshot you marked up, and technical details about the app itself.</p>
+      <p><strong>The honest disclaimer:</strong> alpha software is provided as-is, with no warranty and no guarantee of fitness for a particular job. Sprinkler design is life-safety work — every layout, calculation, and drawing that comes out of the Studio is yours to check, stamp, and stand behind, the same as any other tool on your bench. Back up your files. Don't let an alpha be the only copy of anything.</p>
+      <p>Access lasts as long as your subscription does. Features may change or be removed between builds, and nothing here is a promise that a particular capability will ship. If any of that is a dealbreaker, skip the alpha — SprinkFlow Tools is the product, and it stands on its own.</p>
+
+      <h2>Learn your way around</h2>
+      <p>The written lessons in <a href="/learn/" style="color:var(--brand)">SprinkFlow School</a> walk the Studio workflow start to finish — from a background and a first head layout through pipe routing, hydraulics, and elevations. Start with <a href="/learn/b1-design-studio-alpha.html" style="color:var(--brand)">B1 — heads on a plan in 10 minutes</a>, and check <a href="/studio/support/" style="color:var(--brand)">Design Studio Support</a> when something specific goes sideways.</p>
+    </div>
+
+    <div class="dsa-cta">
+      <p>Questions about the alpha, or your sign-in isn't unlocking it? <a href="mailto:jamesallenquinn@gmail.com?subject=SprinkFlow%20Design%20Studio%20alpha" style="color:var(--brand)">Email us</a> — a real person reads it.</p>
+      <a href="/learn/" class="btn btn-ghost btn-sm">Browse the lessons</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="./assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> · <a href="/design-studio.html">Design Studio</a> · <a href="/studio/support/">Studio Support</a> · <a href="/learn/">Learn</a> · <a href="/release-notes.html">Release notes</a> · <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product · © <span id="year"></span></div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // sticky-nav frosting (the homepage script isn't loaded here)
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+
+    // ---- resolve the current Design Studio installer -----------------------
+    // Studio builds publish as GitHub releases tagged studio-vX.Y.Z with
+    // --latest=false, so /releases/latest/download/… (what SprinkFlow Tools
+    // uses) can never point at one. Rather than hardcode a tag that goes stale
+    // every weekly cut, this asks the releases API for the newest build on the
+    // Studio line and rewrites the button. If the API is unreachable or rate
+    // limited, the button keeps its no-JS href: the releases list itself.
+    (function () {
+      var REPO = "jamesallenquinn/sprinkflow-releases";
+      var btn = document.getElementById("dsaDownload");
+      var note = document.getElementById("dsaVersion");
+      var LINE = /^(studio|spotter)-v/;   // "spotter-*" = the same program's older tags
+
+      function byDate(a, b) { return new Date(b.published_at) - new Date(a.published_at); }
+
+      function fallback(msg) {
+        note.innerHTML = msg + ' <a href="https://github.com/' + REPO +
+          '/releases" style="color:var(--water)">Browse all builds</a>';
+      }
+
+      fetch("https://api.github.com/repos/" + REPO + "/releases?per_page=100",
+            { headers: { Accept: "application/vnd.github+json" } })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (all) {
+          var line = all.filter(function (r) { return !r.draft && LINE.test(r.tag_name); });
+          if (!line.length) throw new Error("no studio release");
+          // a studio-tagged build always wins over the older tag prefix
+          var studio = line.filter(function (r) { return r.tag_name.indexOf("studio-v") === 0; });
+          var rel = (studio.length ? studio : line).sort(byDate)[0];
+          var exe = (rel.assets || []).filter(function (a) { return /\.exe$/i.test(a.name); })[0];
+          if (!exe) throw new Error("no installer asset");
+          var version = rel.tag_name.replace(LINE, "");
+          btn.href = exe.browser_download_url;
+          btn.textContent = "Download the alpha for Windows";
+          note.innerHTML = "Version <strong>" + version + "</strong> · released " +
+            new Date(rel.published_at).toLocaleDateString(undefined,
+              { year: "numeric", month: "long", day: "numeric" });
+        })
+        .catch(function () {
+          fallback("Grab the newest <em>Design&nbsp;Studio</em> installer from the releases page.");
+        });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hangers &amp;amp; seismic bracing — Design Studio Support</title>
+  <meta name="description" content="Generating hangers at code spacing, sway bracing with live calcs, and the obstruction rules." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/studio/support/hangers-bracing.html" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .sup-wrap { max-width: 820px; margin: 0 auto; padding: 34px 22px 90px; }
+    .sup-crumb { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+    .sup-crumb a { color: var(--muted); }
+    .sup-crumb a:hover { color: var(--brand); }
+    .sup-wrap h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 4px 0 10px; }
+    .sup-lead { color: var(--muted); margin: 0 0 8px; max-width: 64ch; }
+    .sup-kicker { color: var(--brand); font: 700 .74rem 'Space Grotesk', sans-serif;
+      letter-spacing: .14em; text-transform: uppercase; }
+    .sup-note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; padding: 14px 18px; margin: 22px 0; color: var(--muted); font-size: .93rem; }
+    .sup-note strong { color: var(--ink); }
+    .sup-alpha { border-left-color: var(--water); }
+    .sup-sec { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      margin: 40px 0 6px; border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+    .sup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 14px; }
+    .sup-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px;
+      display: flex; flex-direction: column; gap: 6px; color: var(--ink); text-decoration: none; }
+    a.sup-card:hover { border-color: var(--brand); }
+    .sup-card h3 { margin: 0; font-size: .98rem; line-height: 1.3; }
+    .sup-card p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .sup-chip { align-self: flex-start; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 9px; margin-top: 3px;
+      background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); }
+    .sup-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
+      margin-top: 42px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .sup-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 230px; }
+
+    /* article body */
+    .sup-body { font-size: .97rem; line-height: 1.65; }
+    .sup-body h2 { font-size: 1.18rem; margin: 32px 0 8px; scroll-margin-top: 80px; }
+    .sup-body h3 { font-size: 1rem; margin: 20px 0 4px; }
+    .sup-body p { margin: 9px 0; }
+    .sup-body ol, .sup-body ul { margin: 8px 0; padding-left: 22px; }
+    .sup-body li { margin: 7px 0; }
+    .sup-body li::marker { color: var(--brand); font-weight: 700; }
+    .sup-body code, .sup-key { background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+      border-radius: 5px; font-size: .84em; padding: 1px 6px; white-space: nowrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .sup-key { font-weight: 600; color: var(--ink); }
+    .sup-body a { color: var(--brand); }
+    .sup-body a:hover { text-decoration: underline; }
+
+    /* where-it-lives table */
+    .sup-where { margin: 20px 0 8px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      background: var(--surface); }
+    .sup-where table { width: 100%; border-collapse: collapse; font-size: .89rem; }
+    .sup-where th { text-align: left; padding: 9px 14px; background: var(--surface-soft); color: var(--muted);
+      font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 700; }
+    .sup-where td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+    .sup-where td:first-child { color: var(--ink); font-weight: 600; width: 44%; }
+    .sup-where td:last-child { color: var(--muted); }
+    .sup-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .sup-rel { margin-top: 38px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .sup-rel h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 10px; }
+    .sup-rel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sup-rel a { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px;
+      font-size: .85rem; color: var(--muted); background: var(--surface); }
+    .sup-rel a:hover { border-color: var(--brand); color: var(--ink); }
+
+    /* index filter */
+    .sup-filter { margin: 22px 0 4px; }
+    .sup-filter input { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      color: var(--ink); font: inherit; font-size: .95rem; padding: 12px 16px; }
+    .sup-filter input:focus { outline: none; border-color: var(--brand); }
+    .sup-filter-note { color: var(--muted); font-size: .82rem; margin: 8px 2px 0; }
+    .sup-empty { color: var(--muted); font-size: .93rem; padding: 18px 2px; display: none; }
+
+    @media (max-width: 560px) {
+      .sup-wrap { padding: 26px 16px 70px; }
+      .sup-where td:first-child { width: 42%; }
+      .sup-where table { font-size: .84rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="/assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">SprinkFlow Tools</a><a href="/design-studio.html">Design Studio</a><a href="/studio/support/">Studio Support</a><a href="/learn/">Learn</a><a href="/account.html">Account</a></nav>
+    <a href="/design-studio-alpha.html" class="btn btn-primary btn-sm nav-buy">Get the alpha</a>
+  </header>
+
+  <main class="sup-wrap">
+    <nav class="sup-crumb"><a href="/">SprinkFlow</a> / <a href="/design-studio.html">Design Studio</a> / <a href="/studio/support/">Support</a> / Hangers &amp; seismic bracing</nav>
+    <span class="sup-kicker">Piping</span>
+    <h1>Hangers &amp; seismic bracing</h1>
+    <p class="sup-lead">Hangers and bracing can be placed one at a time or generated across the whole system, and the Studio shows you the numbers behind them rather than just drawing hardware.</p>
+
+    <div class="sup-where sup-scroll">
+      <table>
+        <thead><tr><th>What</th><th>Where you'll find it</th></tr></thead>
+        <tbody>
+        <tr><td>Hanger tool</td><td><span class="sup-key">5</span> or <span class="sup-key">H</span>, or the <strong>SUPPLY</strong> toolbar group</td></tr>
+        <tr><td>Generate / normalise</td><td><strong>Auto &rarr; Generate Missing Hangers</strong> &middot; <strong>Normalize Hangers</strong></td></tr>
+        <tr><td>Hanger settings</td><td>Side panel &rarr; <strong>Hangers</strong> tab</td></tr>
+        <tr><td>Bracing</td><td>Side panel &rarr; <strong>Seismic</strong> tab</td></tr>
+        <tr><td>Overlays</td><td><strong>View &rarr; Seismic Zones of Influence</strong> &middot; <strong>Pipe Weight Heat Map</strong> &middot; <strong>Hanger Point Loads</strong></td></tr>
+        <tr><td>Insert dimensions</td><td><strong>Auto &rarr; Dimension Hanger Inserts</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sup-body">
+
+      <h2>Hangers</h2>
+      <ul>
+        <li>Press <span class="sup-key">5</span> (or <span class="sup-key">H</span>) and click a pipe to place one.</li>
+        <li>Right-click a pipe &rarr; <strong>Place Hanger on Pipe</strong> does the same from the pipe's own menu.</li>
+        <li><strong>Auto &rarr; Generate Missing Hangers</strong> fills the whole system at NFPA spacing.</li>
+        <li><strong>Auto &rarr; Normalize Hangers</strong> tidies an existing set back onto proper spacing.</li>
+        <li>The <strong>Hangers</strong> pill in PIPE ADD-ONS generates them as you draw. Off by default, because
+            bare pipe draws faster &mdash; backfill later.</li>
+      </ul>
+      <p>Hangers drag with a live preview, and their grab behaviour is the reference the rest of the program copies.</p>
+
+      <h2>The obstruction rules</h2>
+      <p>Two NFPA rules drive most of what the Studio flags around hangers and structure:</p>
+      <ul>
+        <li><strong>The 18-inch rule</strong> &mdash; a member more than 18&quot; below the deflector is exempt, for members
+            up to four feet wide.</li>
+        <li><strong>The 3&times; rule</strong> &mdash; for a member the head must clear, the required horizontal distance is
+            three times the member's dimension, <strong>capped at 24&quot; or 36&quot; for horizontal members</strong> per
+            NFPA&nbsp;13 10.2.8.3.1.4(A). <strong>Columns are not capped.</strong> Right-click offers
+            <strong>Three Times Rule (standard spray)</strong> and <strong>Four Times Rule (EC / residential)</strong>
+            where the head type calls for it.</li>
+      </ul>
+      <p>The <strong>spray umbrella</strong> panel explains, in plain language, both the violations and the passes &mdash;
+      so you can see <em>why</em> a head cleared as well as why one did not.</p>
+
+      <h2>Seismic bracing</h2>
+      <p>The <strong>Seismic</strong> tab generates cross-main sway braces and branch-line restraints, and each brace
+      carries live calculations rather than being a symbol. Turn on the <strong>Bracing</strong> pill in PIPE ADD-ONS
+      to have braces generate on qualifying mains as you draw &mdash; it is the same switch as the panel's.</p>
+      <p>Three overlays on the <strong>View</strong> menu make the design readable:</p>
+      <ul>
+        <li><strong>Seismic Zones of Influence</strong> &mdash; what each brace actually covers.</li>
+        <li><strong>Pipe Weight Heat Map</strong> &mdash; where the load is.</li>
+        <li><strong>Hanger Point Loads</strong> &mdash; the load at each attachment.</li>
+      </ul>
+      <p><strong>Tools &rarr; Seismic Bracing Overlays&hellip;</strong> gives finer control over all three.</p>
+      <!-- SCREENSHOT: site/assets/support/seismic-zoi-overlay.png - zone-of-influence overlay over a braced main -->
+
+      <h2>Getting it onto the drawing</h2>
+      <p><strong>Auto &rarr; Dimension Hanger Inserts</strong> dimensions the insert locations for the field, and the
+      <strong>Hanger Insert Plan</strong> layer view mode (<strong>View &rarr; Layer View Modes</strong>) shows just what
+      that sheet needs.</p>
+
+      <div class="sup-note sup-alpha"><strong>Where this is still moving.</strong> Branch-line restraint carving is
+      partial. The full TOLCO-parity bracing calculator exists as a separate tool and its engine has not been folded
+      into the Studio yet. The OPM-0052 seismic detail library (TOLCO / 2022 CBC symbols and assemblies) is specified
+      but not built &mdash; do not expect it in your build.</div>
+    </div>
+
+    <div class="sup-rel">
+      <h2>Related</h2>
+      <ul>
+        <li><a href="piping.html">Drawing pipe</a></li>
+        <li><a href="structure.html">Structure &amp; elevations</a></li>
+        <li><a href="analysis.html">Analysis &amp; compliance</a></li>
+        <li><a href="sheets.html">Sheets &amp; plotting</a></li>
+        <li><a href="/studio/support/">All support topics</a></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="/assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> &middot; <a href="/design-studio.html">Design Studio</a> &middot; <a href="/studio/support/">Studio Support</a> &middot; <a href="/learn/">Learn</a> &middot; <a href="/release-notes.html">Release notes</a> &middot; <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+  <script>
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>

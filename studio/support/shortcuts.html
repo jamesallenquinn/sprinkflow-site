@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Keyboard shortcuts &amp;amp; settings — Design Studio Support</title>
+  <meta name="description" content="The full default key map, how to rebind it, and where the program&#x27;s settings live." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/studio/support/shortcuts.html" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .sup-wrap { max-width: 820px; margin: 0 auto; padding: 34px 22px 90px; }
+    .sup-crumb { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+    .sup-crumb a { color: var(--muted); }
+    .sup-crumb a:hover { color: var(--brand); }
+    .sup-wrap h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 4px 0 10px; }
+    .sup-lead { color: var(--muted); margin: 0 0 8px; max-width: 64ch; }
+    .sup-kicker { color: var(--brand); font: 700 .74rem 'Space Grotesk', sans-serif;
+      letter-spacing: .14em; text-transform: uppercase; }
+    .sup-note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; padding: 14px 18px; margin: 22px 0; color: var(--muted); font-size: .93rem; }
+    .sup-note strong { color: var(--ink); }
+    .sup-alpha { border-left-color: var(--water); }
+    .sup-sec { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      margin: 40px 0 6px; border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+    .sup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 14px; }
+    .sup-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px;
+      display: flex; flex-direction: column; gap: 6px; color: var(--ink); text-decoration: none; }
+    a.sup-card:hover { border-color: var(--brand); }
+    .sup-card h3 { margin: 0; font-size: .98rem; line-height: 1.3; }
+    .sup-card p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .sup-chip { align-self: flex-start; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 9px; margin-top: 3px;
+      background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); }
+    .sup-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
+      margin-top: 42px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .sup-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 230px; }
+
+    /* article body */
+    .sup-body { font-size: .97rem; line-height: 1.65; }
+    .sup-body h2 { font-size: 1.18rem; margin: 32px 0 8px; scroll-margin-top: 80px; }
+    .sup-body h3 { font-size: 1rem; margin: 20px 0 4px; }
+    .sup-body p { margin: 9px 0; }
+    .sup-body ol, .sup-body ul { margin: 8px 0; padding-left: 22px; }
+    .sup-body li { margin: 7px 0; }
+    .sup-body li::marker { color: var(--brand); font-weight: 700; }
+    .sup-body code, .sup-key { background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+      border-radius: 5px; font-size: .84em; padding: 1px 6px; white-space: nowrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .sup-key { font-weight: 600; color: var(--ink); }
+    .sup-body a { color: var(--brand); }
+    .sup-body a:hover { text-decoration: underline; }
+
+    /* where-it-lives table */
+    .sup-where { margin: 20px 0 8px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      background: var(--surface); }
+    .sup-where table { width: 100%; border-collapse: collapse; font-size: .89rem; }
+    .sup-where th { text-align: left; padding: 9px 14px; background: var(--surface-soft); color: var(--muted);
+      font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 700; }
+    .sup-where td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+    .sup-where td:first-child { color: var(--ink); font-weight: 600; width: 44%; }
+    .sup-where td:last-child { color: var(--muted); }
+    .sup-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .sup-rel { margin-top: 38px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .sup-rel h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 10px; }
+    .sup-rel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sup-rel a { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px;
+      font-size: .85rem; color: var(--muted); background: var(--surface); }
+    .sup-rel a:hover { border-color: var(--brand); color: var(--ink); }
+
+    /* index filter */
+    .sup-filter { margin: 22px 0 4px; }
+    .sup-filter input { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      color: var(--ink); font: inherit; font-size: .95rem; padding: 12px 16px; }
+    .sup-filter input:focus { outline: none; border-color: var(--brand); }
+    .sup-filter-note { color: var(--muted); font-size: .82rem; margin: 8px 2px 0; }
+    .sup-empty { color: var(--muted); font-size: .93rem; padding: 18px 2px; display: none; }
+
+    @media (max-width: 560px) {
+      .sup-wrap { padding: 26px 16px 70px; }
+      .sup-where td:first-child { width: 42%; }
+      .sup-where table { font-size: .84rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="/assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">SprinkFlow Tools</a><a href="/design-studio.html">Design Studio</a><a href="/studio/support/">Studio Support</a><a href="/learn/">Learn</a><a href="/account.html">Account</a></nav>
+    <a href="/design-studio-alpha.html" class="btn btn-primary btn-sm nav-buy">Get the alpha</a>
+  </header>
+
+  <main class="sup-wrap">
+    <nav class="sup-crumb"><a href="/">SprinkFlow</a> / <a href="/design-studio.html">Design Studio</a> / <a href="/studio/support/">Support</a> / Keyboard shortcuts &amp; settings</nav>
+    <span class="sup-kicker">Finding your way around</span>
+    <h1>Keyboard shortcuts &amp; settings</h1>
+    <p class="sup-lead">Design Studio is built to be driven from the keyboard with one hand while the other stays on the mouse. Every shortcut below is a default &mdash; all of them can be changed.</p>
+
+    <div class="sup-where sup-scroll">
+      <table>
+        <thead><tr><th>What</th><th>Where you'll find it</th></tr></thead>
+        <tbody>
+        <tr><td>Shortcut editor</td><td><strong>Edit &rarr; Preferences&hellip;</strong> &rarr; keyboard shortcuts</td></tr>
+        <tr><td>Object defaults</td><td><strong>Edit &rarr; Default Properties&hellip;</strong></td></tr>
+        <tr><td>Display &amp; performance</td><td><strong>Display &amp; Defaults</strong> dropdown on the toolbar's second row</td></tr>
+        <tr><td>Job-wide defaults</td><td>Side panel &rarr; <strong>Project</strong> tab</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sup-body">
+
+      <h2>Tools</h2>
+      <div class="sup-scroll"><table class="sup-keytable" style="width:100%;border-collapse:collapse;font-size:.9rem">
+        <tr><td style="padding:5px 0;width:9rem"><span class="sup-key">Q</span></td><td style="color:var(--muted)">Select tool</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">P</span></td><td style="color:var(--muted)">Pipe tool</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">S</span></td><td style="color:var(--muted)">Sprinkler tool</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">1</span> <span class="sup-key">2</span> <span class="sup-key">3</span> <span class="sup-key">4</span></td><td style="color:var(--muted)">Pendent &middot; upright &middot; sidewall &middot; concealed pendent</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">L</span></td><td style="color:var(--muted)">Coverage Cell (head layout) tool</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">F</span></td><td style="color:var(--muted)">Fitting tool &mdash; or, with a pipe selected, generate that pipe's missing fittings</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">5</span> / <span class="sup-key">H</span></td><td style="color:var(--muted)">Hanger tool</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">V</span></td><td style="color:var(--muted)">Valve tool</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">6</span></td><td style="color:var(--muted)">Pressure gauge</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+Shift+W</span> / <span class="sup-key">Ctrl+Shift+P</span></td><td style="color:var(--muted)">Water supply &middot; fire pump</td></tr>
+      </table></div>
+
+      <h2>Drafting &amp; annotation</h2>
+      <div class="sup-scroll"><table style="width:100%;border-collapse:collapse;font-size:.9rem">
+        <tr><td style="padding:5px 0;width:9rem"><span class="sup-key">G</span> / <span class="sup-key">Ctrl+L</span></td><td style="color:var(--muted)">Line segment</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">R</span></td><td style="color:var(--muted)">Rectangle</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">C</span></td><td style="color:var(--muted)">Circle</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">X</span></td><td style="color:var(--muted)">Crosshatch polygon</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">T</span></td><td style="color:var(--muted)">Text tool &mdash; or, with something selected, jump to its Properties</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+T</span></td><td style="color:var(--muted)">Text box</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">E</span></td><td style="color:var(--muted)">Leader</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">O</span></td><td style="color:var(--muted)">Revision cloud</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">W</span> / <span class="sup-key">Ctrl+W</span></td><td style="color:var(--muted)">Dimension &middot; running dimension</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Shift+V</span></td><td style="color:var(--muted)">Viewport (view frame)</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+Shift+A</span></td><td style="color:var(--muted)">Plan callout</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+Shift+S</span></td><td style="color:var(--muted)">Section</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Alt+O</span> <span class="sup-key">Alt+T</span> <span class="sup-key">Alt+X</span> <span class="sup-key">Alt+F</span> <span class="sup-key">Alt+H</span></td><td style="color:var(--muted)">Offset &middot; Trim &middot; Extend &middot; Fillet &middot; Chamfer</td></tr>
+      </table></div>
+
+      <h2>Building elements</h2>
+      <div class="sup-scroll"><table style="width:100%;border-collapse:collapse;font-size:.9rem">
+        <tr><td style="padding:5px 0;width:9rem"><span class="sup-key">Ctrl+Shift+B</span></td><td style="color:var(--muted)">Beam</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+Shift+C</span></td><td style="color:var(--muted)">Column line</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+Alt+W</span></td><td style="color:var(--muted)">Wall</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+Shift+R</span></td><td style="color:var(--muted)">Roof plane</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+Shift+F</span></td><td style="color:var(--muted)">Floor slab</td></tr>
+      </table></div>
+
+      <h2>Editing &amp; selection</h2>
+      <div class="sup-scroll"><table style="width:100%;border-collapse:collapse;font-size:.9rem">
+        <tr><td style="padding:5px 0;width:9rem"><span class="sup-key">Ctrl+Z</span> / <span class="sup-key">Ctrl+Y</span></td><td style="color:var(--muted)">Undo &middot; redo</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+C</span> <span class="sup-key">Ctrl+X</span> <span class="sup-key">Ctrl+V</span></td><td style="color:var(--muted)">Copy &middot; cut &middot; paste, each with a base point</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+A</span> <span class="sup-key">Ctrl+D</span> <span class="sup-key">Ctrl+I</span></td><td style="color:var(--muted)">Select all &middot; deselect all &middot; invert selection</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">A</span> / <span class="sup-key">Shift+A</span></td><td style="color:var(--muted)">Select all similar &middot; select all like selected inside a rectangle</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">D</span> / <span class="sup-key">Delete</span></td><td style="color:var(--muted)">Delete selection</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Alt+M</span> <span class="sup-key">Alt+A</span> <span class="sup-key">Alt+R</span> <span class="sup-key">Alt+S</span></td><td style="color:var(--muted)">Mirror &middot; array &middot; rotate &middot; scale selection</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Alt+E</span> / <span class="sup-key">Ctrl+E</span></td><td style="color:var(--muted)">Match elevation &middot; elevate elements to the last-selected pipe</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Alt+P</span></td><td style="color:var(--muted)">Match properties</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">B</span></td><td style="color:var(--muted)">Flatten selection to zero elevation</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">M</span></td><td style="color:var(--muted)">Maintain Connections on/off</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Z</span></td><td style="color:var(--muted)">Resolve Connections</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">I</span> / <span class="sup-key">Shift+I</span> / <span class="sup-key">Shift+H</span></td><td style="color:var(--muted)">Isolate the selection's layers &middot; unisolate &middot; hide that layer</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+R</span></td><td style="color:var(--muted)">Recall the last selection</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">F2</span></td><td style="color:var(--muted)">Place benchmark (the copy/paste base point)</td></tr>
+      </table></div>
+
+      <h2>While you are drawing</h2>
+      <div class="sup-scroll"><table style="width:100%;border-collapse:collapse;font-size:.9rem">
+        <tr><td style="padding:5px 0;width:9rem"><span class="sup-key">Enter</span></td><td style="color:var(--muted)">Finish the run</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Backspace</span></td><td style="color:var(--muted)">Undo the last segment</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Esc</span></td><td style="color:var(--muted)">Cancel the command / clear the selection</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Tab</span></td><td style="color:var(--muted)">Cycle the snap candidates under the cursor &mdash; or accept a rhythm ghost when one is showing</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">.</span></td><td style="color:var(--muted)">Repeat the last placement; hold to sweep a run of them</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Space</span></td><td style="color:var(--muted)">Repeat the previous tool</td></tr>
+        <tr><td style="padding:5px 0">Type a number</td><td style="color:var(--muted)">Typed distance entry &mdash; feet first, so <code>12-6</code> is 12'-6"</td></tr>
+      </table></div>
+
+      <h2>Function keys</h2>
+      <div class="sup-scroll"><table style="width:100%;border-collapse:collapse;font-size:.9rem">
+        <tr><td style="padding:5px 0;width:9rem"><span class="sup-key">F2</span></td><td style="color:var(--muted)">Place benchmark</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">F3</span></td><td style="color:var(--muted)"><strong>All snaps on/off</strong> &mdash; the master switch</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">F4</span></td><td style="color:var(--muted)">Pipe snap</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">F5</span></td><td style="color:var(--muted)">Reload viewport</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">F6</span> / <span class="sup-key">F7</span></td><td style="color:var(--muted)">Center snap &middot; endpoint snap</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">F8</span> / <span class="sup-key">F9</span></td><td style="color:var(--muted)">Perpendicular snap</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">F10</span></td><td style="color:var(--muted)">Intersection snap</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">F11</span></td><td style="color:var(--muted)">Full screen drawing</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">F12</span></td><td style="color:var(--muted)"><strong>Report a bug</strong></td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Shift+F2</span> / <span class="sup-key">Shift+F3</span> / <span class="sup-key">Shift+F5</span></td><td style="color:var(--muted)">Elevation lock &middot; rounding snap &middot; midpoint snap</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Alt+F2</span> / <span class="sup-key">Ctrl+F3</span></td><td style="color:var(--muted)">Ortho &middot; visible grid</td></tr>
+      </table></div>
+
+      <div class="sup-note"><strong>Two collisions worth knowing.</strong> <span class="sup-key">F12</span> belongs to
+      the bug reporter, so the Near snap has no working function key &mdash; use its <strong>Near</strong> pill in the
+      SNAPS row. And <span class="sup-key">Ctrl+P</span> plots to PDF, so the Polyline tool's listed
+      <span class="sup-key">Ctrl+P</span> does not fire &mdash; start a polyline from the ANNOTATE toolbar group instead.</div>
+
+      <h2>File &amp; output</h2>
+      <div class="sup-scroll"><table style="width:100%;border-collapse:collapse;font-size:.9rem">
+        <tr><td style="padding:5px 0;width:9rem"><span class="sup-key">Ctrl+S</span></td><td style="color:var(--muted)">Save</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+P</span></td><td style="color:var(--muted)">Plot plans to PDF</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+Shift+K</span></td><td style="color:var(--muted)">Run any command by name</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+Shift+X</span></td><td style="color:var(--muted)">Create a repro bundle</td></tr>
+        <tr><td style="padding:5px 0"><span class="sup-key">Ctrl+Shift+D</span></td><td style="color:var(--muted)">Save diagnostic screenshots of the viewport</td></tr>
+      </table></div>
+
+      <h2>Changing a shortcut</h2>
+      <p>Open <strong>Edit &rarr; Preferences&hellip;</strong> and find the keyboard shortcut list. Every action shows
+      its default and its current binding; click the gesture and press the keys you want. Two actions may not share
+      a gesture &mdash; if the list ends up invalid it resets itself to the defaults rather than leaving you with keys
+      that do nothing.</p>
+      <p>An action can carry more than one gesture; that is how the hanger tool answers both
+      <span class="sup-key">5</span> and <span class="sup-key">H</span>.</p>
+
+      <h2>The other settings</h2>
+      <ul>
+        <li><strong>Edit &rarr; Default Properties&hellip;</strong> &mdash; what a newly placed object starts life as: pipe
+            material and schedule, sprinkler K-factor and temperature, hanger type, drop style.</li>
+        <li><strong>Side panel &rarr; Project</strong> &mdash; the same idea at job scale, split into Pipe, Sprinkler,
+            Hanger, Drafting and Building. Set it once when you start the job.</li>
+        <li><strong>Display &amp; Defaults</strong> (toolbar, second row) &mdash; theme, performance mode, camera and
+            render styles, head-layout spacing, snap kind labels, hover highlight.</li>
+      </ul>
+      <div class="sup-note"><strong>Performance mode matters on big drawings.</strong> <strong>Full</strong> re-runs live
+      analysis immediately. <strong>Draft</strong> defers the live hydraulic work and hides hydraulic node tags so
+      drafting stays fast; the Studio selects Draft for you on very large jobs.</div>
+    </div>
+
+    <div class="sup-rel">
+      <h2>Related</h2>
+      <ul>
+        <li><a href="workspace.html">The workspace tour</a></li>
+        <li><a href="snapping.html">Snapping &amp; drawing aids</a></li>
+        <li><a href="drafting.html">Drawing &amp; editing</a></li>
+        <li><a href="/studio/support/">All support topics</a></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="/assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> &middot; <a href="/design-studio.html">Design Studio</a> &middot; <a href="/studio/support/">Studio Support</a> &middot; <a href="/learn/">Learn</a> &middot; <a href="/release-notes.html">Release notes</a> &middot; <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+  <script>
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Snapping &amp;amp; drawing aids — Design Studio Support</title>
+  <meta name="description" content="Every snap, what the blue ring means, Tab to cycle, and the master switch when snaps fight you." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/studio/support/snapping.html" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .sup-wrap { max-width: 820px; margin: 0 auto; padding: 34px 22px 90px; }
+    .sup-crumb { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+    .sup-crumb a { color: var(--muted); }
+    .sup-crumb a:hover { color: var(--brand); }
+    .sup-wrap h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 4px 0 10px; }
+    .sup-lead { color: var(--muted); margin: 0 0 8px; max-width: 64ch; }
+    .sup-kicker { color: var(--brand); font: 700 .74rem 'Space Grotesk', sans-serif;
+      letter-spacing: .14em; text-transform: uppercase; }
+    .sup-note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; padding: 14px 18px; margin: 22px 0; color: var(--muted); font-size: .93rem; }
+    .sup-note strong { color: var(--ink); }
+    .sup-alpha { border-left-color: var(--water); }
+    .sup-sec { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      margin: 40px 0 6px; border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+    .sup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 14px; }
+    .sup-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px;
+      display: flex; flex-direction: column; gap: 6px; color: var(--ink); text-decoration: none; }
+    a.sup-card:hover { border-color: var(--brand); }
+    .sup-card h3 { margin: 0; font-size: .98rem; line-height: 1.3; }
+    .sup-card p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .sup-chip { align-self: flex-start; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 9px; margin-top: 3px;
+      background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); }
+    .sup-cta { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
+      margin-top: 42px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .sup-cta p { margin: 0; color: var(--muted); flex: 1; min-width: 230px; }
+
+    /* article body */
+    .sup-body { font-size: .97rem; line-height: 1.65; }
+    .sup-body h2 { font-size: 1.18rem; margin: 32px 0 8px; scroll-margin-top: 80px; }
+    .sup-body h3 { font-size: 1rem; margin: 20px 0 4px; }
+    .sup-body p { margin: 9px 0; }
+    .sup-body ol, .sup-body ul { margin: 8px 0; padding-left: 22px; }
+    .sup-body li { margin: 7px 0; }
+    .sup-body li::marker { color: var(--brand); font-weight: 700; }
+    .sup-body code, .sup-key { background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+      border-radius: 5px; font-size: .84em; padding: 1px 6px; white-space: nowrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .sup-key { font-weight: 600; color: var(--ink); }
+    .sup-body a { color: var(--brand); }
+    .sup-body a:hover { text-decoration: underline; }
+
+    /* where-it-lives table */
+    .sup-where { margin: 20px 0 8px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      background: var(--surface); }
+    .sup-where table { width: 100%; border-collapse: collapse; font-size: .89rem; }
+    .sup-where th { text-align: left; padding: 9px 14px; background: var(--surface-soft); color: var(--muted);
+      font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 700; }
+    .sup-where td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+    .sup-where td:first-child { color: var(--ink); font-weight: 600; width: 44%; }
+    .sup-where td:last-child { color: var(--muted); }
+    .sup-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .sup-rel { margin-top: 38px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .sup-rel h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 10px; }
+    .sup-rel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sup-rel a { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px;
+      font-size: .85rem; color: var(--muted); background: var(--surface); }
+    .sup-rel a:hover { border-color: var(--brand); color: var(--ink); }
+
+    /* index filter */
+    .sup-filter { margin: 22px 0 4px; }
+    .sup-filter input { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      color: var(--ink); font: inherit; font-size: .95rem; padding: 12px 16px; }
+    .sup-filter input:focus { outline: none; border-color: var(--brand); }
+    .sup-filter-note { color: var(--muted); font-size: .82rem; margin: 8px 2px 0; }
+    .sup-empty { color: var(--muted); font-size: .93rem; padding: 18px 2px; display: none; }
+
+    @media (max-width: 560px) {
+      .sup-wrap { padding: 26px 16px 70px; }
+      .sup-where td:first-child { width: 42%; }
+      .sup-where table { font-size: .84rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="/assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links"><a href="/#features">SprinkFlow Tools</a><a href="/design-studio.html">Design Studio</a><a href="/studio/support/">Studio Support</a><a href="/learn/">Learn</a><a href="/account.html">Account</a></nav>
+    <a href="/design-studio-alpha.html" class="btn btn-primary btn-sm nav-buy">Get the alpha</a>
+  </header>
+
+  <main class="sup-wrap">
+    <nav class="sup-crumb"><a href="/">SprinkFlow</a> / <a href="/design-studio.html">Design Studio</a> / <a href="/studio/support/">Support</a> / Snapping &amp; drawing aids</nav>
+    <span class="sup-kicker">Drawing</span>
+    <h1>Snapping &amp; drawing aids</h1>
+    <p class="sup-lead">Snaps are what make a CAD program feel good or feel awful, so they get their own row on the toolbar and their own function keys. The rule the Studio holds itself to: <strong>a snap mark appears if and only if clicking right now would commit that snap</strong>.</p>
+
+    <div class="sup-where sup-scroll">
+      <table>
+        <thead><tr><th>What</th><th>Where you'll find it</th></tr></thead>
+        <tbody>
+        <tr><td>The snap pills</td><td>The <strong>SNAPS</strong> group on the toolbar</td></tr>
+        <tr><td>Master on/off</td><td><span class="sup-key">F3</span>, or the <strong>On</strong> pill</td></tr>
+        <tr><td>Ortho</td><td><span class="sup-key">Alt+F2</span>, or the <strong>Ortho</strong> pill in MODES</td></tr>
+        <tr><td>Snap tolerance / grid size</td><td>Second toolbar row</td></tr>
+        <tr><td>Snap kind labels, hover highlight</td><td><strong>Display &amp; Defaults</strong> dropdown</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sup-body">
+
+      <h2>What a snap looks like</h2>
+      <p>When a snap is live you get a <strong>hollow blue ring</strong> at the exact point the click will take,
+      with a bright halo so it reads over any linework, and the object it is snapping to lights up in pale blue.
+      The status readout names the snap in words &mdash; &ldquo;Endpoint snap&rdquo;, &ldquo;Dimension midpoint&rdquo;.</p>
+      <!-- SCREENSHOT: site/assets/support/snap-ring.png - the blue snap ring on a pipe endpoint with the source object highlighted -->
+      <p>Weaker snaps &mdash; Near, ortho, alignment &mdash; draw the same ring more faintly, so a strong snap a few
+      pixels away visibly wins. If you want the kind named right beside the cursor, turn on
+      <strong>Snap kind labels</strong> in <strong>Display &amp; Defaults</strong>.</p>
+      <p>A soft grey circle that follows your cursor is <em>not</em> a snap. That is just the cursor ghost telling
+      you where the point tool currently is.</p>
+
+      <h2>The pills</h2>
+      <div class="sup-scroll"><table style="width:100%;border-collapse:collapse;font-size:.9rem">
+        <tr><td style="padding:6px 0;width:6.5rem"><strong>On</strong></td><td style="color:var(--muted)"><span class="sup-key">F3</span> &mdash; the master. Off means every snap and magnet stops, and objects land exactly where you click.</td></tr>
+        <tr><td style="padding:6px 0"><strong>End</strong></td><td style="color:var(--muted)"><span class="sup-key">F7</span> &mdash; endpoints.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Cen</strong></td><td style="color:var(--muted)"><span class="sup-key">F6</span> &mdash; centres of couplings, fittings, valves, heads, hangers and drafting shapes.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Mid</strong></td><td style="color:var(--muted)"><span class="sup-key">Shift+F5</span> &mdash; pipe and segment midpoints, and the middle of a drafted dimension.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Pipe</strong></td><td style="color:var(--muted)"><span class="sup-key">F4</span> &mdash; pipe centreline. Also the master gate for Perp, Near and Int.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Perp</strong></td><td style="color:var(--muted)"><span class="sup-key">F8</span> or <span class="sup-key">F9</span> &mdash; perpendicular.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Near</strong></td><td style="color:var(--muted)">Quarter-inch stations along an object. No function key &mdash; see the note below.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Int</strong></td><td style="color:var(--muted)"><span class="sup-key">F10</span> &mdash; crossings, both plan crossings and true 3D ones.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Tile</strong></td><td style="color:var(--muted)">Ceiling tile centres from an imported ceiling grid. The sprinkler tool's best friend.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Lt&middot;Mid</strong></td><td style="color:var(--muted)">On ceilings with no grid, locks to the midpoint between two nearby light fixtures.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Align</strong></td><td style="color:var(--muted)">Magnetic smart guides &mdash; pulls into line with existing head rows, columns and pipe ends, and draws the dashed guide.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Ctr</strong></td><td style="color:var(--muted)">Dead centre of the live dimension under a head you are placing &mdash; the point where both readouts show the same number.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Tile&nbsp;&#10005;</strong></td><td style="color:var(--muted)">Shows a mark at every spot the tile magnet can land a head. A view aid; never plots.</td></tr>
+        <tr><td style="padding:6px 0"><strong>Grid</strong></td><td style="color:var(--muted)">The drawing grid, at the <strong>Grid size</strong> on the second toolbar row.</td></tr>
+      </table></div>
+
+      <div class="sup-note"><strong>Near has no function key right now.</strong> It used to be
+      <span class="sup-key">F12</span>, and <span class="sup-key">F12</span> now opens the bug reporter from
+      anywhere &mdash; which wins. Toggle Near from its pill.</div>
+
+      <h2>Tab cycles the candidates</h2>
+      <p>When several snaps are competing under your cursor, press <span class="sup-key">Tab</span> to step through
+      them. The status bar names each one as you land on it; click to take it. Move the mouse and the cycle ends.</p>
+      <p>Mid-draw you can also force one snap for the <em>next pick only</em>:
+      <span class="sup-key">E</span> endpoint, <span class="sup-key">C</span> centre,
+      <span class="sup-key">M</span> midpoint, <span class="sup-key">N</span> near.
+      <span class="sup-key">Esc</span> cancels the one-shot.</p>
+
+      <h2>Ortho, elevation lock, and rounding</h2>
+      <ul>
+        <li><strong>Ortho</strong> (<span class="sup-key">Alt+F2</span>) locks to the axis. Hold
+            <span class="sup-key">Shift</span> to flip it temporarily &mdash; the pill shows the state you are actually
+            getting. Ortho is a hard axis lock: a snap decides where <em>along</em> the axis you land, never whether
+            you leave it. 45&deg; runs are included.</li>
+        <li><strong>Elev Lock</strong> (<span class="sup-key">Shift+F2</span>, or the tick on the second toolbar row)
+            holds the elevation in the <strong>Elev</strong> box while you draw, even when you snap to something at a
+            different height.</li>
+        <li><strong>Rounding snap</strong> (<span class="sup-key">Shift+F3</span>) rounds picks to a clean increment.</li>
+      </ul>
+      <p>Ortho is a mode, not a snap, so it keeps working with <span class="sup-key">F3</span> off &mdash; and it still
+      shows its mark, so the plan always says why the point moved.</p>
+
+      <div class="sup-note sup-alpha"><strong>In progress:</strong> ortho behaves identically everywhere except two
+      places &mdash; dragging a drafting shape's vertex grip, and dragging a building element's grip. Those two do not
+      have an ortho base point yet. Everything else &mdash; drawing, moving heads, pipe bodies, coverage cell edges
+      &mdash; uses the same hard lock.</div>
+
+      <h2>The magnets</h2>
+      <p>Beyond the classic object snaps, the Studio pulls toward things a sprinkler designer aims at anyway:</p>
+      <ul>
+        <li>Ceiling tile centres, including the two quarter points of a 2&times;4.</li>
+        <li>The centreline of a room, and the centre point between two walls, two heads, or a wall and a head.</li>
+        <li>Column centres.</li>
+        <li>Existing head rows and columns, from about a foot out, with a dashed guide line to show what you caught.</li>
+        <li>Parallel alignment with existing linework while you are placing the <em>end</em> of a new line.</li>
+      </ul>
+      <p>All of them die with <span class="sup-key">F3</span>.</p>
+
+      <h2>Rhythm assist &mdash; the program pedalling with you</h2>
+      <p>Place three heads in a rhythm &mdash; the same spacing, the same position in each bay, the same station along
+      a pipe &mdash; and a <strong>faint ghost of the next one</strong> appears.</p>
+      <ul>
+        <li><span class="sup-key">Tab</span>, or a click on the ghost, places it. The next prediction appears
+            immediately, so Tab-Tab-Tab walks the row.</li>
+        <li><strong>Hold</strong> <span class="sup-key">Tab</span> to sweep &mdash; placements flow with a running count
+            in the readout and stop at the first one that would break a rule or leave the pattern. The whole sweep
+            is <em>one</em> undo.</li>
+        <li><span class="sup-key">.</span> repeats your last placement; hold it to sweep the same way.</li>
+        <li>Ignoring a ghost costs nothing. Keep working and it goes away; ignore it often enough and the assist
+            backs off by itself.</li>
+      </ul>
+      <p>A ghost only appears for a placement that would pass the same rules as a manual click &mdash; it will not
+      offer you a head inside an obstruction.</p>
+
+      <h2>When snapping fights you</h2>
+      <ol>
+        <li><span class="sup-key">F3</span>. If the problem disappears, a snap was the cause.</li>
+        <li>Turn off the specific pill. <strong>Near</strong> is the usual culprit &mdash; it can slide a pick along a
+            line you did not mean to touch.</li>
+        <li>Reduce <strong>Snap tol</strong> on the second toolbar row so the aperture is tighter.</li>
+        <li>Hide or lock the layer you keep catching. Imported linework under your cursor is the most common
+            source of a wrong pick.</li>
+        <li>Use <span class="sup-key">Tab</span> to take the one you actually want rather than fighting the ranking.</li>
+      </ol>
+      <p>If a snap mark appears somewhere the click refuses to go, that is a bug by definition &mdash; press
+      <span class="sup-key">F12</span> and circle it.</p>
+    </div>
+
+    <div class="sup-rel">
+      <h2>Related</h2>
+      <ul>
+        <li><a href="shortcuts.html">Keyboard shortcuts</a></li>
+        <li><a href="drafting.html">Drawing &amp; editing</a></li>
+        <li><a href="sprinklers.html">Sprinkler placement</a></li>
+        <li><a href="piping.html">Drawing pipe</a></li>
+        <li><a href="/studio/support/">All support topics</a></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="/assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="/">SprinkFlow Tools</a> &middot; <a href="/design-studio.html">Design Studio</a> &middot; <a href="/studio/support/">Studio Support</a> &middot; <a href="/learn/">Learn</a> &middot; <a href="/release-notes.html">Release notes</a> &middot; <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product</div>
+  </footer>
+  <script>
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>
