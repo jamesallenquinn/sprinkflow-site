@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support &mdash; SprinkFlow</title>
+  <meta name="description" content="Get help with SprinkFlow. Ask a question and get an answer straight away, or send a message to a human. Yes, you can cancel any time in two clicks." />
+  <meta name="theme-color" content="#0d1116" />
+  <link rel="canonical" href="https://sprinkflow.studio/support.html" />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <meta property="og:title" content="SprinkFlow Support &mdash; a human reads every message" />
+  <meta property="og:description" content="Ask a question and get an answer straight away, or send a message to a person. Cancelling takes two clicks, any time." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .sp-wrap { max-width: 780px; margin: 0 auto; padding: 44px 22px 90px; }
+    .sp-hero { text-align: center; margin-bottom: 34px; }
+    .sp-hero h1 { font-size: clamp(1.8rem, 4.6vw, 2.6rem); margin: 8px 0 12px; }
+    .sp-hero p { color: var(--muted); margin: 0 auto; max-width: 54ch; font-size: 1.02rem; }
+
+    .sp-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+      padding: 22px 24px; margin: 22px 0; }
+    .sp-card h2 { font-size: 1.22rem; margin: 0 0 6px; }
+    .sp-card > p.sp-lead { color: var(--muted); margin: 0 0 16px; font-size: .94rem; }
+    .sp-card.is-flagged { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(255,176,58,.14); }
+
+    /* ask box */
+    .sp-askrow { display: flex; gap: 10px; flex-wrap: wrap; }
+    .sp-askrow input { flex: 1 1 240px; min-width: 0; background: var(--bg); border: 1px solid var(--line-strong);
+      border-radius: 11px; padding: 13px 14px; color: var(--ink); font: inherit; font-size: 1rem; }
+    .sp-askrow input:focus { outline: none; border-color: var(--water); box-shadow: 0 0 0 3px rgba(55,183,228,.18); }
+    .sp-askrow button { flex: 0 0 auto; }
+    .sp-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+    .sp-chip { background: var(--surface-soft); border: 1px solid var(--line); border-radius: 999px;
+      color: var(--muted); font: 500 .82rem Inter; padding: 6px 12px; cursor: pointer; }
+    .sp-chip:hover { border-color: var(--brand); color: var(--ink); }
+
+    .sp-thread { margin-top: 18px; display: grid; gap: 12px; }
+    .sp-turn { border-top: 1px solid var(--line); padding-top: 12px; }
+    .sp-turn:first-child { border-top: 0; padding-top: 0; }
+    .sp-q { color: var(--muted); font-size: .88rem; margin: 0 0 6px; }
+    .sp-q b { color: var(--ink); font-weight: 600; }
+    .sp-a { color: var(--ink); margin: 0; line-height: 1.62; font-size: .97rem; white-space: pre-wrap; }
+    .sp-a.is-waiting { color: var(--muted); }
+    .sp-flag { margin: 10px 0 0; font-size: .9rem; color: var(--accent); }
+    .sp-flag a { color: var(--accent); text-decoration: underline; }
+    .sp-disclaimer { color: var(--muted); font-size: .78rem; margin: 14px 0 0; }
+
+    /* contact form */
+    .sp-form { display: grid; gap: 14px; }
+    /* Each child of a grid label is its own row, so a label's caption has to be ONE
+       element -- a bare text node plus a span puts "(optional)" on a line of its own. */
+    .sp-form label { display: grid; gap: 6px; font-size: .86rem; color: var(--muted); font-weight: 600; }
+    .sp-opt { font-weight: 500; }
+    .sp-form input, .sp-form select, .sp-form textarea {
+      width: 100%; background: var(--bg); border: 1px solid var(--line-strong); border-radius: 11px;
+      padding: 12px 14px; color: var(--ink); font: inherit; font-size: 1rem; }
+    .sp-form textarea { min-height: 132px; resize: vertical; line-height: 1.55; }
+    .sp-form input:focus, .sp-form select:focus, .sp-form textarea:focus {
+      outline: none; border-color: var(--water); box-shadow: 0 0 0 3px rgba(55,183,228,.18); }
+    .sp-form .is-bad { border-color: #ff7a63; }
+    .sp-err { color: #ff9b85; font-size: .82rem; font-weight: 500; min-height: 0; }
+    .sp-err:empty { display: none; }
+    .sp-count { color: var(--muted); font-size: .78rem; text-align: right; }
+    .sp-note { margin: 0; font-size: .92rem; color: var(--muted); min-height: 1.3em; }
+    .sp-note.is-bad { color: #ff9b85; }
+    .sp-sent { text-align: center; padding: 12px 0 4px; }
+    .sp-sent h3 { margin: 0 0 8px; font-size: 1.15rem; }
+    .sp-sent p { color: var(--muted); margin: 0 0 14px; }
+
+    /* faq */
+    .sp-faq h2 { font-size: 1.35rem; margin: 46px 0 4px; }
+    .sp-faq > p.sp-lead { color: var(--muted); margin: 0 0 14px; font-size: .94rem; }
+    .sp-qa { border-top: 1px solid var(--line); padding: 18px 0; }
+    .sp-qa h3 { font-size: 1.02rem; margin: 0 0 7px; }
+    .sp-qa p { margin: 0 0 8px; color: var(--muted); font-size: .96rem; line-height: 1.65; }
+    .sp-qa p:last-child { margin-bottom: 0; }
+    .sp-qa strong { color: var(--ink); font-weight: 600; }
+    .sp-qa a { color: var(--brand); }
+    .sp-qa a:hover { text-decoration: underline; }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 560px) {
+      .sp-wrap { padding: 28px 16px 70px; }
+      .sp-card { padding: 18px 16px; border-radius: 14px; }
+      .sp-askrow button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-fire"></span>
+    <span class="orb orb-water"></span>
+  </div>
+
+  <header class="nav">
+    <a class="brand" href="/"><img src="./assets/logo.png" alt="" class="brand-mark" /><span class="brand-name">SprinkFlow</span></a>
+    <nav class="nav-links">
+      <a href="/#features">SprinkFlow Tools</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/design-studio.html">Design Studio</a>
+      <a href="/learn/">Learn</a>
+      <a href="https://web.sprinkflow.studio">Web App</a>
+      <a href="/support.html">Support</a>
+      <a href="/account.html">Account</a>
+    </nav>
+    <a href="/account.html?checkout=1" class="btn btn-primary btn-sm nav-buy">Subscribe &mdash; $39/mo</a>
+  </header>
+
+  <main class="sp-wrap">
+    <div class="sp-hero">
+      <div class="eyebrow"><span class="dot"></span> Support</div>
+      <h1>Questions? A human reads every message.</h1>
+      <p>Ask below and you'll usually get an answer straight away. Anything the answer bot can't handle goes to a person &mdash; normally replied to within a business day.</p>
+    </div>
+
+    <!-- ask -->
+    <section class="sp-card" id="askCard">
+      <h2>Ask SprinkFlow</h2>
+      <p class="sp-lead">Pricing, cancelling, what's included, how it works &mdash; ask in your own words.</p>
+      <form class="sp-askrow" id="askForm" novalidate>
+        <input type="text" id="askInput" maxlength="1000" autocomplete="off"
+               placeholder="Can I cancel any time?" aria-label="Your question" />
+        <button type="submit" class="btn btn-primary" id="askBtn">Ask</button>
+      </form>
+      <div class="sp-chips" id="askChips">
+        <button type="button" class="sp-chip">Can I cancel any time?</button>
+        <button type="button" class="sp-chip">What does $39 a month get me?</button>
+        <button type="button" class="sp-chip">Is there a free trial?</button>
+        <button type="button" class="sp-chip">Do my plans stay on my computer?</button>
+      </div>
+      <div class="sp-thread" id="askThread"></div>
+      <p class="sp-disclaimer">Answers come from a bot working off a short list of facts about SprinkFlow. It doesn't know anything about your account &mdash; for that, use the form below.</p>
+    </section>
+
+    <!-- contact -->
+    <section class="sp-card" id="contactCard">
+      <h2 id="contact">Send us a message</h2>
+      <p class="sp-lead">Goes straight to a person. We usually reply within a business day.</p>
+
+      <form class="sp-form" id="contactForm" novalidate>
+        <label><span>Name <span class="sp-opt">(optional)</span></span>
+          <input type="text" id="cName" maxlength="120" autocomplete="name" placeholder="Your name" />
+        </label>
+        <label>Email
+          <input type="email" id="cEmail" maxlength="200" autocomplete="email" required placeholder="you@company.com" />
+          <span class="sp-err" id="cEmailErr"></span>
+        </label>
+        <label>What's this about?
+          <select id="cTopic">
+            <option value="billing">Billing &amp; cancellation</option>
+            <option value="technical">Technical problem</option>
+            <option value="feature">Feature request</option>
+            <option value="other" selected>Something else</option>
+          </select>
+        </label>
+        <label>Message
+          <textarea id="cMessage" maxlength="4000" required placeholder="Tell us what's going on."></textarea>
+          <span class="sp-count" id="cCount"></span>
+          <span class="sp-err" id="cMessageErr"></span>
+        </label>
+        <button type="submit" class="btn btn-primary btn-block" id="cSubmit">Send message</button>
+        <p class="sp-note" id="cNote" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="sp-sent hidden" id="contactDone">
+        <h3>Got it.</h3>
+        <p id="contactDoneMsg"></p>
+        <button type="button" class="btn btn-ghost btn-sm" id="cAgain">Send another message</button>
+      </div>
+    </section>
+
+    <!-- faq -->
+    <section class="sp-faq">
+      <h2>Common questions</h2>
+      <p class="sp-lead">The short, honest answers.</p>
+
+      <div class="sp-qa">
+        <h3>Can I cancel any time?</h3>
+        <p><strong>Yes &mdash; two clicks in your <a href="/account.html">account page</a>'s Manage Billing.</strong> No phone calls, no emails, no retention tricks. You cancel it yourself, in the secure Stripe billing portal, whenever you like.</p>
+        <p>Your free-tier tools keep working after you cancel: every calculator, reference and design tool still runs. What stops is generating and exporting deliverables &mdash; submittal packages, calc packages, PDF and DXF export, and the AI features. Resubscribe and they come straight back.</p>
+      </div>
+
+      <div class="sp-qa">
+        <h3>Is there a free trial?</h3>
+        <p>Yes &mdash; <strong>7 days free</strong>. A card is collected at checkout and the first charge lands after the trial ends. Cancel before then and you're not charged anything at all.</p>
+        <p>You can also download SprinkFlow Tools and look around without subscribing at all. The subscription is what unlocks generating and exporting your deliverables.</p>
+      </div>
+
+      <div class="sp-qa">
+        <h3>What does it cost, and what do I get?</h3>
+        <p><strong>$39 a month.</strong> That covers the SprinkFlow Tools desktop app for Windows 10/11 with one-click updates, the browser edition at <a href="https://web.sprinkflow.studio">web.sprinkflow.studio</a>, and alpha access to <a href="/design-studio.html">SprinkFlow Design Studio</a> &mdash; our CAD program &mdash; at no extra cost while you're subscribed.</p>
+        <p>If you're already on a founder rate, that rate stays put for as long as you stay subscribed.</p>
+      </div>
+
+      <div class="sp-qa">
+        <h3>Do my drawings and plans stay private?</h3>
+        <p>Yes. Submittals, calculations, bids and maps are generated and stored <strong>on your own device</strong>. We don't upload or keep copies of your project files.</p>
+        <p>The optional AI features send only the specific text you choose to process &mdash; a datasheet, a spec section &mdash; to a secure AI service. It isn't used to train models, and nothing else about your project leaves your machine. The full <a href="/privacy.html">privacy policy</a> is deliberately short.</p>
+      </div>
+
+      <div class="sp-qa">
+        <h3>What can I run it on?</h3>
+        <p>The desktop app runs on <strong>Windows 10 and 11</strong>. There's a browser edition at <a href="https://web.sprinkflow.studio">web.sprinkflow.studio</a> that needs nothing installed, and the free calculators and games at <a href="https://app.sprinkflow.studio">app.sprinkflow.studio</a> work on any phone or computer &mdash; free to everyone, subscriber or not.</p>
+      </div>
+
+      <div class="sp-qa">
+        <h3>How many people can use one subscription?</h3>
+        <p>One account per person, and that account can be activated on <strong>up to 2 devices</strong> &mdash; your office machine and your laptop, say. Working with a team? <a href="#contact">Send us a message</a> and we'll sort something out.</p>
+      </div>
+
+      <div class="sp-qa">
+        <h3>Something's broken. What do I do?</h3>
+        <p>Use the <a href="#contact">form above</a> and pick "Technical problem". If it's in Design Studio, pressing <strong>F12</strong> inside the program files a report with a screenshot attached, which tells us far more than a description can &mdash; and there's a whole help section at <a href="/studio/support/">Studio Support</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="./assets/logo.png" alt="" /><span>SprinkFlow</span></div>
+    <div class="footer-links"><a href="https://app.sprinkflow.studio">Free app &amp; games</a> &middot; <a href="/design-studio.html">Design Studio</a> &middot; <a href="/studio/support/">Studio Support</a> &middot; <a href="/tools/">Tool guides</a> &middot; <a href="/learn/">Learn</a> &middot; <a href="https://web.sprinkflow.studio">Web App</a> &middot; <a href="/support.html">Support</a> &middot; <a href="/release-notes.html">Release notes</a> &middot; <a href="/privacy.html">Privacy</a></div>
+    <div class="footer-by">A Calculated Fire Suppression product &middot; &copy; <span id="year"></span></div>
+  </footer>
+
+  <script>
+  (function () {
+    "use strict";
+
+    var CLOUD_API = "https://sprinkflow-cloud-api.onrender.com";
+    // The API sleeps on Render's free plan, so the very first call of the day can take
+    // most of a minute to answer. Saying nothing for that long reads as "broken", so we
+    // swap in an explanation at 3s and give the request plenty of room after that.
+    var WAKE_NOTICE_MS = 3000;
+    var ASK_TIMEOUT_MS = 60000;
+    var HISTORY_TURNS = 3;
+
+    var $ = function (id) { return document.getElementById(id); };
+    var year = $("year");
+    if (year) { year.textContent = new Date().getFullYear(); }
+
+    function post(path, body, timeoutMs) {
+      // AbortController keeps a hung request from leaving the button stuck on "Thinking…".
+      var controller = typeof AbortController === "function" ? new AbortController() : null;
+      var timer = controller ? setTimeout(function () { controller.abort(); }, timeoutMs) : null;
+      return fetch(CLOUD_API + path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        signal: controller ? controller.signal : undefined
+      }).then(function (response) {
+        if (timer) { clearTimeout(timer); }
+        return response.json().catch(function () { return {}; }).then(function (data) {
+          if (!response.ok) {
+            var detail = data && (data.detail || data.message);
+            throw new Error(typeof detail === "string" && detail ? detail : "That didn't go through (" + response.status + ").");
+          }
+          return data;
+        });
+      }, function (error) {
+        if (timer) { clearTimeout(timer); }
+        throw error;
+      });
+    }
+
+    // ---------------------------------------------------------------- ask
+    var askForm = $("askForm");
+    var askInput = $("askInput");
+    var askBtn = $("askBtn");
+    var askThread = $("askThread");
+    var askCard = $("askCard");
+    var contactCard = $("contactCard");
+    var history = [];
+    var asking = false;
+
+    Array.prototype.forEach.call(document.querySelectorAll("#askChips .sp-chip"), function (chip) {
+      chip.addEventListener("click", function () { submitAsk(chip.textContent); });
+    });
+
+    askForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      submitAsk(askInput.value);
+    });
+
+    // A one-field box like this SHOULD submit on Enter via the form's own implicit
+    // submission, but that is not reliable everywhere -- and a search box that ignores
+    // Enter feels broken. Handle the key outright.
+    askInput.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.keyCode === 13) {
+        event.preventDefault();
+        submitAsk(askInput.value);
+      }
+    });
+
+    function addTurn(question) {
+      var turn = document.createElement("div");
+      turn.className = "sp-turn";
+      var q = document.createElement("p");
+      q.className = "sp-q";
+      var label = document.createElement("b");
+      label.textContent = "You asked: ";
+      q.appendChild(label);
+      q.appendChild(document.createTextNode(question));
+      var a = document.createElement("p");
+      a.className = "sp-a is-waiting";
+      a.textContent = "Thinking…";
+      turn.appendChild(q);
+      turn.appendChild(a);
+      askThread.appendChild(turn);
+      return { root: turn, answer: a };
+    }
+
+    function flagForHuman(turn) {
+      var flag = document.createElement("p");
+      flag.className = "sp-flag";
+      flag.appendChild(document.createTextNode("I've flagged this for a human — "));
+      var link = document.createElement("a");
+      link.href = "#contact";
+      link.textContent = "leave your email below and we'll get back to you";
+      flag.appendChild(link);
+      flag.appendChild(document.createTextNode("."));
+      turn.root.appendChild(flag);
+
+      contactCard.classList.add("is-flagged");
+      var topic = $("cTopic");
+      if (topic && !topic.dataset.touched) { topic.value = "other"; }
+      contactCard.scrollIntoView({ behavior: "smooth", block: "start" });
+      var email = $("cEmail");
+      if (email && !email.value) { setTimeout(function () { email.focus({ preventScroll: true }); }, 450); }
+    }
+
+    function submitAsk(text) {
+      if (asking) { return; }
+      var question = (text || "").trim();
+      if (!question) { askInput.focus(); return; }
+
+      asking = true;
+      askBtn.disabled = true;
+      askBtn.textContent = "Thinking…";
+      askInput.value = "";
+      var turn = addTurn(question);
+
+      var waking = setTimeout(function () {
+        turn.answer.textContent = "Waking the support service… this can take up to a minute the first time.";
+      }, WAKE_NOTICE_MS);
+
+      function finish() {
+        clearTimeout(waking);
+        asking = false;
+        askBtn.disabled = false;
+        askBtn.textContent = "Ask";
+      }
+
+      post("/support/ask", { question: question, history: history.slice(-HISTORY_TURNS) }, ASK_TIMEOUT_MS)
+        .then(function (data) {
+          finish();
+          var answer = (data && data.answer) || "";
+          if (!answer) {
+            answer = "I didn't get an answer back. Use the form below and a human will pick it up.";
+          }
+          turn.answer.classList.remove("is-waiting");
+          turn.answer.textContent = answer;
+          history.push({ question: question, answer: answer.slice(0, 2000) });
+          if (history.length > HISTORY_TURNS) { history = history.slice(-HISTORY_TURNS); }
+          if (data && data.escalate) { flagForHuman(turn); }
+        })
+        .catch(function () {
+          finish();
+          turn.answer.classList.remove("is-waiting");
+          turn.answer.textContent = "I couldn't reach the answer service just then. Send it to a human instead — the form below goes straight to a person.";
+          flagForHuman(turn);
+        });
+    }
+
+    // ------------------------------------------------------------ contact
+    var contactForm = $("contactForm");
+    var cEmail = $("cEmail");
+    var cMessage = $("cMessage");
+    var cTopic = $("cTopic");
+    var cSubmit = $("cSubmit");
+    var cNote = $("cNote");
+    var cCount = $("cCount");
+    var contactDone = $("contactDone");
+    var sending = false;
+
+    cTopic.addEventListener("change", function () { cTopic.dataset.touched = "1"; });
+
+    function updateCount() {
+      var used = (cMessage.value || "").length;
+      cCount.textContent = used > 3200 ? used + " / 4000" : "";
+    }
+    cMessage.addEventListener("input", updateCount);
+
+    function setError(field, errorId, text) {
+      $(errorId).textContent = text || "";
+      field.classList.toggle("is-bad", !!text);
+      field.setAttribute("aria-invalid", text ? "true" : "false");
+    }
+
+    function validEmail(value) {
+      // Deliberately loose. The server's EmailStr is the real check; this only catches the
+      // obvious typo before someone waits on a round trip to hear about it.
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+    }
+
+    function validate() {
+      var email = (cEmail.value || "").trim();
+      var message = (cMessage.value || "").trim();
+      var ok = true;
+      if (!email) { setError(cEmail, "cEmailErr", "We need an email address to reply to."); ok = false; }
+      else if (!validEmail(email)) { setError(cEmail, "cEmailErr", "That doesn't look like an email address."); ok = false; }
+      else { setError(cEmail, "cEmailErr", ""); }
+
+      if (!message) { setError(cMessage, "cMessageErr", "Tell us what's going on."); ok = false; }
+      else if (message.length > 4000) { setError(cMessage, "cMessageErr", "That's over the 4,000 character limit."); ok = false; }
+      else { setError(cMessage, "cMessageErr", ""); }
+      return ok;
+    }
+
+    cEmail.addEventListener("blur", function () { if (cEmail.value) { validate(); } });
+    cMessage.addEventListener("input", function () { if ($("cMessageErr").textContent) { validate(); } });
+
+    function note(text, bad) {
+      cNote.textContent = text || "";
+      cNote.classList.toggle("is-bad", !!bad);
+    }
+
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (sending) { return; }
+      if (!validate()) {
+        note("Fix the highlighted fields and try again.", true);
+        var bad = contactForm.querySelector(".is-bad");
+        if (bad) { bad.focus(); }
+        return;
+      }
+
+      sending = true;
+      cSubmit.disabled = true;
+      cSubmit.textContent = "Sending…";
+      note("");
+      var waking = setTimeout(function () {
+        note("Waking the support service… this can take up to a minute the first time.");
+      }, WAKE_NOTICE_MS);
+
+      var email = (cEmail.value || "").trim();
+      post("/support/contact", {
+        name: (($("cName").value) || "").trim(),
+        email: email,
+        topic: cTopic.value,
+        message: (cMessage.value || "").trim()
+      }, ASK_TIMEOUT_MS)
+        .then(function () {
+          clearTimeout(waking);
+          contactForm.classList.add("hidden");
+          contactCard.classList.remove("is-flagged");
+          $("contactDoneMsg").textContent = "We'll reply to " + email + ", usually within a business day.";
+          contactDone.classList.remove("hidden");
+          contactDone.scrollIntoView({ behavior: "smooth", block: "center" });
+        })
+        .catch(function (error) {
+          clearTimeout(waking);
+          sending = false;
+          cSubmit.disabled = false;
+          cSubmit.textContent = "Send message";
+          note((error && error.message) || "That didn't go through. Try again in a moment, or email jamesallenquinn@gmail.com directly.", true);
+        });
+    });
+
+    $("cAgain").addEventListener("click", function () {
+      sending = false;
+      cSubmit.disabled = false;
+      cSubmit.textContent = "Send message";
+      cMessage.value = "";
+      updateCount();
+      note("");
+      contactDone.classList.add("hidden");
+      contactForm.classList.remove("hidden");
+      cMessage.focus();
+    });
+  })();
+  </script>
+  <script>
+    var nav = document.querySelector(".nav");
+    var syncNav = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", syncNav, { passive: true });
+    syncNav();
+  </script>
+</body>
+</html>
