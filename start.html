@@ -221,7 +221,7 @@
     "use strict";
     var COUNT = 5;
     var LAST = COUNT - 1;
-    var CHECKOUT_URL = "/account.html?checkout=1&trial=1";
+    var CHECKOUT_URL = "/account.html?trial=1";
     var index = 0;
 
     var track = document.getElementById("track");
@@ -262,7 +262,7 @@
       // The CTA is a real link on the last screen so it survives with JS off too.
       cta.setAttribute("href", onPlan ? CHECKOUT_URL : "#");
       fine.innerHTML = onPlan
-        ? "7 days free, then $39/mo. Cancel anytime. We ask for a card so nothing stops on day 8. <a href=\"/privacy.html\">Privacy</a>"
+        ? "7 days free. No credit card required. Cancel anytime. <a href=\"/privacy.html\">Privacy</a>"
         : "Free to look around · $39/month when you're ready to export";
       back.hidden = index === 0;
       if (screens[index]) screens[index].scrollTop = 0;

@@ -58,10 +58,11 @@
     <h1 id="acctTitle">Your Account</h1>
     <p class="acct-sub" id="acctSub">Manage your SprinkFlow subscription.</p>
 
-    <!-- shown when the visitor arrived intending to buy (?checkout=1) -->
+    <!-- shown when the visitor arrived intending to buy (?checkout=1) or to start
+         the free trial (?trial=1) -->
     <div class="price-banner hidden" id="priceBanner">
-      <div class="price-amount">$39<span> /month</span></div>
-      <div class="price-note">Unlimited submittals, calc packages and exports.<br />Cancel anytime.</div>
+      <div class="price-amount" id="priceAmount">$39<span> /month</span></div>
+      <div class="price-note" id="priceNote">Unlimited submittals, calc packages and exports.<br />Cancel anytime.</div>
     </div>
 
     <!-- signed OUT -->
@@ -81,7 +82,7 @@
       <label for="acPassword">Password</label>
       <input id="acPassword" type="password" autocomplete="current-password" placeholder="Your SprinkFlow password" />
       <button class="acct-btn" id="acSignIn" type="button">Sign in</button>
-      <button class="acct-btn hidden" id="acCreate" type="button">Create account &amp; subscribe</button>
+      <button class="acct-btn hidden" id="acCreate" type="button">Create my free account</button>
       <p class="acct-note" id="loginNote">Use the same login as the SprinkFlow app.</p>
       <div class="acct-alt" id="forgotRow">Forgot your password? <button type="button" id="acForgot">Email me a reset link</button></div>
     </div>
@@ -191,16 +192,35 @@
       return data;
     }
 
-    // ?checkout=1 means "this person came here to buy" - show the price, default
-    // to Create account, and send them straight to Stripe once they're signed in.
-    var wantsCheckout = /[?&]checkout=1/.test(location.search);
+    // Two arrival intents, and they are NOT the same thing:
+    //   ?trial=1     "I want the free trial" -> just make the account. The 7 days are
+    //                granted by the API on the first license read (licensing.ensure_license),
+    //                so there is no card, no Stripe, and nothing to send them to.
+    //   ?checkout=1  "I want to subscribe" -> straight to Stripe once they're signed in.
+    var wantsTrial = /[?&]trial=1/.test(location.search);
+    var wantsCheckout = !wantsTrial && /[?&]checkout=1/.test(location.search);
 
     function applyBuyIntent() {
+      if (wantsTrial) {
+        $("priceBanner").classList.remove("hidden");
+        $("priceAmount").innerHTML = "7 days<span> free</span>";
+        $("priceNote").innerHTML = "<strong>No credit card required.</strong><br />Full access to every tool and export. $39/month afterwards, only if you choose to subscribe.";
+        $("acctTitle").textContent = "Start your free trial";
+        $("acctSub").textContent = "Create an account and your 7 days start right away — no credit card, nothing to cancel.";
+        setMode("create");
+        return;
+      }
       if (!wantsCheckout) return;
       $("priceBanner").classList.remove("hidden");
       $("acctTitle").textContent = "Start your membership";
       $("acctSub").textContent = "Create an account (or sign in) and we'll take you straight to checkout.";
       setMode("create");
+    }
+
+    // Where a confirmation email should drop somebody back. Trial signups must NOT come
+    // back with ?checkout=1 or confirming their address would open Stripe.
+    function returnUrl() {
+      return location.origin + "/account.html" + (wantsCheckout ? "?checkout=1" : "?trial=1");
     }
 
     function setMode(mode) {
@@ -212,8 +232,11 @@
       $("acSignIn").classList.toggle("hidden", create);
       $("acPassword").setAttribute("autocomplete", create ? "new-password" : "current-password");
       $("acPassword").placeholder = create ? "At least 8 characters" : "Your SprinkFlow password";
+      $("acCreate").textContent = wantsCheckout ? "Create account & subscribe" : "Create my free account";
       note("loginNote", create
-        ? "Already have an account? Choose Sign in above."
+        ? (wantsCheckout
+            ? "Already have an account? Choose Sign in above."
+            : "No credit card required. Already have an account? Choose Sign in above.")
         : "Use the same login as the SprinkFlow app.");
     }
 
@@ -245,13 +268,23 @@
         var subscribed = s.status === "active" || s.status === "grace" || s.status === "past_due";
         $("acPortal").classList.toggle("hidden", !subscribed);
         $("acSubscribe").classList.toggle("hidden", subscribed);
-        note("acctNote", "");
-        // came here to buy and isn't subscribed yet -> go straight to Stripe
+        note("acctNote", s.status === "trial"
+          ? "Your free trial is running — no card on file, and nothing will be charged when it ends."
+          : "");
+        // came here to buy and isn't subscribed yet -> go straight to Stripe.
+        // A ?trial=1 arrival never lands here: reading the licence above is what starts
+        // the trial, so there is nothing further to do.
         if (wantsCheckout && !subscribed) {
           wantsCheckout = false;   // one shot, so a back-button return doesn't loop
           note("acctNote", "Opening secure checkout…");
           try { await startCheckout(session); } catch (e) { note("acctNote", e.message, true); }
         } else if (subscribed) {
+          $("acctTitle").textContent = "Your Account";
+          $("acctSub").textContent = "Manage your SprinkFlow subscription.";
+        } else if (s.status === "trial") {
+          $("acctTitle").textContent = "Your free trial is live";
+          $("acctSub").textContent = "Full access to every tool and export. No credit card on file.";
+        } else {
           $("acctTitle").textContent = "Your Account";
           $("acctSub").textContent = "Manage your SprinkFlow subscription.";
         }
@@ -294,9 +327,9 @@
           email: email,
           password: password,
           options: {
-            // land them back here already intending to buy, so confirming the
-            // email drops them straight into checkout
-            emailRedirectTo: location.origin + "/account.html?checkout=1",
+            // land them back here with the SAME intent they arrived with, so confirming
+            // the email finishes what they started (trial page -> trial, buy -> checkout)
+            emailRedirectTo: returnUrl(),
             data: { full_name: $("acName").value.trim(), company: $("acCompany").value.trim() },
           },
         });
@@ -307,14 +340,22 @@
           btn.disabled = false;
           return;
         }
-        // Email confirmation OFF -> we already have a session, go straight to Stripe.
-        // Confirmation ON -> no session yet; the confirm link returns them here.
+        // Email confirmation OFF -> we already have a session. A trial signup just needs
+        // the account page rendered: reading the licence is what starts the 7 days.
+        // Only a ?checkout=1 arrival goes on to Stripe.
         if (res.data && res.data.session) {
-          note("loginNote", "Account created — opening secure checkout…");
-          await startCheckout(res.data.session);
+          if (wantsCheckout) {
+            note("loginNote", "Account created — opening secure checkout…");
+            await startCheckout(res.data.session);
+            return;
+          }
+          note("loginNote", "Account created — starting your free trial…");
+          await renderAccount(res.data.session);
           return;
         }
-        note("loginNote", "Almost there — check your email and click the confirmation link. It brings you right back here to finish checkout.");
+        note("loginNote", wantsCheckout
+          ? "Almost there — check your email and click the confirmation link. It brings you right back here to finish checkout."
+          : "Almost there — check your email and click the confirmation link. It brings you right back here and your free trial starts.");
       } catch (e) {
         note("loginNote", (e && e.message) || "Could not create the account.", true);
       }

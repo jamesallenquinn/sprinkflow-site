@@ -50,15 +50,16 @@ function setNote(msg, kind) {
   note.className = "form-note" + (kind ? " " + kind : "");
 }
 
-// After a successful signup, surface BOTH next steps instead of silently
-// scrolling to the installer — subscribing was previously never offered.
+// After a successful signup, surface the next steps instead of silently scrolling to
+// the installer. The account IS the trial now (the API grants 7 days on the first
+// license read), so the primary action opens the account page — not a card form.
 function showPostSignupActions() {
   if (document.getElementById("suNext")) return;
   const box = document.createElement("div");
   box.id = "suNext";
   box.style.cssText = "display:flex;gap:10px;flex-wrap:wrap;margin-top:12px";
   box.innerHTML =
-    '<a class="btn btn-primary" href="/account.html?checkout=1">Subscribe &mdash; $39/mo</a>' +
+    '<a class="btn btn-primary" href="/account.html?trial=1">Open my account &mdash; start the trial</a>' +
     '<a class="btn btn-ghost" href="#download">Download the app</a>';
   note.insertAdjacentElement("afterend", box);
 }
@@ -88,13 +89,15 @@ form?.addEventListener("submit", async (event) => {
     });
     if (error) throw error;
 
-    // The account starts on the free tier; a paid license is granted by the
-    // Stripe subscription (via the billing webhook), not at signup.
+    // No card is collected here and none is needed: the 7-day trial is granted by the
+    // API the first time this account reads its license (cloud_api/licensing.py
+    // ensure_license), once per account. A paid license still comes from the Stripe
+    // subscription via the billing webhook.
     const identities = data?.user?.identities;
     if (Array.isArray(identities) && identities.length === 0) {
-      setNote("You already have an account with this email. Sign in on your account page to subscribe, or just download below.", "ok");
+      setNote("You already have an account with this email. Sign in on your account page, or just download below.", "ok");
     } else {
-      setNote("Almost there — check your email and click the confirmation link. Then subscribe to unlock exports, or download below.", "ok");
+      setNote("Almost there — check your email and click the confirmation link. Your 7-day free trial starts as soon as you sign in. No credit card needed.", "ok");
     }
     // Signup used to scroll straight to the download button, which left the
     // purchase step invisible. Offer both, with subscribing first.
